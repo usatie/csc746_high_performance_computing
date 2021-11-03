@@ -49,10 +49,10 @@ is responsible for sending data from one rank to another.
 
 void  
 sendStridedBuffer(float \*srcBuf,   
-  int srcWidth, int srcHeight,   
-  int srcOffsetColumn, int srcOffsetRow,  
-  int sendWidth, int sendHeight,  
-  int fromRank, int toRank )   
+    int srcWidth, int srcHeight,   
+    int srcOffsetColumn, int srcOffsetRow,  
+    int sendWidth, int sendHeight,  
+    int fromRank, int toRank )   
 
 // ADD YOUR CODE HERE  
 
@@ -68,10 +68,10 @@ _srcBuf_ by the values specificed by _srcOffsetColumn_, _srcOffsetRow_.
 
 void  
 recvStridedBuffer(float \*dstBuf,  
-  int dstWidth, int dstHeight,  
-  int dstOffsetColumn, int dstOffsetRow,  
-  int expectedWidth, int expectedHeight,  
-  int fromRank, int toRank )   
+    int dstWidth, int dstHeight,  
+    int dstOffsetColumn, int dstOffsetRow,  
+    int expectedWidth, int expectedHeight,  
+    int fromRank, int toRank )   
 
 // ADD YOUR CODE HERE
 
