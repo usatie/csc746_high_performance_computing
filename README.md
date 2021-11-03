@@ -21,6 +21,7 @@ After downloading, cd into the mpi-2dmesh-harness directory, then:
 % mkdir build  
 % cd build  
 % cmake 
+% make
 
 # Platforms
 
@@ -47,11 +48,11 @@ This method, which is called from both scatterAllTiles() and gatherAllTiles(),
 is responsible for sending data from one rank to another. 
 
 void  
-sendStridedBuffer(float \*srcBuf,  
-    int srcWidth, int srcHeight,  
-    int srcOffsetColumn, int srcOffsetRow,  
-    int sendWidth, int sendHeight,  
-    int fromRank, int toRank )
+sendStridedBuffer(float \*srcBuf,   
+    int srcWidth, int srcHeight,   
+   int srcOffsetColumn, int srcOffsetRow,  
+   int sendWidth, int sendHeight,  
+   int fromRank, int toRank )   
 
 // ADD YOUR CODE HERE  
 
