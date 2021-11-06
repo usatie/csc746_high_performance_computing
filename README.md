@@ -56,15 +56,18 @@ sendStridedBuffer(float \*srcBuf,
 
 // ADD YOUR CODE HERE  
 
-Your code will performs sending of data using MPI\_Send(), going _fromRank_ and 
+Your code will perform the sending of data using MPI\_Send(), going _fromRank_ and 
 to _toRank_. The data to be sent is in _srcBuf_, which has width _srcWidth_, _srcHeight_.
 Your code needs to send a subregion of _srcBuf_, where the subregion is of size
 _sendWidth_ by _sendHeight_ values, and the subregion is offset from the origin of
-_srcBuf_ by the values specificed by _srcOffsetColumn_, _srcOffsetRow_.
+_srcBuf_ by the values specified by _srcOffsetColumn_, _srcOffsetRow_.
 
 
 
 ### 2. Adding your code to recvStridedBuffer()
+
+This method, which is called from both scatterAllTiles() and gatherAllTiles(),
+is responsible for receiving data moving from one rank to another.
 
 void  
 recvStridedBuffer(float \*dstBuf,  
@@ -75,8 +78,8 @@ recvStridedBuffer(float \*dstBuf,
 
 // ADD YOUR CODE HERE
 
-Your code will perform receiving of data using MPI\_Recv(), where inbound data
-is coming _fromRank_ and is destined for _toRank_. The that that arrives will be of size 
+Your code will perform the receiving of data using MPI\_Recv(), where inbound data
+is coming _fromRank_ and is destined for _toRank_. The data that arrives will be of size 
 _expectedWidth_ by _expectedHeight_ values.  This incoming data is to be placed into 
 the subregion of _dstBuf_ that has an origin at _dstOffsetColumn, dstOffsetRow_, and 
 that is _expectedWidth, expectedHeight_ in size.
