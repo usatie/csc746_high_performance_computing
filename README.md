@@ -9,24 +9,23 @@ The main code is benchmark.cpp, which sets up the problem, iterates over problem
 result for accuracy by comparing your result against a reference implementation (CBLAS).
 
 Note that cmake needs to be able to find the CBLAS package. For CSC 746 Fall 2021,
-this condition is true on Cori@NERSC and on the class VM. It is also true for some
-other platforms, but you are on your own if using a platform other than Cori@NERSC
+this condition is true on Perlmutter@NERSC and on the class VM. It is also true for some
+other platforms, but you are on your own if using a platform other than Perlmutter@NERSC
 or the class VM.
 
 # Build instructions - general
 
 After downloading, cd into the main source directly, then:
 
-% mkdir build  
-% cd build  
-% cmake ../  
+> mkdir build  
+> cd build  
+> cmake ../  
 
-When building on Cori, make sure you are on a KNL node when doing the compilation. The
-Cori login nodes are *not* KNL nodes, the Cori login nodes have Intel Xeon E5-2698
-processors, not the Intel Xeon Phi 7250 processors.  The simplest way to do this is
-grab an interactive KNL node:
-salloc --nodes 1 --qos interactive --time 01:00:00 --constraint knl --account m3930
+When building on Perlmutter, make sure you are on a GPU node when doing the compilation. Compiling and running your code on the Perlmutter Login nodes is not recommended.  The simplest way to do this is
+grab an interactive GPU node by running the below command after logging into Perlmutter:  
+> salloc --nodes=1 --qos=interactive --time=00:15:00 --constraint=gpu --account=m3930
 
+<br></br>
 
 Special instructions for MacOSX platforms:
 
