@@ -18,22 +18,20 @@ This distribution uses cmake and MPI.
 
 After downloading, cd into the mpi-2dmesh-harness directory, then:  
 
-% mkdir build  
-% cd build  
-% cmake 
-% make
+> mkdir build  
+cd build  
+cmake  
+make
 
 # Platforms
 
-In principle, this code will build and run on both Cori@NERSC and the VM. It's
+In principle, this code will build and run on both Perlmutter@NERSC and the VM. It's
 fine to use the VM for initial development and testing, but please run your
-performance tests on Cori.
+performance tests on Perlmutter.
 
 # Setting up your NERSC environment
 
-% module swap PrgEnv-intel PrgEnv-gnu  
-% module load openmpi  
-% module load cmake
+> module load cpu
 
 # Adding your code: 3 locations
 
@@ -122,16 +120,16 @@ imshow.py - a python script to display the raw 8-bit pixel values in grayscale.
 Usage:  
     python imshow.py filename-of-raw-8bit-bytes int-cols-width int-rows-height
 
-To use this script from Cori, first please enable X11-tunneling through ssh before you
-log in. E.g., "ssh -Y username@cori.nersc.gov"
+To use this script from Perlmutter, first please enable X11-tunneling through ssh before you
+log in. E.g., "ssh -Y username@perlmutter-p1.nersc.gov"
 
-On Cori, before using this script, please load the Python module:  
-% module load python
+On Perlmutter, before using this script, please load the Python module:  
+> module load python
 
 Some people on Mac systems have reported problems with the remote image display
-not working from Cori. This is likely the result of either (1) forgetting to enable
+not working from Perlmutter. This is likely the result of either (1) forgetting to enable
 X tunneling through ssh by forgetting to add the -Y option to ssh, or (2) a
 Mac-side Quartz configuration issue. 
 
 If this issue affects you, you might want to consider trying NX to remote desktop
-to Cori. See https://docs.nersc.gov/connect/nx/ for more information.
+to Perlmutter. See https://docs.nersc.gov/connect/nx/ for more information.
