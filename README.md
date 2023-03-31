@@ -33,6 +33,10 @@ performance tests on Perlmutter.
 
 > module load cpu
 
+> **Note**  
+> If you receive an error message: `MPIDI_CRAY_init: GPU_SUPPORT_ENABLED is requested, but GTL library is not linked` after running your code, delete the `build` folder and re-build the code. Please run the below command prior to building your code.  
+> `export MPICH_GPU_SUPPORT_ENABLED=0`
+
 # Adding your code: 3 locations
 
 Your coding assignment consists of adding code to implement MPI-based communication
