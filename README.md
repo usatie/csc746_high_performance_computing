@@ -29,16 +29,28 @@ grab an interactive GPU node by running the below command after logging into Per
 
 Special instructions for MacOSX platforms:
 
-On Prof. Bethel's laptop, which is an intel-based Macbook Pro running Big Sur, and
-with Xcode installed, cmake can find the BLAS package, but then the build fails with
-an error about not being able to find cblas.h.
+On Prof. Bethel's laptop, which is an intel-based Macbook Pro running MacOS 12.6.8 
+Monterey with Xcode installed, cmake can find the BLAS package, but then the build 
+fails with an error about not being able to find cblas.h.
 
 The workaround is to tell cmake where cblas.h lives by using an environment variable:
-export CXXFLAGS="-I /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/"
-then clean your build directory (rm -rf * inside build) and run cmake again. 
+export CXXFLAGS="-I /dir/path/to/headers" where /dir/path/to/headers is the directory
+containing the cblas.h file. Set that CXXFLAGS variable, clean your build directory 
+(rm -rf \* inside the build directory) then run cmake again.
+
+On Bethel's laptop, the command "locate cblas.h" returns:
+/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/cblas.h
+/Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/cblas.h
+/usr/local/Cellar/openblas/0.3.23/include/cblas.h
+
+And so the correct setting for CXXFLAGS in this case is:
+export CXXFLAGS="-I /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers"
 
 Note you will need to "locate cblas.h" on your machine and replace the path to cblas.h
 in the CXXFLAGS line above with the path on your specific machine.
+
+These instructions should also work for MacOS on Apple Silicon platforms (M1/M2) so long
+as you have installed a current version of gcc/g++ and cmake.
 
 # Adding your code
 
