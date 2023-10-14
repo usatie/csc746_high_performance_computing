@@ -12,17 +12,6 @@ data from rank 0 to other ranks, and from non-zero ranks to receive data from ra
 * Executes a tile gather step, where data from all tiles not owned by rank 0 is sent back to rank 0  
 * Writes output to a disk file  
 
-# Build instructions, general
-
-This distribution uses cmake and MPI.
-
-After downloading, cd into the mpi-2dmesh-harness directory, then:  
-
-> mkdir build  
-cd build  
-cmake  
-make
-
 # Platforms
 
 In principle, this code will build and run on both Perlmutter@NERSC and the VM. It's
@@ -31,11 +20,89 @@ performance tests on Perlmutter.
 
 # Setting up your NERSC environment
 
-> module load cpu
+    module load cpu
 
-> **Note**  
-> If you receive an error message: `MPIDI_CRAY_init: GPU_SUPPORT_ENABLED is requested, but GTL library is not linked` after running your code, delete the `build` folder and re-build the code. Please run the below command prior to building your code.  
-> `export MPICH_GPU_SUPPORT_ENABLED=0`
+**Note**   
+If you receive an error message: `MPIDI_CRAY_init: GPU_SUPPORT_ENABLED is requested, but GTL library is not linked` after running your code, delete the `build` folder and re-build the code. Please run the below command prior to building your code.  
+    'export MPICH_GPU_SUPPORT_ENABLED=0'
+
+# Build instructions, general
+
+This distribution uses cmake and MPI.
+
+After downloading, cd into the mpi-2dmesh-harness directory, then:  
+
+    mkdir build  
+    cd build  
+    cmake  
+    make
+
+# Running the code on Perlmutter
+
+For the examples that follow, we assume your current working directory is:
+    '.../mpi_2dmesh_harness_instructional/build'
+
+The reason is that the code will attempt to open and load a data file from disk that
+is located in the ../data directory.
+
+
+## Debug/interactive runs on one node
+
+Your first parallel run with MPI should be on a single CPU node of Perlmutter. 
+Since each Perlmutter CPU node has dual AMD Milan3 processors with 64 cores each, you could
+in principle run up to 128-way parallel on a single CPU node. 
+
+For CP6 in CSC 746, you will need to do parallel runs on multiple CPU nodes. For now, 
+doing test runs on a single CPU node of the code at varying concurrency will be useful
+in making sure the code is running correctly, etc.
+
+Once you build the code, then hop on a single CPU node:
+
+    salloc --nodes 1 --qos interactive --time 00:30:00 --constraint cpu --account=m3930
+
+Then, from the build subdirectory, you may run N-way parallel as follows:
+
+    'srun -n N ./mpi_2dmesh'
+
+## Debug/interactive runs on P nodes, P <= 4
+
+You may do interactive runs using multiple CPU nodes. This activity should be kept to a minimum
+in order to keep account billing to a minimum. For doing "production runs", please use the batch queue.
+
+NERSC imposes a limit of a maximum of 4 nodes in the interactive queue. To hop on a group of 3 nodes:
+    salloc --nodes 3 --qos interactive --time 00:30:00 --constraint cpu --account=m3930
+
+When you are granted access, you will have an interactive shell on one of the 3 nodes. 
+Then, when you run your job, srun will map MPI ranks to the different nodes in round-robin fashion.
+
+To run N-way parallel on P nodes:
+    'srun -n N ./mpi_2dmesh'
+
+## Running the code via the sbatch queue
+
+Located inside the scripts subdirectory is a 'run_script.sh' file that you may use to submit
+a batch job. The script will iterate over a number of levels of concurrency and over the
+3 potential domain decomposition strategies.
+
+To submit a batch job, make sure your current working directory is the 'mpi_2dmesh_harness_instructional/build'
+subdirectory, then do the job submission as follows
+     'sbatch ../scripts/run_script.sh ./mpi_2dmesh'
+
+The SLURM batch system will create a logfile in your build directory named something like 'slurm-XXXXX.out" 
+where XXXXX is the job number. stderr and stdout from your code and any other system messages from the
+job run will appear in that file.
+
+To monitor the status of your job, you can either use the 'sqs' command, which shows the current state
+of your batch jobs, or you can 'tail -f' the slurm-XXXXX.out file and watch its progress.
+
+## Running the code on the VM
+
+On the VM, use the 'mpirun' command to launch your job. E.g., to run 8-way parallel:
+    mpirun -n 8 ./mpi_2dmesh
+
+When running at P>1 concurrency, note that since there is effectively only a single core accessible to the VM,
+your code will appear to be running in parallel, but the multiple concurrent ranks are being executed
+in serial fashion.
 
 # Adding your code: 3 locations
 
