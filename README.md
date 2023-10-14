@@ -76,6 +76,7 @@ When you are granted access, you will have an interactive shell on one of the 3 
 Then, when you run your job, srun will map MPI ranks to the different nodes in round-robin fashion.
 
 To run N-way parallel on P nodes:
+
     `srun -n N ./mpi_2dmesh`
 
 ## Running the code via the sbatch queue
