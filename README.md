@@ -86,8 +86,9 @@ a batch job. The script will iterate over a number of levels of concurrency and 
 3 potential domain decomposition strategies.
 
 To submit a batch job, make sure your current working directory is the `mpi_2dmesh_harness_instructional/build`
-subdirectory, then do the job submission as follows
-     `sbatch ../scripts/run_script.sh ./mpi_2dmesh`
+subdirectory, then do the job submission as follows:
+
+     sbatch ../scripts/run_script.sh ./mpi_2dmesh
 
 The SLURM batch system will create a logfile in your build directory named something like 'slurm-XXXXX.out" 
 where XXXXX is the job number. stderr and stdout from your code and any other system messages from the
@@ -99,6 +100,7 @@ of your batch jobs, or you can 'tail -f' the slurm-XXXXX.out file and watch its 
 ## Running the code on the VM
 
 On the VM, use the 'mpirun' command to launch your job. E.g., to run 8-way parallel:
+
     mpirun -n 8 ./mpi_2dmesh
 
 When running at P>1 concurrency, note that since there is effectively only a single core accessible to the VM,
