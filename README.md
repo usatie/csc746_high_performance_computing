@@ -24,7 +24,7 @@ performance tests on Perlmutter.
 
 **Note**   
 If you receive an error message: `MPIDI_CRAY_init: GPU_SUPPORT_ENABLED is requested, but GTL library is not linked` after running your code, delete the `build` folder and re-build the code. Please run the below command prior to building your code.  
-    'export MPICH_GPU_SUPPORT_ENABLED=0'
+    `export MPICH_GPU_SUPPORT_ENABLED=0`
 
 # Build instructions, general
 
@@ -40,7 +40,7 @@ After downloading, cd into the mpi-2dmesh-harness directory, then:
 # Running the code on Perlmutter
 
 For the examples that follow, we assume your current working directory is:
-    '.../mpi_2dmesh_harness_instructional/build'
+    `.../mpi_2dmesh_harness_instructional/build`
 
 The reason is that the code will attempt to open and load a data file from disk that
 is located in the ../data directory.
@@ -62,7 +62,7 @@ Once you build the code, then hop on a single CPU node:
 
 Then, from the build subdirectory, you may run N-way parallel as follows:
 
-    'srun -n N ./mpi_2dmesh'
+    `srun -n N ./mpi_2dmesh`
 
 ## Debug/interactive runs on P nodes, P <= 4
 
@@ -76,17 +76,17 @@ When you are granted access, you will have an interactive shell on one of the 3 
 Then, when you run your job, srun will map MPI ranks to the different nodes in round-robin fashion.
 
 To run N-way parallel on P nodes:
-    'srun -n N ./mpi_2dmesh'
+    `srun -n N ./mpi_2dmesh`
 
 ## Running the code via the sbatch queue
 
-Located inside the scripts subdirectory is a 'run_script.sh' file that you may use to submit
+Located inside the scripts subdirectory is a `run_script.sh` file that you may use to submit
 a batch job. The script will iterate over a number of levels of concurrency and over the
 3 potential domain decomposition strategies.
 
-To submit a batch job, make sure your current working directory is the 'mpi_2dmesh_harness_instructional/build'
+To submit a batch job, make sure your current working directory is the `mpi_2dmesh_harness_instructional/build`
 subdirectory, then do the job submission as follows
-     'sbatch ../scripts/run_script.sh ./mpi_2dmesh'
+     `sbatch ../scripts/run_script.sh ./mpi_2dmesh`
 
 The SLURM batch system will create a logfile in your build directory named something like 'slurm-XXXXX.out" 
 where XXXXX is the job number. stderr and stdout from your code and any other system messages from the
