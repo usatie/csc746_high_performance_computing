@@ -62,7 +62,7 @@ Once you build the code, then hop on a single CPU node:
 
 Then, from the build subdirectory, you may run N-way parallel as follows:
 
-    `srun -n N ./mpi_2dmesh`
+    srun -n N ./mpi_2dmesh
 
 ## Debug/interactive runs on P nodes, P <= 4
 
@@ -77,7 +77,7 @@ Then, when you run your job, srun will map MPI ranks to the different nodes in r
 
 To run N-way parallel on P nodes:
 
-    `srun -n N ./mpi_2dmesh`
+    srun -n N ./mpi_2dmesh
 
 ## Running the code via the sbatch queue
 
