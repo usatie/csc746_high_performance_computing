@@ -69,8 +69,8 @@ Then, from the build subdirectory, you may run N-way parallel as follows:
 You may do interactive runs using multiple CPU nodes. This activity should be kept to a minimum
 in order to keep account billing to a minimum. For doing "production runs", please use the batch queue.
 
-NERSC imposes a limit of a maximum of 4 nodes in the interactive queue. To hop on a group of 3 nodes:
-    salloc --nodes 3 --qos interactive --time 00:30:00 --constraint cpu --account=m3930
+NERSC imposes a limit of a maximum of 4 nodes in the interactive queue. To hop on a group of 4 nodes:
+    salloc --nodes 4 --qos interactive --time 00:30:00 --constraint cpu --account=m3930
 
 When you are granted access, you will have an interactive shell on one of the 3 nodes. 
 Then, when you run your job, srun will map MPI ranks to the different nodes in round-robin fashion.
