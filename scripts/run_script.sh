@@ -1,8 +1,7 @@
 #!/bin/bash -l
-#SBATCH --constraint=knl
-#SBATCH --nodes=5
+#SBATCH --constraint=cpu
+#SBATCH --nodes=4
 #SBATCH --time=00:30:00
-#SBATCH --cpu-freq=1400000
 
 export input="../data/zebra-gray-int8-4x"
 export xsize=7112
