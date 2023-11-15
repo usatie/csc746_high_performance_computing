@@ -99,6 +99,20 @@ job run will appear in that file.
 To monitor the status of your job, you can either use the 'sqs' command, which shows the current state
 of your batch jobs, or you can 'tail -f' the slurm-XXXXX.out file and watch its progress.
 
+## What happens when the project runs out of hours
+
+In the event that all hours are exhausted, there is one final workaround while we await
+additional resources for the project.
+
+You may submit your batch job to the "overrun" queue. 
+See [this page](https://docs.nersc.gov/jobs/policy/#qos-cost-factor-charge-multipliers-and-discounts) for more information about the overrun queue.
+
+To access the overrun queue, use the scripts/runs_script_overrun.sh script to submit your job. From
+the build, directory, execute this command:
+    sbatch ../scripts/run_script_overrun.sh ./mpi_2dmesh
+
+The job will be submitted to the overrun queue where it will have very low priority.
+
 ## Running the code on the VM
 
 On the VM, use the 'mpirun' command to launch your job. E.g., to run 8-way parallel:
