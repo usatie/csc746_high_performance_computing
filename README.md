@@ -108,7 +108,8 @@ You may submit your batch job to the "overrun" queue.
 See [this page](https://docs.nersc.gov/jobs/policy/#qos-cost-factor-charge-multipliers-and-discounts) for more information about the overrun queue.
 
 To access the overrun queue, use the scripts/runs_script_overrun.sh script to submit your job. From
-the build, directory, execute this command:
+the build, directory, execute this command:  
+
     sbatch ../scripts/run_script_overrun.sh ./mpi_2dmesh
 
 The job will be submitted to the overrun queue where it will have very low priority.
