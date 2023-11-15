@@ -21,6 +21,8 @@ performance tests on Perlmutter.
 # Setting up your NERSC environment
 
     module load cpu
+    export CC=cc
+    export CXX=CC
 
 **Note**   
 If you receive an error message: `MPIDI_CRAY_init: GPU_SUPPORT_ENABLED is requested, but GTL library is not linked` after running your code, delete the `build` folder and re-build the code. Please run the below command prior to building your code.  
