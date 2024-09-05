@@ -5,6 +5,7 @@
 #include <random>
 #include <vector>
 #include <string.h>
+#include <algorithm>
 
 
 
@@ -12,14 +13,19 @@ void
 setup(int64_t N, uint64_t A[])
 {
    printf(" inside sum_indirect problem_setup, N=%lld \n", N);
+   std::vector<int> walk_order(N);
    for (int64_t i = 0; i < N; i++)
    {
-      A[i] = (i + 1) % N;
+      walk_order[i] = i;
    }
+   std::shuffle(walk_order.begin(), walk_order.end(), std::default_random_engine());
+   // random walk
+   int64_t index = walk_order[0];
    for (int64_t i = 0; i < N; i++)
    {
-      int64_t rand_index = lrand48() % N;
-      std::swap(A[i], A[rand_index]);
+      int64_t next_index = walk_order[(i+1) % N];
+      A[index] = next_index;
+      index = next_index;
    }
 }
 
