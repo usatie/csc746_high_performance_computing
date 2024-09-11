@@ -50,7 +50,7 @@ bool check_accuracy(double *A, double *Anot, int nvalues) {
 int main(int argc, char **argv) {
   std::cout << "Description:\t" << dgemm_desc << std::endl << std::endl;
 
-  std::cout << std::fixed << std::setprecision(2);
+  std::cout << std::fixed << std::setprecision(6);
 
   std::vector<int> test_sizes{64, 128, 256, 512, 1024, 2048};
   std::vector<int> block_sizes{2, 16, 32, 64};
@@ -86,6 +86,8 @@ int main(int argc, char **argv) {
       memcpy((void *)Ccopy, (const void *)C, sizeof(double) * n * n);
 
       // insert timer code here
+      std::chrono::time_point<std::chrono::high_resolution_clock> start_time =
+          std::chrono::high_resolution_clock::now();
 
 #ifdef BLOCKED
       square_dgemm_blocked(n, b, A, B, C);
@@ -94,6 +96,13 @@ int main(int argc, char **argv) {
 #endif
 
       // insert timer code here
+      std::chrono::time_point<std::chrono::high_resolution_clock> end_time =
+          std::chrono::high_resolution_clock::now();
+      std::chrono::duration<double> elapsed_time = end_time - start_time;
+#ifdef BLOCKED
+      printf("(block_size: %2d) ", b);
+#endif
+      std::cout << "Elapsed time: " << elapsed_time.count() << " " << std::endl;
 
       reference_dgemm(n, 1.0, Acopy, Bcopy, Ccopy);
 
