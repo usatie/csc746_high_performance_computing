@@ -8,8 +8,8 @@ const char *dgemm_desc = "Blocked dgemm.";
  */
 static void blockread(double *block, double *M, int row, int col, int n,
                       int b) {
-  for (int i = 0; i < b; i++) {
-    for (int j = 0; j < b; j++) {
+  for (int j = 0; j < b; j++) {
+    for (int i = 0; i < b; i++) {
       // block : b*b
       // M   : n*n
       // block[i, j] = M_row_col[i, j]
@@ -25,8 +25,8 @@ static void blockread(double *block, double *M, int row, int col, int n,
  */
 static void blockwrite(double *block, double *M, int row, int col, int n,
                        int b) {
-  for (int i = 0; i < b; i++) {
-    for (int j = 0; j < b; j++) {
+  for (int j = 0; j < b; j++) {
+    for (int i = 0; i < b; i++) {
       // block : b*b
       // M   : n*n
       // M_row_col[i, j] = block[i, j]
@@ -43,9 +43,9 @@ static void blockwrite(double *block, double *M, int row, int col, int n,
  */
 static void square_dgemm(int n, double *A, double *B, double *C) {
   // insert your code here: implementation of basic matrix multiple
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < n; j++) {
-      for (int k = 0; k < n; k++) {
+  for (int j = 0; j < n; j++) {
+    for (int k = 0; k < n; k++) {
+      for (int i = 0; i < n; i++) {
         C[i + j * n] += A[i + k * n] * B[k + j * n];
       }
     }
