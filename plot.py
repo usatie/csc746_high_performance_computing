@@ -69,6 +69,10 @@ def save_elapsed_time(
     plt.clf()
 
 
+def calc_mmul_mflops(elapsed_time, problem_size):
+    return 2 * pow(problem_size, 3) / elapsed_time / 1_000_000
+
+
 def save_mflops(
     plot_fname,
     plot_title,
@@ -82,24 +86,21 @@ def save_mflops(
 
     plt.xticks(xlocs, problem_sizes)
 
-    for i in range(len(code_times)):
-        code_time = code_times[i]
-        mflops = [
-            2 * pow(problem_sizes[j], 3) / code_time[j] / 1_000_000
-            for j in range(len(problem_sizes))
-        ]
-        plt.plot(mflops, PLOT_FORMATS[i])
-
-    # for i in range(len(problem_sizes)):
-    #    for mflops in [code1_mflops, code2_mflops, code3_mflops]:
-    #        plt.annotate(
-    #                round(mflops[i], 1),
-    #                (i, mflops[i]),
-    #                textcoords="offset points",
-    #                xytext=(0,3),
-    #                ha='center',
-    #                size=8,
-    #                )
+    code_mflops = [
+        [calc_mmul_mflops(t, size) for (t, size) in zip(code_time, problem_sizes)]
+        for code_time in code_times
+    ]
+    for mflops_arr, fmt in zip(code_mflops, PLOT_FORMATS):
+        plt.plot(mflops_arr, fmt)
+        for i, (size, mflops) in enumerate(zip(problem_sizes, mflops_arr)):
+            plt.annotate(
+                round(mflops, 1),
+                (i, mflops),
+                textcoords="offset points",
+                xytext=(0, 3),
+                ha="center",
+                size=8,
+            )
 
     # plt.xscale("log")
     plt.yscale("log")
