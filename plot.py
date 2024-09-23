@@ -18,6 +18,7 @@ Assumptions: developed and tested using Python version 3.8.8 on macOS 11.6
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import math
 
 RESULT_DIR = "images/"
 PLOT_FORMATS = [
@@ -57,7 +58,7 @@ def save_elapsed_time(
     # plt.xscale("log")
     plt.yscale("log")
 
-    plt.xlabel("Problem Sizes")
+    plt.xlabel("Matrix Size (N x N)")
     plt.ylabel("Elapsed Time")
 
     plt.legend(var_names, loc="best")
@@ -93,11 +94,17 @@ def save_mflops(
     for mflops_arr, fmt in zip(code_mflops, PLOT_FORMATS):
         plt.plot(mflops_arr, fmt)
         for i, (size, mflops) in enumerate(zip(problem_sizes, mflops_arr)):
+            # If there are too close data points, move one of them to avoid overlap
+            # the distance should be scaled in log scale
+            xytext = (0, 3)
+            values = [math.log(mflops) - math.log(m[i]) for m in code_mflops if m[i] != mflops]
+            if len([v for v in values if v < 0.1 and v > 0]) > 0:
+                xytext = (0, 10)
             plt.annotate(
                 round(mflops, 1),
                 (i, mflops),
                 textcoords="offset points",
-                xytext=(0, 3),
+                xytext=xytext,
                 ha="center",
                 size=8,
             )
@@ -105,7 +112,7 @@ def save_mflops(
     # plt.xscale("log")
     plt.yscale("log")
 
-    plt.xlabel("Problem Sizes")
+    plt.xlabel("Matrix Size (N x N)")
     plt.ylabel("MFLOP/s")
 
     plt.legend(var_names, loc="best")
@@ -173,6 +180,19 @@ def save_figures():
             code6_time,
         ],
         var_names[1:2] + var_names[3:],
+    )
+    save_mflops(
+        "BMMCO-and-Basic_MFLOPs.png",
+        "MFLOP/s",
+        problem_sizes,
+        [
+            basic_time,
+            code3_time,
+            code4_time,
+            code5_time,
+            code6_time,
+        ],
+        var_names[2:],
     )
 
 
