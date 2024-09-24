@@ -58,7 +58,7 @@ def save_elapsed_time(
     # plt.xscale("log")
     plt.yscale("log")
 
-    plt.xlabel("Matrix Size (N x N)")
+    plt.xlabel("Matrix Size (N)")
     plt.ylabel("Elapsed Time")
 
     plt.legend(var_names, loc="best")
@@ -112,7 +112,7 @@ def save_mflops(
     # plt.xscale("log")
     plt.yscale("log")
 
-    plt.xlabel("Matrix Size (N x N)")
+    plt.xlabel("Matrix Size (N)")
     plt.ylabel("MFLOP/s")
 
     plt.legend(var_names, loc="best")
