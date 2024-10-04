@@ -41,15 +41,29 @@ endif ()
 add_library(benchmark OBJECT benchmark.cpp)
 target_compile_features(benchmark PRIVATE cxx_std_11)
 
-add_executable(benchmark-basic dgemv-basic.cpp)
-target_link_libraries(benchmark-basic PRIVATE benchmark ${BLAS_LIBRARIES})
-target_compile_features(benchmark-basic PRIVATE c_std_11 c_restrict)
-target_compile_options(benchmark-basic PRIVATE -Wall -pedantic -march=native -O1)
+# loop orderings (for i,j) LOOP_IJ
+add_executable(benchmark-basic-ij dgemv-basic.cpp)
+target_link_libraries(benchmark-basic-ij PRIVATE benchmark ${BLAS_LIBRARIES})
+target_compile_features(benchmark-basic-ij PRIVATE c_std_11 c_restrict)
+target_compile_options(benchmark-basic-ij PRIVATE -Wall -pedantic -march=native -O1 -DLOOP_IJ)
 
-add_executable(benchmark-vectorized dgemv-vectorized.cpp)
-target_link_libraries(benchmark-vectorized PRIVATE benchmark ${BLAS_LIBRARIES})
-target_compile_features(benchmark-vectorized PRIVATE c_std_11 c_restrict)
-target_compile_options(benchmark-vectorized PRIVATE -Wall -pedantic ${VFLAGS} ) 
+# loop orderings (for j,i) LOOP_JI
+add_executable(benchmark-basic-ji dgemv-basic.cpp)
+target_link_libraries(benchmark-basic-ji PRIVATE benchmark ${BLAS_LIBRARIES})
+target_compile_features(benchmark-basic-ji PRIVATE c_std_11 c_restrict)
+target_compile_options(benchmark-basic-ji PRIVATE -Wall -pedantic -march=native -O1 -DLOOP_JI)
+
+# loop orderings (for i,j) with vectorization
+add_executable(benchmark-vectorized-ij dgemv-vectorized.cpp)
+target_link_libraries(benchmark-vectorized-ij PRIVATE benchmark ${BLAS_LIBRARIES})
+target_compile_features(benchmark-vectorized-ij PRIVATE c_std_11 c_restrict)
+target_compile_options(benchmark-vectorized-ij PRIVATE -Wall -pedantic ${VFLAGS} -DLOOP_IJ)
+
+# loop orderings (for j,i) with vectorization
+add_executable(benchmark-vectorized-ji dgemv-vectorized.cpp)
+target_link_libraries(benchmark-vectorized-ji PRIVATE benchmark ${BLAS_LIBRARIES})
+target_compile_features(benchmark-vectorized-ji PRIVATE c_std_11 c_restrict)
+target_compile_options(benchmark-vectorized-ji PRIVATE -Wall -pedantic ${VFLAGS} -DLOOP_JI)
 
 add_executable(benchmark-blas dgemv-blas.cpp)
 target_link_libraries(benchmark-blas PRIVATE benchmark ${BLAS_LIBRARIES})
