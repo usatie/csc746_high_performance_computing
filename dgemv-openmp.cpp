@@ -13,10 +13,11 @@ const char *dgemv_desc = "OpenMP dgemv.";
  */
 
 void my_dgemv(int n, double *A, double *x, double *y) {
-#pragma omp parallel for reduction(+ : y[:n])
+#pragma omp parallel for reduction(+ : y[ : n])
   for (int i = 0; i < n; i++) {
+    double *a = &A[i * n];
     for (int j = 0; j < n; j++) {
-      y[i] += A[i * n + j] * x[j];
+      y[i] += a[j] * x[j];
     }
   }
 }
