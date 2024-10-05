@@ -74,6 +74,7 @@ def save_elapsed_time(
 def calc_mvmul_mflops(elapsed_time, problem_size):
     return 2 * pow(problem_size, 2) / elapsed_time / 1_000_000
 
+
 def save_mflops(
     plot_fname,
     plot_title,
@@ -97,7 +98,9 @@ def save_mflops(
             # If there are too close data points, move one of them to avoid overlap
             # the distance should be scaled in log scale
             xytext = (0, 3)
-            values = [math.log(mflops) - math.log(m[i]) for m in code_mflops if m[i] != mflops]
+            values = [
+                math.log(mflops) - math.log(m[i]) for m in code_mflops if m[i] != mflops
+            ]
             if len([v for v in values if v < 0.1 and v > 0]) > 0:
                 xytext = (0, 10)
             plt.annotate(
@@ -114,6 +117,63 @@ def save_mflops(
 
     plt.xlabel("Matrix Size (N)")
     plt.ylabel("MFLOP/s")
+
+    plt.legend(var_names, loc="best")
+
+    plt.grid(axis="both")
+
+    # save the figure before trying to show the plot
+    plt.savefig(RESULT_DIR + plot_fname, dpi=300)
+    plt.clf()
+
+
+def save_memory_bandwidth(
+    plot_fname,
+    plot_title,
+    problem_sizes,
+    code_times,
+    var_names,
+):
+    plt.title(plot_title)
+
+    xlocs = [i for i in range(len(problem_sizes))]
+
+    plt.xticks(xlocs, problem_sizes)
+
+    code_memory_bw = [
+        [
+            size * size * 8 / t / 1_000_000_000
+            for (t, size) in zip(code_time, problem_sizes)
+        ]
+        for code_time in code_times
+    ]
+    for memory_bw_arr, fmt in zip(code_memory_bw, PLOT_FORMATS):
+        plt.plot(memory_bw_arr, fmt)
+        for i, (size, memory_bw) in enumerate(zip(problem_sizes, memory_bw_arr)):
+            # If there are too close data points, move one of them to avoid overlap
+            # the distance should be scaled in log scale
+            xytext = (0, 3)
+            values = [
+                math.log(memory_bw) - math.log(m[i])
+                for m in code_memory_bw
+                if m[i] != memory_bw
+            ]
+            if len([v for v in values if v < 0.1 and v > 0]) > 0:
+                xytext = (0, 10)
+            plt.annotate(
+                round(memory_bw, 1),
+                (i, memory_bw),
+                textcoords="offset points",
+                xytext=xytext,
+                ha="center",
+                size=8,
+            )
+
+    # plt.xscale("log")
+    # plt.yscale("log")
+
+    plt.xlabel("Matrix Size (N)")
+    plt.ylabel("Memory Bandwidth (GB/s)")
 
     plt.legend(var_names, loc="best")
 
@@ -162,6 +222,21 @@ def save_figures():
     save_mflops(
         "MFLOPs.png",
         "MFLOP/s",
+        problem_sizes,
+        [
+            blas_time,
+            basic_time,
+            vectorized_time,
+            openmp_1_time,
+            openmp_4_time,
+            openmp_16_time,
+            openmp_64_time,
+        ],
+        var_names[1:],
+    )
+    save_memory_bandwidth(
+        "Memory_Bandwidth.png",
+        "Memory Bandwidth (GB/s)",
         problem_sizes,
         [
             blas_time,
