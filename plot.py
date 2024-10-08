@@ -30,6 +30,7 @@ PLOT_FORMATS = [
     "c-+",
     "y-d",
 ]
+COLOR_LIST = ["red", "blue", "green", "black", "magenta", "cyan", "yellow"]
 
 
 def get_exponent(n):
@@ -76,7 +77,7 @@ def save_speedup(
     plot_title,
     problem_sizes,
     serial_runtime,
-    parallel_runtime,
+    parallel_runtimes,
     num_threads,
 ):
     plt.title(plot_title)
@@ -85,36 +86,46 @@ def save_speedup(
 
     plt.xticks(xlocs, problem_sizes)
 
-    ideal_speedup = [num_threads for i in range(len(problem_sizes))]
-    print("ideal speedup =", ideal_speedup)
-    print("serial runtime =", serial_runtime)
-    print("parallel runtime =", parallel_runtime)
-    actual_speedup = [
-        serial / parallel for serial, parallel in zip(serial_runtime, parallel_runtime)
+    ideal_speedups = [[num_threads for i in range(len(problem_sizes))] for num_threads in [1, 4, 16, 64]]
+    actual_speedups = [
+        [serial / parallel for serial, parallel in zip(serial_runtime, parallel_runtime)]
+        for parallel_runtime in parallel_runtimes
     ]
 
-    plt.plot(ideal_speedup, "k--")
-    plt.plot(actual_speedup, PLOT_FORMATS[0])
-    # Annotate data points
-    for i, (size, speedup) in enumerate(zip(problem_sizes, actual_speedup)):
-        # If there are too close data points, move one of them to avoid overlap
-        # the distance should be scaled in log scale
-        plt.annotate(
-            round(speedup, 1),
-            (i, speedup),
-            textcoords="offset points",
-            xytext=(0, 5),
-            ha="center",
-            size=8,
-        )
+    for i in range(len(parallel_runtimes)):
+        plt.plot(actual_speedups[i], PLOT_FORMATS[i])
+        for j, (size, speedup) in enumerate(zip(problem_sizes, actual_speedups[i])):
+            # x = 1, the data point of omp-4, omp-16, omp-64 are too close, move them to avoid overlap
+            if j in [1, 2, 3] and i in [1, 2, 3]:
+                xytext = (0, 10 * (i - 2))
+            else:
+                xytext = (0, 5)
+            plt.annotate(
+                round(speedup, 1),
+                (j, speedup),
+                textcoords="offset points",
+                xytext=xytext,
+                ha="center",
+                size=8,
+                # b to blue, r to red, g to green, k to black, m to magenta, c to cyan, y to yellow
+                color=COLOR_LIST[i],
+            )
+    for i, ideal_speedup in enumerate(ideal_speedups):
+        plt.plot(ideal_speedup, PLOT_FORMATS[i][0] + "--")
 
     # plt.xscale("log")
-    # plt.yscale("log")
+    plt.yscale("log")
+    # Show y label in log scale
+    plt.yticks([1, 2, 4, 8, 16, 32, 64])
+    plt.gca().set_yticklabels([str(i) for i in [1, 2, 4, 8, 16, 32, 64]])
 
     plt.xlabel("Matrix Size (N)")
     plt.ylabel("Speedup")
 
-    plt.legend(["ideal speedup", "actual speedup"], loc="best")
+    # ideal speedups and actual speedups
+    # plt.legend(["ideal speedup for omp-1", "ideal speedup for omp-4", "ideal speedup for omp-16", "ideal speedup for omp-64", "omp-1", "omp-4", "omp-16", "omp-64"], loc="best")
+    # omit legend for ideal speedup
+    plt.legend(["omp-1", "omp-4", "omp-16", "omp-64"], loc="best")
 
     plt.grid(axis="both")
 
@@ -122,9 +133,11 @@ def save_speedup(
     plt.savefig(RESULT_DIR + plot_fname, dpi=300)
     plt.clf()
 
-def calc_mvmul_mflops(elapsed_time, problem_size):
-    return 2 * pow(problem_size, 2) / elapsed_time / 1_000_000
-
+def calc_mvmul_mflops(elapsed_time, problem_size, gflops=False):
+    if gflops:
+        return 2 * pow(problem_size, 2) / elapsed_time / 1_000_000_000
+    else:
+        return 2 * pow(problem_size, 2) / elapsed_time / 1_000_000
 
 def save_mflops(
     plot_fname,
@@ -132,6 +145,7 @@ def save_mflops(
     problem_sizes,
     code_times,
     var_names,
+    gflops=False,
 ):
     plt.title(plot_title)
 
@@ -140,7 +154,7 @@ def save_mflops(
     plt.xticks(xlocs, problem_sizes)
 
     code_mflops = [
-        [calc_mvmul_mflops(t, size) for (t, size) in zip(code_time, problem_sizes)]
+        [calc_mvmul_mflops(t, size, gflops) for (t, size) in zip(code_time, problem_sizes)]
         for code_time in code_times
     ]
     for mflops_arr, fmt in zip(code_mflops, PLOT_FORMATS):
@@ -167,7 +181,10 @@ def save_mflops(
     # plt.yscale("log")
 
     plt.xlabel("Matrix Size (N)")
-    plt.ylabel("MFLOP/s")
+    if gflops:
+        plt.ylabel("GFLOP/s")
+    else:
+        plt.ylabel("MFLOP/s")
 
     plt.legend(var_names, loc="best")
 
@@ -204,6 +221,10 @@ def save_memory_bandwidth(
         [calc_mvmul_memory_bw(t, size) for (t, size) in zip(code_time, problem_sizes)]
         for code_time in code_times
     ]
+    # print bandwidth with label(var_names)
+    for i, var_name in enumerate(var_names):
+        formatted_memory_bw = [f"{bw:.2f} GB/s ({100*bw/204.8:.1f}%)" for bw in code_memory_bw[i]]
+        print(f"{var_name}: {formatted_memory_bw}")
     for memory_bw_arr, fmt in zip(code_memory_bw, PLOT_FORMATS):
         plt.plot(memory_bw_arr, fmt)
         for i, (size, memory_bw) in enumerate(zip(problem_sizes, memory_bw_arr)):
@@ -277,7 +298,7 @@ def save_figures():
         var_names[1:],
     )
     save_mflops(
-        "MFLOPs.png",
+        "MFLOPs-all.png",
         "MFLOP/s",
         problem_sizes,
         [
@@ -293,14 +314,15 @@ def save_figures():
     )
     # MFLOPs of blas, basic, vectorized
     save_mflops(
-        "MFLOPs-blas-basic-vectorized.png",
-        "MFLOP/s (blas, basic, vectorized)",
+        "GFLOPs-serial.png",
+        "GFLOP/s (CBLAS, Basic, Vectorized)",
         problem_sizes,
         [blas_time, basic_time, vectorized_time],
         var_names[1:4],
+        gflops=True,
     )
     save_memory_bandwidth(
-        "Memory_Bandwidth.png",
+        "Memory-bandwidth.png",
         "Memory Bandwidth (GB/s)",
         problem_sizes,
         [
@@ -315,29 +337,22 @@ def save_figures():
         var_names[1:],
     )
 
+    # MFLOPs of best-openmp and CBLAS
+    save_mflops(
+        "GFLOPs-parallel.png",
+        "GFLOP/s (CBLAS, omp-16)",
+        problem_sizes,
+        [blas_time, openmp_16_time],
+        [var_names[1], var_names[6]],
+        gflops=True,
+    )
     # speedup
     save_speedup(
-        "Speedup-4-threads.png",
-        "Speedup (4 threads)",
+        "Speedup.png",
+        "Speedup (ideal, omp-4, omp-16, omp-64)",
         problem_sizes,
-        openmp_1_time,
-        openmp_4_time,
-        4,
-    )
-    save_speedup(
-        "Speedup-16-threads.png",
-        "Speedup (16 threads)",
-        problem_sizes,
-        openmp_1_time,
-        openmp_16_time,
-        16,
-    )
-    save_speedup(
-        "Speedup-64-threads.png",
-        "Speedup (64 threads)",
-        problem_sizes,
-        openmp_1_time,
-        openmp_64_time,
+        vectorized_time,
+        [openmp_1_time, openmp_4_time, openmp_16_time, openmp_64_time],
         64,
     )
 
