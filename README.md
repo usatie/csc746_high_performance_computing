@@ -46,7 +46,12 @@ on perlmutter.
 
 First, log into a Perlmutter login node.
 
-Then, without making any adjustments in the default environment, make your way to a compute node:
+Then, make sure you have the GPU module loaded:
+
+    module load gpu
+
+
+Then make your way to a CPU compute node:
 
     salloc --nodes 1 --qos interactive --time 00:30:00 --constraint cpu --account=m3930  --perf=generic
 
