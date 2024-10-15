@@ -1,0 +1,52 @@
+#!/bin/bash -l
+#SBATCH --constraint=cpu
+#SBATCH --cpus-per-task=1
+#SBATCH --qos=debug
+#SBATCH --nodes=1
+#SBATCH --time=00:05:00
+#SBATCH --job-name=job-basic-omp
+#SBATCH --output=job-basic-omp.o%j
+#SBATCH --error=job-basic-omp.e%j
+
+# turn off OMP_NUM_THREADS as it doesn't play nicely with likwid-perfctr on Perlmutter
+unset OMP_NUM_THREADS
+
+# set some openmp variables: 
+# OMP_PLACES=threads maps OpenMP threads to hardware threads
+# OMP_PROC_BIND=spread binds threads as evenly as possible
+#
+# see https://docs.nersc.gov/jobs/affinity/ for more information
+
+export OMP_PLACES=threads
+export OMP_PROC_BIND=spread
+
+# use PERF_COUNTER_GROUP to tell likwif-perfctr which perf counter group to monitor
+# the default here, FLOPS_DP, counts the number of double-precisions FLOPS
+export PERF_COUNTER_GROUP=FLOPS_DP
+
+# use the MARKER_FLAG variable to activate LIKWID's marker API, which will result in 
+# perf counter data being collected only in the region of code surrounded by marker start/stop
+# calls. If MARKER_FLAG is not defined, then the LIKWID marker API will not be activated,
+# and the resulting performance data reflects the run of the entire program
+export MARKER_FLAG="-m"
+
+# iterate over some number of threads. You will need to modify this for HW4 to reflect
+# the levels of concurrency in the assignment
+
+# Note: in HW4, we are NOT using OMP_NUM_THREADS to tell your program and OpenMP the
+# concurrency level. instead, we tell likwid-perfctr the concurrency level,
+# and then likwid-perfctr manages setting OMP_NUM_THREADS
+
+for N in 128 512 2048 # loop over problem sizes
+   do
+   for t in 1 4 16 64  # loop over concurrency level
+      do
+      let maxcore=$t-1
+
+      echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-basic-omp -N $N
+      likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-basic-omp -N $N
+
+   done # iterate over concurrency level
+done # iterate over problem size
+
+# eof
