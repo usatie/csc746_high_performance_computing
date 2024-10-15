@@ -5,8 +5,8 @@
 #SBATCH --nodes=1
 #SBATCH --time=00:05:00
 #SBATCH --job-name=job-blocked-omp
-#SBATCH --output=job-blocked-omp.o%j
-#SBATCH --error=job-blocked-omp.e%j
+#SBATCH --account=m3930
+#SBATCH --perf=generic
 
 # turn off OMP_NUM_THREADS as it doesn't play nicely with likwid-perfctr on Perlmutter
 unset OMP_NUM_THREADS
