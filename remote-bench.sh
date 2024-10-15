@@ -1,6 +1,8 @@
 #!/bin/bash -l
 
 cd build
+make
+ls | grep job | xargs chmod +x
 
 # Prepare user env needed for Slurm batch job
 # such as module load, setup runtime environment variables, or copy input files, etc.
