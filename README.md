@@ -3,6 +3,23 @@ Accelerating Ray Tracing Using Parallelization
 
 This project is an enhanced version of the "Ray Tracing in One Weekend" series, with a focus on high-performance computing. Our goal is to achieve significant speedup in ray tracing by parallelizing the computation on both CPU and GPU nodes.
 
+![final_scene](https://github.com/user-attachments/assets/6e944984-2a1d-42ec-bf29-e9a0674732c8)
+*Final Scene (samples_per_pixel=500)*
+
+## Performance
+
+The performance of our ray tracing implementation has been tested on an M3 MacBook Air with 16GB of memory. The results demonstrate the impact of parallelization on rendering speed, particularly when varying the number of threads and samples per pixel.
+
+### Benchmark Results
+
+| Samples per Pixel | OMP_NUM_THREADS | Elapsed Time (s) |
+|-------------------|-----------------|------------------|
+| 10                | 1               | 26.8             |
+| 10                | 2               | 14.3             |
+| 10                | 4               | 8.6              |
+| 10                | 8               | 6.8              |
+| 500               | 8               | 408.9            |
+
 ## Features
 
 - **Ray Tracing Basics**: Implements the foundational concepts of ray tracing as described in the "Ray Tracing in One Weekend" book.
