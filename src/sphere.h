@@ -10,7 +10,7 @@ public:
       : center(center), radius(std::fmax(0, radius)){};
   bool hit(const ray &r, double t_min, double t_max,
            hit_record &rec) const override {
-    vec3 oc = r.origin() - center;
+    vec3 oc = center - r.origin();
     double a = r.direction().length_squared();
     double half_b = dot(oc, r.direction());
     double c = oc.length_squared() - radius * radius;
