@@ -1,4 +1,5 @@
 #include "rtweekend.h"
+#include <algorithm>
 #include <chrono>
 // After including rtweekend.h, we can include the other headers.
 #include "camera.h"
@@ -35,20 +36,36 @@ void setup_world_cover(hittable_list &world, camera &cam) {
   auto ground_material = make_shared<lambertian>(color(0.5, 0.5, 0.5));
   world.add(make_shared<sphere>(point3(0, -1000, 0), 1000, ground_material));
 
+  std::vector<point3> large_sphere_centers(
+      {point3(0, 1, 0), point3(-4, 1, 0), point3(4, 1, 0)});
+  std::vector<point3> centers;
   for (int a = -11; a < 11; a++) {
     for (int b = -11; b < 11; b++) {
       auto choose_mat = random_double();
       point3 center(a + 0.9 * random_double(), 0.2, b + 0.9 * random_double());
+      // Only add a sphere if it is not too close to another one.
+      while (std::find_if(centers.begin(), centers.end(),
+                          [center](point3 c) {
+                            return (c - center).length() < 0.4;
+                          }) != centers.end() ||
+             std::find_if(large_sphere_centers.begin(),
+                          large_sphere_centers.end(), [center](point3 c) {
+                            return (c - center).length() < 1.2;
+                          }) != large_sphere_centers.end()) {
+        center =
+            point3(a + 0.9 * random_double(), 0.2, b + 0.9 * random_double());
+      }
 
       if ((center - point3(4, 0.2, 0)).length() > 0.9) {
+        centers.push_back(center);
         shared_ptr<material> sphere_material;
 
-        if (choose_mat < 0.8) {
+        if (choose_mat > 0.25) {
           // diffuse
           auto albedo = color::random() * color::random();
           sphere_material = make_shared<lambertian>(albedo);
           world.add(make_shared<sphere>(center, 0.2, sphere_material));
-        } else if (choose_mat < 0.95) {
+        } else if (choose_mat > 0.05) {
           // metal
           auto albedo = color::random(0.5, 1);
           auto fuzz = random_double(0, 0.5);

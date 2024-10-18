@@ -27,7 +27,7 @@ public:
     std::vector<color> image(image_width * image_height);
     int total = image_width * image_height;
     int progress = 0;
-#pragma omp parallel for collapse(2) schedule(dynamic, 1)
+#pragma omp parallel for collapse(2) schedule(dynamic, 16)
     for (int j = 0; j < image_height; j++) {
       for (int i = 0; i < image_width; i++) {
         color pixel_color(0, 0, 0);
