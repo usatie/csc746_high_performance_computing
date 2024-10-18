@@ -24,20 +24,35 @@ public:
   void render(const hittable &world) {
     initialize();
 
-    std::cout << "P3\n" << image_width << " " << image_height << "\n255\n";
+    std::vector<color> image(image_width * image_height);
+    int total = image_width * image_height;
+    int progress = 0;
+#pragma omp parallel for collapse(2) schedule(dynamic, 1)
     for (int j = 0; j < image_height; j++) {
-      std::clog << "\rScanlines remaining: " << (image_height - j) << ' '
-                << std::flush;
       for (int i = 0; i < image_width; i++) {
         color pixel_color(0, 0, 0);
         for (int sample = 0; sample < samples_per_pixel; sample++) {
           ray r = get_ray(i, j);
           pixel_color += ray_color(r, max_depth, world);
         }
-        write_color(std::cout, pixel_samples_scale * pixel_color);
+        image[j * image_width + i] = pixel_color;
+#pragma omp critical
+        {
+          progress += 1;
+          if (progress % 100 == 0)
+            std::clog << "\rPixels remaining: " << (total - progress) << ' '
+                      << std::flush;
+        }
       }
     }
     std::clog << "\rDone.\n";
+    std::cout << "P3\n" << image_width << " " << image_height << "\n255\n";
+    for (int j = 0; j < image_height; j++) {
+      for (int i = 0; i < image_width; ++i) {
+        color pixel_color = image[j * image_width + i];
+        write_color(std::cout, pixel_samples_scale * pixel_color);
+      }
+    }
   }
 
 private:

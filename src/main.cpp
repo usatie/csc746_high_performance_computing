@@ -1,4 +1,5 @@
 #include "rtweekend.h"
+#include <chrono>
 // After including rtweekend.h, we can include the other headers.
 #include "camera.h"
 #include "hittable.h"
@@ -91,6 +92,12 @@ int main() {
 
   setup_world_cover(world, cam);
 
+  std::chrono::time_point<std::chrono::high_resolution_clock> start_time =
+      std::chrono::high_resolution_clock::now();
   cam.render(world);
+  std::chrono::time_point<std::chrono::high_resolution_clock> end_time =
+      std::chrono::high_resolution_clock::now();
+  std::chrono::duration<double> elapsed_time = end_time - start_time;
+  std::clog << "Elapsed time: " << elapsed_time.count() << " " << std::endl;
   return 0;
 }
