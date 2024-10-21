@@ -90,14 +90,15 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   // insert your code here
 #define MAX_BLOCK (64 * 64)
   static double aBlock[MAX_BLOCK], bBlock[MAX_BLOCK], cBlock[MAX_BLOCK];
+  int Nb = n / block_size;
 #pragma omp parallel for private(aBlock, bBlock, cBlock)
-  for (int i = 0; i < n / block_size; i++) {
+  for (int i = 0; i < Nb; i++) {
 #ifdef LIKWID_PERFMON
     LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
 #endif
-    for (int j = 0; j < n / block_size; j++) {
+    for (int j = 0; j < Nb; j++) {
       blockread(cBlock, C, i, j, n, block_size);
-      for (int k = 0; k < n / block_size; k++) {
+      for (int k = 0; k < Nb; k++) {
         blockread(aBlock, A, i, k, n, block_size);
         blockread(bBlock, B, k, j, n, block_size);
         // C[i, j] += A[i, k] * B[k, j];
