@@ -21,13 +21,13 @@ export SALLOC_ACCOUNT=m3930
 COMMIT_HASH=$(git rev-parse --short HEAD) # get the short commit hash
 sbatch \
 	--output=../log/job-blas.o.${COMMIT_HASH}.%j \
- 	--error=../log/job-blas.e.${COMMIT_HASH}.%j \
+	--error=../log/job-blas.e.${COMMIT_HASH}.%j \
 	job-blas
 sbatch \
 	--output=../log/job-basic-omp.o.${COMMIT_HASH}.%j \
- 	--error=../log/job-basic-omp.e.${COMMIT_HASH}.%j \
+	--error=../log/job-basic-omp.e.${COMMIT_HASH}.%j \
 	job-basic-omp
 sbatch \
 	--output=../log/job-blocked-omp.o.${COMMIT_HASH}.%j \
- 	--error=../log/job-blocked-omp.e.${COMMIT_HASH}.%j \
+	--error=../log/job-blocked-omp.e.${COMMIT_HASH}.%j \
 	job-blocked-omp
