@@ -6,7 +6,7 @@ cd build
 # such as module load, setup runtime environment variables, or copy input files, etc.
 # Basically, these are the commands you usually run ahead of the srun command
 module load gpu
-module load e4s/23.05
+module load e4s/23.08
 spack env activate gcc
 spack load likwid
 unset LUA_PATH
