@@ -30,9 +30,17 @@ export PERF_COUNTER_GROUP=L2CACHE
 export MARKER_FLAG="-m"
 
 for method in basic-omp blocked-omp blas; do # loop over methods
-	for N in 128 512 2048; do                   # loop over problem sizes
-		# Only serial, single-threaded runs
-		echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N
-		likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N
-	done # iterate over problem size
+	if [ $method == "blocked-omp" ]; then
+		for block_size in 4 16; do
+			for N in 128 512 2048; do                   # loop over problem sizes
+				echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N -B $block_size
+				likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N -B $block_size
+			done # iterate over problem size
+		done # iterate over block size
+	else
+		for N in 128 512 2048; do                   # loop over problem sizes
+			echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N
+			likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N
+		done # iterate over problem size
+	fi
 done  # iterate over methods
