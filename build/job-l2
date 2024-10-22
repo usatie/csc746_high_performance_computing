@@ -29,8 +29,10 @@ export PERF_COUNTER_GROUP=L2CACHE
 # and the resulting performance data reflects the run of the entire program
 export MARKER_FLAG="-m"
 
-for N in 128 512 2048; do # loop over problem sizes
-	# Only serial, single-threaded runs
-	echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-basic-omp -N $N
-	likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-basic-omp -N $N
-done # iterate over problem size
+for method in basic-omp blocked-omp blas; do # loop over methods
+	for N in 128 512 2048; do                   # loop over problem sizes
+		# Only serial, single-threaded runs
+		echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N
+		likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N
+	done # iterate over problem size
+done  # iterate over methods
