@@ -2,7 +2,7 @@
 
 #rsync -avz --exclude='build' --exclude='.git' --exclude='.gitignore' --exclude='remote-build.sh' --exclude='README.md' . perlmutter.nersc.gov:csc746-cp4-mmul-omp/
 # rsync only .cpp files
-rsync -avz --include='*.cpp' --include='*.h' --exclude='*' . perlmutter.nersc.gov:csc746-cp4-mmul-omp/
+rsync -avz --include='*.cpp' --include='*.sh' --include='*.h' --exclude='*' . perlmutter.nersc.gov:csc746-cp4-mmul-omp/
 
 # This script will build the project on NERSC
 sshnersc 'bash -s' << EOF
