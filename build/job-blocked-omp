@@ -49,22 +49,19 @@ export MARKER_FLAG="-m"
 #   srun -n 1 likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blocked-omp -N $N -B $B
 #
 
-for PERF_COUNTER_GROUP in FLOPS_DP L2CACHE L3CACHE; do # loop over perf counter groups
-	for N in 128 512 2048; do                             # loop over problem sizes
+for N in 128 512 2048; do # loop over problem sizes
+	for B in 4 16; do        # uncomment these two lines
+		# to also iterate over block sizes for the blocked version
 
-		for B in 4 16; do # uncomment these two lines
-			# to also iterate over block sizes for the blocked version
+		for t in 1 4 16 64; do # loop over concurrency level
+			let maxcore=$t-1
 
-			for t in 1 4 16 64; do # loop over concurrency level
-				let maxcore=$t-1
+			# if doing the blocked version, be sure to add -B $B to the following two lines
+			echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blocked-omp -N $N -B $B
+			likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blocked-omp -N $N -B $B
 
-				# if doing the blocked version, be sure to add -B $B to the following two lines
-				echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blocked-omp -N $N -B $B
-				likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blocked-omp -N $N -B $B
-
-			done # iterate over concurrency level
-		done  # iterate over block size, uncomment me if doing a loop over blocks
-	done   # iterate over problem size
-done    # iterate over perf counter group
+		done # iterate over concurrency level
+	done  # iterate over block size, uncomment me if doing a loop over blocks
+done   # iterate over problem size
 
 # eof

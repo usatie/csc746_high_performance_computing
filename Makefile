@@ -23,3 +23,6 @@ remote-bench:
 	bash remote-bench.sh
 
 bench: remote-bench
+
+fetch-log:
+	rsync -avz perlmutter.nersc.gov:csc746-cp4-mmul-omp/log .

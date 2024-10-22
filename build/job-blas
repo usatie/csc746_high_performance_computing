@@ -37,13 +37,11 @@ export MARKER_FLAG="-m"
 # concurrency level. instead, we tell likwid-perfctr the concurrency level,
 # and then likwid-perfctr manages setting OMP_NUM_THREADS
 
-for PERF_COUNTER_GROUP in FLOPS_DP L2CACHE L3CACHE; do # loop over perf counter groups
-	for N in 128 512 2048; do                             # loop over problem sizes
-		for t in 1; do                                       # if running the blas version, uncomment this line and comment out the previous line looping over t in 1 4 16 64
-			let maxcore=$t-1
+for N in 128 512 2048; do # loop over problem sizes
+	for t in 1; do           # if running the blas version, uncomment this line and comment out the previous line looping over t in 1 4 16 64
+		let maxcore=$t-1
 
-			echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blas -N $N
-			likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blas -N $N
-		done # iterate over concurrency level
-	done  # iterate over problem size
-done   # iterate over perf counter group
+		echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blas -N $N
+		likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blas -N $N
+	done # iterate over concurrency level
+done  # iterate over problem size
