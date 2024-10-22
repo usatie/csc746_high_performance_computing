@@ -18,3 +18,8 @@ remote:
 
 remote-test:
 	bash remote-test.sh
+
+remote-bench:
+	bash remote-bench.sh
+
+bench: remote-bench
