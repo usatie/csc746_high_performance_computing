@@ -19,7 +19,7 @@ export SALLOC_ACCOUNT=m3930
 # then when sbatch the script later, the user env set up above will run on the login node
 # instead of on a head compute node (if included in the Slurm batch script),
 # and inherited into the batch job.
-cat << 'EOF' > job-test.sh
+cat <<'EOF' >job-test.sh
 #!/bin/bash -l
 #SBATCH --constraint=cpu
 #SBATCH --cpus-per-task=1
@@ -61,46 +61,43 @@ export MARKER_FLAG="-m"
 # concurrency level. instead, we tell likwid-perfctr the concurrency level,
 # and then likwid-perfctr manages setting OMP_NUM_THREADS
 
-for N in 128 # loop over problem sizes
-   do
+for PERF_COUNTER_GROUP in FLOPS_DP L2CACHE L3CACHE; do # loop over perf counter groups
+	for N in 128; do                                      # loop over problem sizes
 
-   # Test basic-omp
-   echo "Basic"
-   for t in 1 64  # loop over concurrency level
-      do
-      let maxcore=$t-1
+		# Test basic-omp
+		echo "Basic"
+		for t in 1 64; do # loop over concurrency level
+			let maxcore=$t-1
 
-      echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-basic-omp -N $N
-      likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-basic-omp -N $N
+			echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-basic-omp -N $N
+			likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-basic-omp -N $N
 
-   done # iterate over concurrency level
+		done # iterate over concurrency level
 
-   # Test blas
-   echo "CBLAS"
-   for t in 1  # if running the blas version, uncomment this line and comment out the previous line looping over t in 1 4 16 64
-      do
-      let maxcore=$t-1
+		# Test blas
+		echo "CBLAS"
+		for t in 1; do # if running the blas version, uncomment this line and comment out the previous line looping over t in 1 4 16 64
+			let maxcore=$t-1
 
-      echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blas -N $N
-      likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blas -N $N
+			echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blas -N $N
+			likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blas -N $N
 
-   done # iterate over concurrency level
+		done # iterate over concurrency level
 
-   # Test blocked
-   echo "BMMCO"
-   for B in 4  # uncomment these two lines
-      do            # to also iterate over block sizes for the blocked version
-      for t in 1 64  # loop over concurrency level
-         do
-         let maxcore=$t-1
+		# Test blocked
+		echo "BMMCO"
+		for B in 4; do # uncomment these two lines
+			# to also iterate over block sizes for the blocked version
+			for t in 1 64; do # loop over concurrency level
+				let maxcore=$t-1
 
-         echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blocked-omp -N $N -B $B
-         likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blocked-omp -N $N -B $B
+				echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blocked-omp -N $N -B $B
+				likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./benchmark-blocked-omp -N $N -B $B
 
-      done # iterate over concurrency level
-   done # iterate over block size, uncomment me if doing a loop over blocks
-done # iterate over problem size
-
+			done # iterate over concurrency level
+		done  # iterate over block size, uncomment me if doing a loop over blocks
+	done   # iterate over problem size
+done
 EOF
 
 # Now submit the batch job
