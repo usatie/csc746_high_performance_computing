@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <omp.h>
+#include <vector>
 #include "likwid-stuff.h"
 
 const char* dgemm_desc = "Blocked dgemm, OpenMP-enabled";
@@ -88,10 +89,13 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
    // after the matrix multiply code but before the end of the parallel code block.
 
   // insert your code here
-#define MAX_BLOCK (64 * 64)
-  static double aBlock[MAX_BLOCK], bBlock[MAX_BLOCK], cBlock[MAX_BLOCK];
   int Nb = n / block_size;
-#pragma omp parallel for private(aBlock, bBlock, cBlock)
+#pragma omp parallel
+{
+  std::vector<double> a(block_size * block_size), b(block_size * block_size),
+      c(block_size * block_size);
+  double *aBlock = a.data(), *bBlock = b.data(), *cBlock = c.data();
+#pragma omp for
   for (int i = 0; i < Nb; i++) {
 #ifdef LIKWID_PERFMON
     LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
@@ -110,4 +114,5 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
     LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
 #endif
   }
+}
 }
