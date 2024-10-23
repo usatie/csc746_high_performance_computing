@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rsync -avz --include='*.cpp' --include='*.sh' --include='build/' --include='build/job-basic-omp' --include='build/job-blas' --include='build/job-blocked-omp' --include='build/job-l2' --include='build/job-l3' --include='build/job-speedup' --include='*.h' --exclude='*' --exclude='build/' . perlmutter.nersc.gov:csc746-cp4-mmul-omp/
+rsync -avz --include='*.cpp' --include='*.sh' --include='build/' --include='build/job-flops-dp' --include='build/job-l2' --include='build/job-l3' --include='build/job-speedup' --include='*.h' --exclude='*' --exclude='build/' . perlmutter.nersc.gov:csc746-cp4-mmul-omp/
 
 # This script will build the project on NERSC
 sshnersc 'bash -s' <<EOF

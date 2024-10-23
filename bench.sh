@@ -20,23 +20,20 @@ ls | grep job | xargs chmod +x
 
 # Now submit the batch job
 COMMIT_HASH=$(git rev-parse --short HEAD) # get the short commit hash
+TIMESTAMP=$(date +%Y%m%d%H%M%S)
 sbatch \
-	--output=../log/job-blas.o.${COMMIT_HASH}.%j \
-	--error=../log/job-blas.e.${COMMIT_HASH}.%j \
-	job-blas
+	--output=../log/${TIMESTAMP}_${COMMIT_HASH}_%j_job-speedup.o \
+	--error=../log/${TIMESTAMP}_${COMMIT_HASH}_%j_job-speedup.e \
+	job-speedup
 sbatch \
-	--output=../log/job-basic-omp.o.${COMMIT_HASH}.%j \
-	--error=../log/job-basic-omp.e.${COMMIT_HASH}.%j \
-	job-basic-omp
-sbatch \
-	--output=../log/job-blocked-omp.o.${COMMIT_HASH}.%j \
-	--error=../log/job-blocked-omp.e.${COMMIT_HASH}.%j \
-	job-blocked-omp
-sbatch \
-	--output=../log/job-l2.o.${COMMIT_HASH}.%j \
-	--error=../log/job-l2.e.${COMMIT_HASH}.%j \
+	--output=../log/${TIMESTAMP}_${COMMIT_HASH}_%j_job-l2.o \
+	--error=../log/${TIMESTAMP}_${COMMIT_HASH}_%j_job-l2.e \
 	job-l2
 sbatch \
-	--output=../log/job-l3.o.${COMMIT_HASH}.%j \
-	--error=../log/job-l3.e.${COMMIT_HASH}.%j \
+	--output=../log/${TIMESTAMP}_${COMMIT_HASH}_%j_job-l3.o \
+	--error=../log/${TIMESTAMP}_${COMMIT_HASH}_%j_job-l3.e \
 	job-l3
+sbatch \
+	--output=../log/${TIMESTAMP}_${COMMIT_HASH}_%j_job-flops-dp.o \
+	--error=../log/${TIMESTAMP}_${COMMIT_HASH}_%j_job-flops-dp.e \
+	job-flops-dp
