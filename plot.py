@@ -161,6 +161,53 @@ def save_blocked_speedup(
     plt.savefig(RESULT_DIR + plot_fname, dpi=300)
     plt.clf()
 
+def save_speedup_chrono_figure():
+    fname = f"data/speedup-chrono.csv"
+    df = pd.read_csv(fname, comment="#")
+    print(df)
+    var_names = list(df.columns)
+    print("var names =", var_names)
+    problem_sizes = df["N"].tolist()
+    basic_omp_1_time = df["omp-1"].tolist()
+    basic_omp_4_time = df["omp-4"].tolist()
+    basic_omp_16_time = df["omp-16"].tolist()
+    basic_omp_64_time = df["omp-64"].tolist()
+
+    save_basic_speedup(
+        "Basic_Speedup_chrono.png",
+        "Basic Speedup by std::chrono (omp-4, omp-16, omp-64)",
+        problem_sizes,
+        basic_omp_1_time,
+        [basic_omp_4_time, basic_omp_16_time, basic_omp_64_time],
+        64,
+    )
+
+    fname = f"data/speedup-chrono-blocked.csv"
+    df = pd.read_csv(fname, comment="#")
+    print(df)
+    var_names = list(df.columns)
+    print("var names =", var_names)
+    problem_sizes = df["N"].tolist()
+    b4_omp_1_time = df["omp-1 (b=4)"].tolist()
+    b4_omp_4_time = df["omp-4 (b=4)"].tolist()
+    b4_omp_16_time = df["omp-16 (b=4)"].tolist()
+    b4_omp_64_time = df["omp-64 (b=4)"].tolist()
+    b16_omp_1_time = df["omp-1 (b=16)"].tolist()
+    b16_omp_4_time = df["omp-4 (b=16)"].tolist()
+    b16_omp_16_time = df["omp-16 (b=16)"].tolist()
+    b16_omp_64_time = df["omp-64 (b=16)"].tolist()
+
+    save_blocked_speedup(
+        "Blocked_Speedup_chrono.png",
+        "BMMCO Speedup by std::chrono (omp-4, omp-16, omp-64)",
+        problem_sizes,
+        b4_omp_1_time,
+        [b4_omp_4_time, b4_omp_16_time, b4_omp_64_time],
+        b16_omp_1_time,
+        [b16_omp_4_time, b16_omp_16_time, b16_omp_64_time],
+        64,
+    )
+
 def save_figures():
     fname = f"data/FLOPS_DP.csv"
     df = pd.read_csv(fname, comment="#")
@@ -218,6 +265,7 @@ def save_figures():
 
 if __name__ == "__main__":
     save_figures()
+    save_speedup_chrono_figure()
 
 
 # EOF
