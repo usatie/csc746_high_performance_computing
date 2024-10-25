@@ -3,6 +3,11 @@
 
 #include "hittable.h"
 #include "material.h"
+#include <chrono>
+#include <omp.h>
+#ifdef SDL2
+#include <SDL2/SDL.h>
+#endif
 
 class camera {
 public:
@@ -21,31 +26,8 @@ public:
   double focus_dist =
       10; // Distance from camera lookfrom point to plane of focus
 
-  void render(const hittable &world) {
-    initialize();
-
-    std::vector<color> image(image_width * image_height);
-    int total = image_width * image_height;
-    int progress = 0;
-#pragma omp parallel for collapse(2) schedule(dynamic, 16)
-    for (int j = 0; j < image_height; j++) {
-      for (int i = 0; i < image_width; i++) {
-        color pixel_color(0, 0, 0);
-        for (int sample = 0; sample < samples_per_pixel; sample++) {
-          ray r = get_ray(i, j);
-          pixel_color += ray_color(r, max_depth, world);
-        }
-        image[j * image_width + i] = pixel_color;
-#pragma omp critical
-        {
-          progress += 1;
-          if (progress % 100 == 0)
-            std::clog << "\rPixels remaining: " << (total - progress) << ' '
-                      << std::flush;
-        }
-      }
-    }
-    std::clog << "\rDone.\n";
+  void write_ppm(const std::vector<color> &image) {
+    // Write the image to the standard output stream
     std::cout << "P3\n" << image_width << " " << image_height << "\n255\n";
     for (int j = 0; j < image_height; j++) {
       for (int i = 0; i < image_width; ++i) {
@@ -53,6 +35,83 @@ public:
         write_color(std::cout, pixel_samples_scale * pixel_color);
       }
     }
+  }
+  void render(const hittable &world) {
+#pragma omp parallel
+    {
+      if (omp_get_thread_num() == 0)
+        std::clog << "Number of threads: " << omp_get_num_threads()
+                  << std::endl;
+    }
+    initialize();
+
+    std::vector<color> image(image_width * image_height);
+
+#ifdef SDL2
+    bool quit = false;
+    SDL_Event e;
+    omp_lock_t sdl_lock;
+    omp_init_lock(&sdl_lock);
+#endif
+    int progress = 0;
+
+    std::chrono::time_point<std::chrono::high_resolution_clock> start_time =
+        std::chrono::high_resolution_clock::now();
+#pragma omp parallel for schedule(dynamic, 1)
+    for (int j = 0; j < image_height; j++) {
+#ifdef SDL2
+      if (omp_get_thread_num() == 0) {
+        while (SDL_PollEvent(&e) != 0) {
+          if (e.type == SDL_QUIT) {
+            quit = true;
+          }
+        }
+        if (quit)
+          continue;
+      }
+#endif
+      for (int i = 0; i < image_width; i++) {
+        color pixel_color = color(0, 0, 0);
+        for (int s = 0; s < samples_per_pixel; s++) {
+          ray r = get_ray(i, j);
+          pixel_color += ray_color(r, max_depth, world);
+        }
+        image[j * image_width + i] += pixel_color;
+      }
+#ifdef SDL2
+      if (omp_test_lock(&sdl_lock)) {
+        render_on_sdl(image);
+        omp_unset_lock(&sdl_lock);
+      }
+#endif
+#pragma omp critical
+      {
+        progress += image_width;
+        if (progress % 100 == 0)
+          std::clog << "\rPixels remaining: "
+                    << (image_height * image_width - progress) << ' '
+                    << std::flush;
+      }
+    }
+    std::clog << "\rDone.\n";
+    std::chrono::time_point<std::chrono::high_resolution_clock> end_time =
+        std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed_time = end_time - start_time;
+    std::clog << "Elapsed time: " << elapsed_time.count() << " " << std::endl;
+
+#ifdef SDL2
+    render_on_sdl(image);
+    while (!quit) {
+      while (SDL_PollEvent(&e) != 0) {
+        if (e.type == SDL_QUIT) {
+          quit = true;
+        }
+      }
+    }
+    omp_destroy_lock(&sdl_lock);
+    cleanup();
+#endif
+    write_ppm(image);
   }
 
 private:
@@ -66,6 +125,35 @@ private:
   vec3 u, v, w;               // Camera frame basis vectors
   vec3 defocus_disk_u;        // Defocus disk horizontal radius
   vec3 defocus_disk_v;        // Defocus disk vertical radius
+#ifdef SDL2
+  /* SDL2 Rendering Parameters */
+  SDL_Window *window;     // SDL window
+  SDL_Renderer *renderer; // SDL renderer
+  SDL_Texture *texture;   // SDL texture
+  void render_on_sdl(const std::vector<color> &image) {
+    // Convert to SDL surface format (RGB 8-bit per channel)
+    std::vector<uint8_t> pixels(image_width * image_height * 3);
+    for (int j = 0; j < image_height; j++) {
+      for (int i = 0; i < image_width; ++i) {
+        color pixel_color = image[j * image_width + i] * pixel_samples_scale;
+        sdl_write_color(&pixels[3 * (j * image_width + i)], pixel_color);
+      }
+    }
+    // Update SDL texture with ray traced image
+    SDL_UpdateTexture(texture, nullptr, pixels.data(), image_width * 3);
+
+    // Clear renderer and copy texture to the window
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, texture, nullptr, nullptr);
+    SDL_RenderPresent(renderer);
+  }
+  void cleanup() {
+    SDL_DestroyTexture(texture);
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+  }
+#endif
 
   void initialize() {
     image_height = static_cast<int>(image_width / aspect_ratio);
@@ -106,6 +194,45 @@ private:
         focus_dist * std::tan(degrees_to_radians(defocus_angle / 2));
     defocus_disk_u = defocus_radius * u;
     defocus_disk_v = defocus_radius * v;
+
+#ifdef SDL2
+    // Initialize SDL
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+      std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError()
+                << std::endl;
+      return;
+    }
+
+    window = SDL_CreateWindow("Ray Tracing", SDL_WINDOWPOS_UNDEFINED,
+                              SDL_WINDOWPOS_UNDEFINED, image_width,
+                              image_height, SDL_WINDOW_SHOWN);
+    if (!window) {
+      std::cerr << "Window could not be created! SDL_Error: " << SDL_GetError()
+                << std::endl;
+      return;
+    }
+
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if (!renderer) {
+      std::cerr << "Renderer could not be created! SDL_Error: "
+                << SDL_GetError() << std::endl;
+      SDL_DestroyWindow(window);
+      SDL_Quit();
+      return;
+    }
+
+    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGB24,
+                                SDL_TEXTUREACCESS_STREAMING, image_width,
+                                image_height);
+    if (!texture) {
+      std::cerr << "Texture could not be created! SDL_Error: " << SDL_GetError()
+                << std::endl;
+      SDL_DestroyRenderer(renderer);
+      SDL_DestroyWindow(window);
+      SDL_Quit();
+      return;
+    }
+#endif
   }
 
   ray get_ray(int i, int j) const {

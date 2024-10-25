@@ -1,6 +1,5 @@
 #include "rtweekend.h"
 #include <algorithm>
-#include <chrono>
 // After including rtweekend.h, we can include the other headers.
 #include "camera.h"
 #include "hittable.h"
@@ -91,7 +90,7 @@ void setup_world_cover(hittable_list &world, camera &cam) {
 
   cam.aspect_ratio = 16.0 / 9.0;
   cam.image_width = 1200;
-  cam.samples_per_pixel = 10;
+  cam.samples_per_pixel = 50;
   cam.max_depth = 50;
 
   cam.vfov = 20;
@@ -109,12 +108,6 @@ int main() {
 
   setup_world_cover(world, cam);
 
-  std::chrono::time_point<std::chrono::high_resolution_clock> start_time =
-      std::chrono::high_resolution_clock::now();
   cam.render(world);
-  std::chrono::time_point<std::chrono::high_resolution_clock> end_time =
-      std::chrono::high_resolution_clock::now();
-  std::chrono::duration<double> elapsed_time = end_time - start_time;
-  std::clog << "Elapsed time: " << elapsed_time.count() << " " << std::endl;
   return 0;
 }
