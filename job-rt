@@ -1,0 +1,20 @@
+#!/bin/bash -l
+#SBATCH --constraint=cpu
+#SBATCH --cpus-per-task=1
+#SBATCH --qos=debug
+#SBATCH --nodes=1
+#SBATCH --time=00:15:00
+#SBATCH --job-name=job-rt
+#SBATCH --account=m3930
+#SBATCH --perf=generic
+
+export OMP_PLACES=threads
+export OMP_PROC_BIND=spread
+
+for t in 256 128 64 32 16 8 4 2 1; do
+        echo OMP_NUM_THREADS=$t
+        export OMP_NUM_THREADS=$t
+        echo OMP_NUM_THREADS=$t ./build/ray-tracing-omp > image-$t.ppm
+        OMP_NUM_THREADS=$t ./build/ray-tracing-omp > image-$t.ppm
+done
+

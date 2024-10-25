@@ -90,7 +90,7 @@ void setup_world_cover(hittable_list &world, camera &cam) {
 
   cam.aspect_ratio = 16.0 / 9.0;
   cam.image_width = 1200;
-  cam.samples_per_pixel = 50;
+  cam.samples_per_pixel = 5;
   cam.max_depth = 50;
 
   cam.vfov = 20;
