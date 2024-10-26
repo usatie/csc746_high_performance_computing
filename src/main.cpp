@@ -6,32 +6,7 @@
 #include "hittable_list.h"
 #include "sphere.h"
 
-void setup_world(hittable_list &world) {
-  auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0));
-  auto material_center = make_shared<lambertian>(color(0.1, 0.2, 0.5));
-  auto material_left = make_shared<dielectric>(1.50);
-  auto material_bubble = make_shared<dielectric>(1.00 / 1.50);
-  auto material_right = make_shared<metal>(color(0.8, 0.6, 0.2), 1.0);
-
-  world.add(
-      make_shared<sphere>(point3(0.0, -100.5, -1.0), 100.0, material_ground));
-  world.add(make_shared<sphere>(point3(0.0, 0.0, -1.2), 0.5, material_center));
-  world.add(make_shared<sphere>(point3(-1.0, 0.0, -1.0), 0.5, material_left));
-  world.add(make_shared<sphere>(point3(-1.0, 0.0, -1.0), 0.4, material_bubble));
-  world.add(make_shared<sphere>(point3(1.0, 0.0, -1.0), 0.5, material_right));
-}
-
-void setup_world2(hittable_list &world) {
-  auto R = std::cos(pi / 4);
-
-  auto material_left = make_shared<lambertian>(color(0, 0, 1));
-  auto material_right = make_shared<lambertian>(color(1, 0, 0));
-
-  world.add(make_shared<sphere>(point3(-R, 0, -1), R, material_left));
-  world.add(make_shared<sphere>(point3(R, 0, -1), R, material_right));
-}
-
-void setup_world_cover(hittable_list &world, camera &cam) {
+void setup_world(hittable_list &world, camera &cam) {
   auto ground_material = make_shared<lambertian>(color(0.5, 0.5, 0.5));
   world.add(make_shared<sphere>(point3(0, -1000, 0), 1000, ground_material));
 
@@ -102,11 +77,30 @@ void setup_world_cover(hittable_list &world, camera &cam) {
   cam.focus_dist = 10.0;
 }
 
-int main() {
+int main(int argc, char **argv) {
   hittable_list world;
   camera cam;
 
-  setup_world_cover(world, cam);
+  // Parse command line arguments
+  // -S n: set the number of samples per pixel to n
+  // -W n: set the width of the image to n
+  int samples_per_pixel = 5;
+  int width = 1200;
+  int c;
+  while ((c = getopt(argc, argv, "S:W:")) != -1) {
+    switch (c) {
+    case 'S':
+      samples_per_pixel = std::atoi(optarg == NULL ? "-999" : optarg);
+      break;
+    case 'W':
+      width = std::atoi(optarg == NULL ? "-999" : optarg);
+      break;
+    }
+  }
+
+  setup_world(world, cam);
+  cam.samples_per_pixel = samples_per_pixel;
+  cam.image_width = width;
 
   cam.render(world);
   return 0;
