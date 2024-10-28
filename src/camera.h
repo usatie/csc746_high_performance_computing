@@ -100,13 +100,13 @@ public:
     std::clog << "Elapsed time: " << elapsed_time.count() << " " << std::endl;
 
 #ifdef SDL2
-    render_on_sdl(image);
     while (!quit) {
       while (SDL_PollEvent(&e) != 0) {
         if (e.type == SDL_QUIT) {
           quit = true;
         }
       }
+      render_on_sdl(image);
     }
     omp_destroy_lock(&sdl_lock);
     cleanup();
