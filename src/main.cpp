@@ -1,5 +1,6 @@
 #include "rtweekend.h"
 #include <algorithm>
+#include <unistd.h> // getopt
 // After including rtweekend.h, we can include the other headers.
 #include "camera.h"
 #include "hittable.h"
@@ -84,10 +85,12 @@ int main(int argc, char **argv) {
   // Parse command line arguments
   // -S n: set the number of samples per pixel to n
   // -W n: set the width of the image to n
-  int samples_per_pixel = 5;
-  int width = 1200;
+  // -D n: set the maximum depth of the ray to n
+  int samples_per_pixel = 32;
+  int width = 512;
+  int max_depth = 32;
   int c;
-  while ((c = getopt(argc, argv, "S:W:")) != -1) {
+  while ((c = getopt(argc, argv, "S:W:D:")) != -1) {
     switch (c) {
     case 'S':
       samples_per_pixel = std::atoi(optarg == NULL ? "-999" : optarg);
@@ -95,12 +98,22 @@ int main(int argc, char **argv) {
     case 'W':
       width = std::atoi(optarg == NULL ? "-999" : optarg);
       break;
+    case 'D':
+      max_depth = std::atoi(optarg == NULL ? "-999" : optarg);
+      break;
     }
+  }
+  if (samples_per_pixel <= 0 || width <= 0 || max_depth <= 0) {
+    std::cerr << "Usage: " << argv[0]
+              << " [-S samples_per_pixel] [-W width] [-D max_depth]\n";
+    return 1;
   }
 
   setup_world(world, cam);
   cam.samples_per_pixel = samples_per_pixel;
   cam.image_width = width;
+  cam.max_depth = max_depth;
+  cam.aspect_ratio = 1.0;
 
   cam.render(world);
   return 0;
