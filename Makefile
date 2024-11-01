@@ -1,7 +1,12 @@
-run: build
-	cd build && ./sobel_cpu
+run:
+	export OMP_PLACES=threads
+	export OMP_PROC_BIND=spread
+	cd build && OMP_NUM_THREADS=1 ./sobel_cpu
+	cd build && OMP_NUM_THREADS=2 ./sobel_cpu
+	cd build && OMP_NUM_THREADS=4 ./sobel_cpu
+	cd build && OMP_NUM_THREADS=8 ./sobel_cpu
+	cd build && OMP_NUM_THREADS=16 ./sobel_cpu
 
-.PHONY: build
 build: sobel_cpu.cpp
 	cmake -B build -Wno-dev
 	cmake --build build

@@ -48,7 +48,18 @@ sobel_filtered_pixel(float *s, int i, int j , int ncols, int nrows, float *gx, f
 
    // ADD CODE HERE: add your code here for computing the sobel stencil computation at location (i,j)
    // of input s, returning a float
-
+   float Gx = 0.0, Gy = 0.0;
+   for (int ii = 0; ii < 3; ++ii) {
+	   for (int jj = 0; jj < 3; ++jj) {
+		   int r = i - 1 + ii;
+		   int c = j - 1 + jj;
+		   if (r < 0 || r >= nrows || c < 0 || c >= ncols)
+			   return 0;
+		   Gx += s[r * ncols + c] * gx[ii * 3 + jj];
+		   Gy += s[r * ncols + c] * gy[ii * 3 + jj];
+	   }
+   }
+   t = sqrt(Gx * Gx + Gy * Gy);
    return t;
 }
 
@@ -73,7 +84,12 @@ do_sobel_filtering(float *in, float *out, int ncols, int nrows)
 
    // ADD CODE HERE: insert your code here that iterates over every (i,j) of input,  makes a call
    // to sobel_filtered_pixel, and assigns the resulting value at location (i,j) in the output.
-
+#pragma omp parallel for
+   for (int r = 0; r < nrows; ++r) {
+	   for (int c = 0; c < ncols; ++c) {
+		   out[r * ncols + c] = sobel_filtered_pixel(in, r, c, ncols, nrows, Gx, Gy);
+	   }
+   }
 }
 
 
@@ -104,6 +120,14 @@ main (int ac, char *av[])
    else
       printf(" Read data from the file %s \n", input_fname);
    fclose(f);
+
+#pragma omp parallel
+   {
+	   int tid = omp_get_thread_num();
+	   int nthreads = omp_get_num_threads();
+	   if (tid == 0)
+		   std::cout << "Number of threads: " << nthreads << std::endl;
+   }
 
 #define ONE_OVER_255 0.003921568627451
 
