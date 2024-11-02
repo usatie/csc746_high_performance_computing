@@ -7,7 +7,7 @@ run:
 	cd build && OMP_NUM_THREADS=8 ./sobel_cpu
 	cd build && OMP_NUM_THREADS=16 ./sobel_cpu
 
-build: sobel_cpu.cpp
+build: sobel_cpu.cpp sobel_cpu_omp_offload.cpp
 	cmake -B build -Wno-dev
 	cmake --build build
 
