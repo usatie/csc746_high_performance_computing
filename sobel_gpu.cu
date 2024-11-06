@@ -6,6 +6,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <chrono>
 #include <unistd.h>
@@ -27,7 +28,7 @@
 // this one is a 4x augmentation of the laughing zebra
 static char input_fname[] = "../data/zebra-gray-int8-4x";
 static int data_dims[2] = {7112, 5146}; // width=ncols, height=nrows
-char output_fname[] = "../data/processed-raw-int8-4x-cpu.dat";
+char output_fname[] = "../data/processed-raw-int8-4x-gpu.dat";
 
 // see https://stackoverflow.com/questions/14038589/what-is-the-canonical-way-to-check-for-errors-using-the-cuda-runtime-api
 // macro to check for cuda errors. basic idea: wrap this macro around every cuda call
@@ -56,13 +57,29 @@ inline void gpuAssert(cudaError_t code, const char *file, int line, bool abort=t
 // see https://en.wikipedia.org/wiki/Sobel_operator
 //
 __device__ float
-sobel_filtered_pixel(float *s, int i, int j , int ncols, int nrows, float *gx, float *gy)
+sobel_filtered_pixel(const float *s, int i, int j , int ncols, int nrows, const float *gx, const float *gy)
 {
 
    float t=0.0;
 
    // ADD CODE HERE:  add your code here for computing the sobel stencil computation at location (i,j)
    // of input s, returning a float
+   float Gx = 0.0, Gy = 0.0;
+   for (int ii = 0; ii < 3; ++ii) {
+           for (int jj = 0; jj < 3; ++jj) {
+        	   int r = i - 1 + ii;
+        	   int c = j - 1 + jj;
+        	   if (r < 0 || r >= nrows || c < 0 || c >= ncols)
+        		   return 0;
+		   if (r * ncols + c >= ncols * nrows)
+			   return 0;
+		   int s_index = r * ncols + c;
+		   int g_index = ii * 3 + jj;
+        	   Gx += s[s_index] * gx[g_index];
+        	   Gy += s[s_index] * gy[g_index];
+           }
+   }
+   t = sqrt(Gx * Gx + Gy * Gy);
 
    return t;
 }
@@ -83,18 +100,26 @@ sobel_filtered_pixel(float *s, int i, int j , int ncols, int nrows, float *gx, f
 
 
 __global__ void
-sobel_kernel_gpu(float *s,  // source image pixels
+sobel_kernel_gpu(const float *s,  // source image pixels
       float *d,  // dst image pixels
       int n,  // size of image cols*rows,
       int nrows,
       int ncols,
-      float *gx, float *gy) // gx and gy are stencil weights for the sobel filter
+      const float *gx, const float *gy) // gx and gy are stencil weights for the sobel filter
 {
    // ADD CODE HERE: insert your code here that iterates over every (i,j) of input,  makes a call
    // to sobel_filtered_pixel, and assigns the resulting value at location (i,j) in the output.
-
    // because this is CUDA, you need to use CUDA built-in variables to compute an index and stride
    // your processing motif will be very similar here to that we used for vector add in Lab #2
+   int width, height;
+
+   width=ncols;
+   height=nrows;
+   int index = blockIdx.x * blockDim.x + threadIdx.x;
+   int stride = blockDim.x * gridDim.x;
+   for (int i = index; i < height; i += stride)
+       for (int j = 0; j < width; j++)
+          d[i * width + j] = sobel_filtered_pixel(s, i, j, width, height, gx, gy);
 }
 
 int
@@ -136,8 +161,8 @@ main (int ac, char *av[])
    float Gx[9] = {1.0, 0.0, -1.0, 2.0, 0.0, -2.0, 1.0, 0.0, -1.0};
    float Gy[9] = {1.0, 2.0, 1.0, 0.0, 0.0, 0.0, -1.0, -2.0, -1.0};
    float *device_gx, *device_gy;
-   gpuErrchk( cudaMallocManaged(&device_gx, sizeof(float)*sizeof(Gx)) );
-   gpuErrchk( cudaMallocManaged(&device_gy, sizeof(float)*sizeof(Gy)) );
+   gpuErrchk( cudaMallocManaged(&device_gx, sizeof(Gx)) );
+   gpuErrchk( cudaMallocManaged(&device_gy, sizeof(Gy)) );
 
    for (int i=0;i<9;i++) // copy from Gx/Gy to device_gx/device_gy
    {
@@ -150,23 +175,30 @@ main (int ac, char *av[])
    int deviceID=0; // assume GPU#0, always. OK assumption for this program
    cudaMemPrefetchAsync((void *)in_data_floats, nvalues*sizeof(float), deviceID);
    cudaMemPrefetchAsync((void *)out_data_floats, nvalues*sizeof(float), deviceID);
-   cudaMemPrefetchAsync((void *)device_gx, sizeof(Gx)*sizeof(float), deviceID);
-   cudaMemPrefetchAsync((void *)device_gy, sizeof(Gy)*sizeof(float), deviceID);
+   cudaMemPrefetchAsync((void *)device_gx, sizeof(Gx), deviceID);
+   cudaMemPrefetchAsync((void *)device_gy, sizeof(Gy), deviceID);
 
    // set up to run the kernel
    int nBlocks=1, nThreadsPerBlock=256;
 
    // ADD CODE HERE: insert your code here to set a different number of thread blocks or # of threads per block
-
+   // nBlocks = (nvalues + nThreadsPerBlock - 1) / nThreadsPerBlock;
 
 
    printf(" GPU configuration: %d blocks, %d threads per block \n", nBlocks, nThreadsPerBlock);
 
+   // start timer
+   std::cout << std::fixed << std::setprecision(6);
+   std::chrono::time_point<std::chrono::high_resolution_clock> start_time = std::chrono::high_resolution_clock::now();
    // invoke the kernel on the device
    sobel_kernel_gpu<<<nBlocks, nThreadsPerBlock>>>(in_data_floats, out_data_floats, nvalues, data_dims[1], data_dims[0], device_gx, device_gy);
-
    // wait for it to finish, check errors
    gpuErrchk (  cudaDeviceSynchronize() );
+
+   // end timer
+   std::chrono::time_point<std::chrono::high_resolution_clock> end_time = std::chrono::high_resolution_clock::now();
+   std::chrono::duration<double> elapsed = end_time - start_time;
+   std::cout << " Elapsed time is : " << elapsed.count() << " (sec) " << std::endl;
 
    // write output after converting from floats in range 0..1 to bytes in range 0..255
    unsigned char *out_data_bytes = in_data_bytes;  // just reuse the buffer from before
