@@ -1,0 +1,25 @@
+OMP_NUM_THREADS=1 ./sobel_cpu
+ Read data from the file ../data/zebra-gray-int8-4x 
+Number of threads: 1
+ Elapsed time is : 0.178451 
+ Wrote the output file ../data/processed-raw-int8-4x-cpu.dat 
+OMP_NUM_THREADS=2 ./sobel_cpu
+ Read data from the file ../data/zebra-gray-int8-4x 
+Number of threads: 2
+ Elapsed time is : 0.0895596 
+ Wrote the output file ../data/processed-raw-int8-4x-cpu.dat 
+OMP_NUM_THREADS=4 ./sobel_cpu
+ Read data from the file ../data/zebra-gray-int8-4x 
+Number of threads: 4
+ Elapsed time is : 0.0449734 
+ Wrote the output file ../data/processed-raw-int8-4x-cpu.dat 
+OMP_NUM_THREADS=8 ./sobel_cpu
+ Read data from the file ../data/zebra-gray-int8-4x 
+Number of threads: 8
+ Elapsed time is : 0.0241266 
+ Wrote the output file ../data/processed-raw-int8-4x-cpu.dat 
+OMP_NUM_THREADS=16 ./sobel_cpu
+ Read data from the file ../data/zebra-gray-int8-4x 
+Number of threads: 16
+ Elapsed time is : 0.0133726 
+ Wrote the output file ../data/processed-raw-int8-4x-cpu.dat 

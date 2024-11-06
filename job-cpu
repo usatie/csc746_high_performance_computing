@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --constraint=cpu
+#SBATCH --constraint=gpu
 #SBATCH --qos=debug
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=1

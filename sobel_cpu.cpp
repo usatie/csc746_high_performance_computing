@@ -31,31 +31,35 @@ char output_fname[] = "../data/processed-raw-int8-4x-cpu.dat";
 // sobel_filtered_pixel(): perform the sobel filtering at a given i,j location
 //
 // input: float *s - the source data
-// input: int i,j - the location of the pixel in the source data where we want
+// input: int x,y - the location of the pixel in the source data where we want
 // to center our sobel convolution input: int nrows, ncols: the dimensions of
 // the input and output image buffers input: float *gx, gy:  arrays of length 9
 // each, these are logically 3x3 arrays of sobel filter weights
 //
-// this routine computes Gx=gx*s centered at (i,j), Gy=gy*s centered at (i,j),
+// this routine computes Gx=gx*s centered at (x,y), Gy=gy*s centered at (x,y),
 // and returns G = sqrt(Gx^2 + Gy^2)
 
 // see https://en.wikipedia.org/wiki/Sobel_operator
 //
-float sobel_filtered_pixel(float *s, int i, int j, int ncols, int nrows,
+float sobel_filtered_pixel(float *s, int x, int y, int ncols, int nrows,
                            float *gx, float *gy) {
   float t = 0.0;
+  
+  // if x or y is at the boundary of the img or out of the boundary, we can't compute
+  if (x <= 0 || x >= ncols - 1 || y <= 0 || y >= nrows - 1)
+	  return t;
 
   // ADD CODE HERE: add your code here for computing the sobel stencil
-  // computation at location (i,j) of input s, returning a float
+  // computation at location (x,y) of input s, returning a float
   float Gx = 0.0, Gy = 0.0;
-  for (int ii = 0; ii < 3; ++ii) {
-    for (int jj = 0; jj < 3; ++jj) {
-      int r = i - 1 + ii;
-      int c = j - 1 + jj;
-      if (r < 0 || r >= nrows || c < 0 || c >= ncols)
-        return 0;
-      Gx += s[r * ncols + c] * gx[ii * 3 + jj];
-      Gy += s[r * ncols + c] * gy[ii * 3 + jj];
+  for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+      int xx = x - 1 + i;
+      int yy = y - 1 + j;
+      // Gx += s[xx, yy] * gx[i, j]
+      Gx += s[yy * ncols + xx] * gx[j * 3 + i];
+      // Gy += s[xx, yy] * gy[i, j]
+      Gy += s[yy * ncols + xx] * gy[j * 3 + i];
     }
   }
   t = sqrt(Gx * Gx + Gy * Gy);
@@ -82,18 +86,16 @@ void do_sobel_filtering(float *in, float *out, int ncols, int nrows) {
   // ADD CODE HERE: insert your code here that iterates over every (i,j) of
   // input,  makes a call to sobel_filtered_pixel, and assigns the resulting
   // value at location (i,j) in the output.
-  off_t out_indx = 0;
-  int width, height, nvals;
+  int width, height;
 
   width = ncols;
   height = nrows;
-  nvals = width * height;
 
 #pragma omp parallel for
-  for (int r = 0; r < height; ++r) {
-    out_indx = r * width;
-    for (int c = 0; c < width; ++c) {
-      out[out_indx + c] = sobel_filtered_pixel(in, r, c, width, height, Gx, Gy);
+  for (int y = 0; y < height; ++y) {
+    for (int x = 0; x < width; ++x) {
+      // out[x, y] = sobel_filtered_pixel(x, y)
+      out[y * width + x] = sobel_filtered_pixel(in, x, y, width, height, Gx, Gy);
     }
   }
 }
