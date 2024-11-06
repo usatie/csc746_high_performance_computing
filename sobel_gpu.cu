@@ -180,7 +180,20 @@ int main(int ac, char *av[]) {
 
   // ADD CODE HERE: insert your code here to set a different number of thread
   // blocks or # of threads per block
-  nBlocks = (nvalues + nThreadsPerBlock - 1) / nThreadsPerBlock;
+  int c;
+  while ( (c = getopt(ac, av, "T:B:")) != -1) {
+     switch(c) {
+        case 'T':
+           nThreadsPerBlock = std::atoi(optarg == NULL ? "-999" : optarg);
+           std::cout << "Command line number of `threads per block`: " << nThreadsPerBlock << std::endl;
+           break;
+        case 'B':
+           nBlocks = std::atoi(optarg == NULL ? "-999" : optarg);
+           std::cout << "Command line number of `thread blocks`: " << nBlocks << std::endl;
+           break;
+     }
+  }
+  
 
   printf(" GPU configuration: %d blocks, %d threads per block \n", nBlocks,
          nThreadsPerBlock);
