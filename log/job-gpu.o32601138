@@ -1,0 +1,1621 @@
+Successfully paused profiling.
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 32 -B 1
+==PROF== Connected to process 1947736 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 32
+Command line number of `thread blocks`: 1
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 1 blocks, 32 threads per block 
+ Elapsed time is : 126.664850 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1947736
+[1947736] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1, 1, 1)x(32, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.02
+    gpu__time_duration.avg                                     second         1.08
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         0.23
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,845
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 32 -B 4
+==PROF== Connected to process 1947964 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 32
+Command line number of `thread blocks`: 4
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 4 blocks, 32 threads per block 
+ Elapsed time is : 33.050200 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1947964
+[1947964] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4, 1, 1)x(32, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.07
+    gpu__time_duration.avg                                    msecond       274.82
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         0.91
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,854
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 32 -B 16
+==PROF== Connected to process 1948489 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 32
+Command line number of `thread blocks`: 16
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 16 blocks, 32 threads per block 
+ Elapsed time is : 9.762944 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1948489
+[1948489] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (16, 1, 1)x(32, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.25
+    gpu__time_duration.avg                                    msecond        73.37
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         3.42
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,890
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 32 -B 64
+==PROF== Connected to process 1949042 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 32
+Command line number of `thread blocks`: 64
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 64 blocks, 32 threads per block 
+ Elapsed time is : 3.436631 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949042
+[1949042] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (64, 1, 1)x(32, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.91
+    gpu__time_duration.avg                                    msecond        19.93
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        12.45
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,034
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 32 -B 256
+==PROF== Connected to process 1949078 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 32
+Command line number of `thread blocks`: 256
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 256 blocks, 32 threads per block 
+ Elapsed time is : 1.852785 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949078
+[1949078] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (256, 1, 1)x(32, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         2.67
+    gpu__time_duration.avg                                    msecond         6.89
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        36.77
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,419
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 32 -B 1024
+==PROF== Connected to process 1949114 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 32
+Command line number of `thread blocks`: 1024
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 1024 blocks, 32 threads per block 
+ Elapsed time is : 1.916262 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949114
+[1949114] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1024, 1, 1)x(32, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         2.69
+    gpu__time_duration.avg                                    msecond         6.84
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        37.01
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,339,187
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 32 -B 4096
+==PROF== Connected to process 1949150 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 32
+Command line number of `thread blocks`: 4096
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 4096 blocks, 32 threads per block 
+ Elapsed time is : 1.893826 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949150
+[1949150] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4096, 1, 1)x(32, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         2.68
+    gpu__time_duration.avg                                    msecond         6.85
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        36.96
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,342,259
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 64 -B 1
+==PROF== Connected to process 1949208 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 64
+Command line number of `thread blocks`: 1
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 1 blocks, 64 threads per block 
+ Elapsed time is : 64.186207 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949208
+[1949208] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1, 1, 1)x(64, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.03
+    gpu__time_duration.avg                                    msecond       557.03
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         0.46
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,848
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 64 -B 4
+==PROF== Connected to process 1949318 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 64
+Command line number of `thread blocks`: 4
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 4 blocks, 64 threads per block 
+ Elapsed time is : 17.455380 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949318
+[1949318] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4, 1, 1)x(64, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.13
+    gpu__time_duration.avg                                    msecond       143.66
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         1.78
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,866
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 64 -B 16
+==PROF== Connected to process 1949402 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 64
+Command line number of `thread blocks`: 16
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 16 blocks, 64 threads per block 
+ Elapsed time is : 5.775582 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949402
+[1949402] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (16, 1, 1)x(64, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.45
+    gpu__time_duration.avg                                    msecond        40.50
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         6.31
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,938
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 64 -B 64
+==PROF== Connected to process 1949439 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 64
+Command line number of `thread blocks`: 64
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 64 blocks, 64 threads per block 
+ Elapsed time is : 2.634765 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949439
+[1949439] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (64, 1, 1)x(64, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         1.34
+    gpu__time_duration.avg                                    msecond        13.53
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        18.65
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,226
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 64 -B 256
+==PROF== Connected to process 1949475 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 64
+Command line number of `thread blocks`: 256
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 256 blocks, 64 threads per block 
+ Elapsed time is : 1.891466 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949475
+[1949475] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (256, 1, 1)x(64, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         2.44
+    gpu__time_duration.avg                                    msecond         7.51
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        32.70
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,675
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 64 -B 1024
+==PROF== Connected to process 1949533 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 64
+Command line number of `thread blocks`: 1024
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 1024 blocks, 64 threads per block 
+ Elapsed time is : 1.946579 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949533
+[1949533] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1024, 1, 1)x(64, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         2.45
+    gpu__time_duration.avg                                    msecond         7.51
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        31.18
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,340,211
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 64 -B 4096
+==PROF== Connected to process 1949570 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 64
+Command line number of `thread blocks`: 4096
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 4096 blocks, 64 threads per block 
+ Elapsed time is : 1.878890 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949570
+[1949570] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4096, 1, 1)x(64, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         2.47
+    gpu__time_duration.avg                                    msecond         7.45
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        31.92
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,346,355
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 128 -B 1
+==PROF== Connected to process 1949606 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 128
+Command line number of `thread blocks`: 1
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 1 blocks, 128 threads per block 
+ Elapsed time is : 33.286703 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949606
+[1949606] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1, 1, 1)x(128, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.06
+    gpu__time_duration.avg                                    msecond       305.89
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         0.91
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,854
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 128 -B 4
+==PROF== Connected to process 1949687 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 128
+Command line number of `thread blocks`: 4
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 4 blocks, 128 threads per block 
+ Elapsed time is : 9.701687 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949687
+[1949687] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4, 1, 1)x(128, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.22
+    gpu__time_duration.avg                                    msecond        80.88
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         3.44
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,890
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 128 -B 16
+==PROF== Connected to process 1949748 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 128
+Command line number of `thread blocks`: 16
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 16 blocks, 128 threads per block 
+ Elapsed time is : 3.432173 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949748
+[1949748] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (16, 1, 1)x(128, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.81
+    gpu__time_duration.avg                                    msecond        22.20
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        12.35
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,034
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 128 -B 64
+==PROF== Connected to process 1949784 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 128
+Command line number of `thread blocks`: 64
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 64 blocks, 128 threads per block 
+ Elapsed time is : 1.940448 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949784
+[1949784] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (64, 1, 1)x(128, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         2.46
+    gpu__time_duration.avg                                    msecond         7.48
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        36.43
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,419
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 128 -B 256
+==PROF== Connected to process 1949844 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 128
+Command line number of `thread blocks`: 256
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 256 blocks, 128 threads per block 
+ Elapsed time is : 1.874659 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949844
+[1949844] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (256, 1, 1)x(128, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         1.97
+    gpu__time_duration.avg                                    msecond         9.31
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        18.94
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,339,187
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 128 -B 1024
+==PROF== Connected to process 1949880 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 128
+Command line number of `thread blocks`: 1024
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 1024 blocks, 128 threads per block 
+ Elapsed time is : 1.933095 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949880
+[1949880] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1024, 1, 1)x(128, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         1.94
+    gpu__time_duration.avg                                    msecond         9.46
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        18.19
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,342,259
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 128 -B 4096
+==PROF== Connected to process 1949917 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 128
+Command line number of `thread blocks`: 4096
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 4096 blocks, 128 threads per block 
+ Elapsed time is : 1.916324 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949917
+[1949917] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4096, 1, 1)x(128, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         1.95
+    gpu__time_duration.avg                                    msecond         9.40
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        18.34
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,354,547
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 256 -B 1
+==PROF== Connected to process 1949954 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 256
+Command line number of `thread blocks`: 1
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 1 blocks, 256 threads per block 
+ Elapsed time is : 18.334454 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1949954
+[1949954] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.09
+    gpu__time_duration.avg                                    msecond       191.13
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         0.90
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,866
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 256 -B 4
+==PROF== Connected to process 1950017 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 256
+Command line number of `thread blocks`: 4
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 4 blocks, 256 threads per block 
+ Elapsed time is : 5.972520 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950017
+[1950017] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.35
+    gpu__time_duration.avg                                    msecond        52.26
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         3.28
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,938
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 256 -B 16
+==PROF== Connected to process 1950077 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 256
+Command line number of `thread blocks`: 16
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 16 blocks, 256 threads per block 
+ Elapsed time is : 2.726272 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950077
+[1950077] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (16, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.98
+    gpu__time_duration.avg                                    msecond        18.49
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         9.28
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,226
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 256 -B 64
+==PROF== Connected to process 1950115 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 256
+Command line number of `thread blocks`: 64
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 64 blocks, 256 threads per block 
+ Elapsed time is : 1.907912 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950115
+[1950115] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (64, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         1.93
+    gpu__time_duration.avg                                    msecond         9.49
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        18.17
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,675
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 256 -B 256
+==PROF== Connected to process 1950173 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 256
+Command line number of `thread blocks`: 256
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 256 blocks, 256 threads per block 
+ Elapsed time is : 2.054498 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950173
+[1950173] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (256, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         1.01
+    gpu__time_duration.avg                                    msecond        18.03
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         8.98
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,340,211
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 256 -B 1024
+==PROF== Connected to process 1950211 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 256
+Command line number of `thread blocks`: 1024
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 1024 blocks, 256 threads per block 
+ Elapsed time is : 2.061966 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950211
+[1950211] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1024, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         1.02
+    gpu__time_duration.avg                                    msecond        17.92
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         9.04
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,346,355
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 256 -B 4096
+==PROF== Connected to process 1950247 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 256
+Command line number of `thread blocks`: 4096
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 4096 blocks, 256 threads per block 
+ Elapsed time is : 2.055730 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950247
+[1950247] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4096, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         1.03
+    gpu__time_duration.avg                                    msecond        17.78
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         9.13
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,370,931
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 512 -B 1
+==PROF== Connected to process 1950284 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 512
+Command line number of `thread blocks`: 1
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 1 blocks, 512 threads per block 
+ Elapsed time is : 11.586531 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950284
+[1950284] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1, 1, 1)x(512, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.10
+    gpu__time_duration.avg                                    msecond       176.64
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         0.90
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,890
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 512 -B 4
+==PROF== Connected to process 1950344 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 512
+Command line number of `thread blocks`: 4
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 4 blocks, 512 threads per block 
+ Elapsed time is : 3.985634 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950344
+[1950344] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4, 1, 1)x(512, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.35
+    gpu__time_duration.avg                                    msecond        51.44
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         3.09
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,034
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 512 -B 16
+==PROF== Connected to process 1950380 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 512
+Command line number of `thread blocks`: 16
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 16 blocks, 512 threads per block 
+ Elapsed time is : 2.092504 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950380
+[1950380] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (16, 1, 1)x(512, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         1.03
+    gpu__time_duration.avg                                    msecond        17.76
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         9.08
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,419
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 512 -B 64
+==PROF== Connected to process 1950438 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 512
+Command line number of `thread blocks`: 64
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 64 blocks, 512 threads per block 
+ Elapsed time is : 2.064749 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950438
+[1950438] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (64, 1, 1)x(512, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         1.02
+    gpu__time_duration.avg                                    msecond        17.96
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         9.00
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,339,187
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 512 -B 256
+==PROF== Connected to process 1950475 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 512
+Command line number of `thread blocks`: 256
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 256 blocks, 512 threads per block 
+ Elapsed time is : 2.699866 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950475
+[1950475] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (256, 1, 1)x(512, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.43
+    gpu__time_duration.avg                                    msecond        42.41
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         4.62
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,342,259
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 512 -B 1024
+==PROF== Connected to process 1950513 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 512
+Command line number of `thread blocks`: 1024
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 1024 blocks, 512 threads per block 
+ Elapsed time is : 2.695298 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950513
+[1950513] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1024, 1, 1)x(512, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.43
+    gpu__time_duration.avg                                    msecond        42.15
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         4.65
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,354,547
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 512 -B 4096
+==PROF== Connected to process 1950571 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 512
+Command line number of `thread blocks`: 4096
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 4096 blocks, 512 threads per block 
+ Elapsed time is : 2.706638 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950571
+[1950571] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4096, 1, 1)x(512, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.43
+    gpu__time_duration.avg                                    msecond        42.47
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         4.64
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,403,699
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 1024 -B 1
+==PROF== Connected to process 1950608 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 1024
+Command line number of `thread blocks`: 1
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%..
+==WARNING== Launching the workload is taking more time than expected. If this continues to hang, terminate the profile and re-try by profiling the range of all related launches using '--replay-mode range'. See https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#replay for more details.
+..50%....100% - 5 passes
+ GPU configuration: 1 blocks, 1024 threads per block 
+ Elapsed time is : 9.905348 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950608
+[1950608] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.08
+    gpu__time_duration.avg                                    msecond       214.79
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         0.91
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,337,938
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 1024 -B 4
+==PROF== Connected to process 1950665 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 1024
+Command line number of `thread blocks`: 4
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 4 blocks, 1024 threads per block 
+ Elapsed time is : 4.353886 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950665
+[1950665] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.22
+    gpu__time_duration.avg                                    msecond        82.94
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         2.34
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,226
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                         36
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 1024 -B 16
+==PROF== Connected to process 1950701 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 1024
+Command line number of `thread blocks`: 16
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 16 blocks, 1024 threads per block 
+ Elapsed time is : 2.689889 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950701
+[1950701] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (16, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.43
+    gpu__time_duration.avg                                    msecond        42.23
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         4.64
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,338,675
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 1024 -B 64
+==PROF== Connected to process 1950737 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 1024
+Command line number of `thread blocks`: 64
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 64 blocks, 1024 threads per block 
+ Elapsed time is : 2.722896 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950737
+[1950737] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (64, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.43
+    gpu__time_duration.avg                                    msecond        42.45
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         4.60
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,340,211
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 1024 -B 256
+==PROF== Connected to process 1950796 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 1024
+Command line number of `thread blocks`: 256
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 256 blocks, 1024 threads per block 
+ Elapsed time is : 4.328803 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950796
+[1950796] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (256, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.16
+    gpu__time_duration.avg                                    msecond       116.11
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         2.19
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,346,355
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 1024 -B 1024
+==PROF== Connected to process 1950832 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 1024
+Command line number of `thread blocks`: 1024
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 1024 blocks, 1024 threads per block 
+ Elapsed time is : 4.405571 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950832
+[1950832] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (1024, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.16
+    gpu__time_duration.avg                                    msecond       116.05
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         2.19
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,370,931
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
+ncu --set default --section SourceCounters --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_gpu -T 1024 -B 4096
+==PROF== Connected to process 1950869 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+ Read data from the file ../data/zebra-gray-int8-4x 
+Command line number of `threads per block`: 1024
+Command line number of `thread blocks`: 4096
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ GPU configuration: 4096 blocks, 1024 threads per block 
+ Elapsed time is : 4.351418 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 1950869
+[1950869] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int) (4096, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.16
+    gpu__time_duration.avg                                    msecond       115.93
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         2.20
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.16
+    Branch Instructions              inst   18,469,235
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (87% of the   
+          total 365815862 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
