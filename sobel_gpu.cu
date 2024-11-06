@@ -45,6 +45,9 @@ inline void gpuAssert(cudaError_t code, const char *file, int line,
   }
 }
 
+__constant__ float device_gx[9];
+__constant__ float device_gy[9];
+
 //
 // this function is callable only from device code
 //
@@ -60,9 +63,7 @@ inline void gpuAssert(cudaError_t code, const char *file, int line,
 
 // see https://en.wikipedia.org/wiki/Sobel_operator
 //
-__device__ float sobel_filtered_pixel(const float *s, int i, int j, int ncols,
-                                      int nrows, const float *gx,
-                                      const float *gy) {
+__device__ float sobel_filtered_pixel(const float *s, int i, int j, int ncols, int nrows) {
 
   float t = 0.0;
 
@@ -79,8 +80,8 @@ __device__ float sobel_filtered_pixel(const float *s, int i, int j, int ncols,
         return 0;
       int s_index = r * ncols + c;
       int g_index = ii * 3 + jj;
-      Gx += s[s_index] * gx[g_index];
-      Gy += s[s_index] * gy[g_index];
+      Gx += s[s_index] * device_gx[g_index];
+      Gy += s[s_index] * device_gy[g_index];
     }
   }
   t = sqrt(Gx * Gx + Gy * Gy);
@@ -108,8 +109,7 @@ __global__ void sobel_kernel_gpu(
     const float *s, // source image pixels
     float *d,       // dst image pixels
     int n,          // size of image cols*rows,
-    int nrows, int ncols, const float *gx,
-    const float *gy) // gx and gy are stencil weights for the sobel filter
+    int nrows, int ncols)
 {
   // ADD CODE HERE: insert your code here that iterates over every (i,j) of
   // input,  makes a call to sobel_filtered_pixel, and assigns the resulting
@@ -126,7 +126,7 @@ __global__ void sobel_kernel_gpu(
   int y_stride = blockDim.y * gridDim.y;
   for (int i = y_index; i < height; i += y_stride)
     for (int j = x_index; j < width; j += x_stride)
-      d[i * width + j] = sobel_filtered_pixel(s, i, j, width, height, gx, gy);
+      d[i * width + j] = sobel_filtered_pixel(s, i, j, width, height);
 }
 
 int main(int ac, char *av[]) {
@@ -165,15 +165,8 @@ int main(int ac, char *av[]) {
   // define sobel filter weights, copy to a device accessible buffer
   float Gx[9] = {1.0, 0.0, -1.0, 2.0, 0.0, -2.0, 1.0, 0.0, -1.0};
   float Gy[9] = {1.0, 2.0, 1.0, 0.0, 0.0, 0.0, -1.0, -2.0, -1.0};
-  float *device_gx, *device_gy;
-  gpuErrchk(cudaMallocManaged(&device_gx, sizeof(Gx)));
-  gpuErrchk(cudaMallocManaged(&device_gy, sizeof(Gy)));
-
-  for (int i = 0; i < 9; i++) // copy from Gx/Gy to device_gx/device_gy
-  {
-    device_gx[i] = Gx[i];
-    device_gy[i] = Gy[i];
-  }
+  gpuErrchk( cudaMemcpyToSymbol(device_gx, Gx, sizeof(Gx)) );
+  gpuErrchk( cudaMemcpyToSymbol(device_gy, Gy, sizeof(Gy)) );
 
   // now, induce memory movement to the GPU of the data in unified memory
   // buffers
@@ -183,8 +176,6 @@ int main(int ac, char *av[]) {
                        deviceID);
   cudaMemPrefetchAsync((void *)out_data_floats, nvalues * sizeof(float),
                        deviceID);
-  cudaMemPrefetchAsync((void *)device_gx, sizeof(Gx), deviceID);
-  cudaMemPrefetchAsync((void *)device_gy, sizeof(Gy), deviceID);
 
   // set up to run the kernel
   dim3 nThreadsPerBlock(16, 16);
@@ -207,8 +198,7 @@ int main(int ac, char *av[]) {
       std::chrono::high_resolution_clock::now();
   // invoke the kernel on the device
   sobel_kernel_gpu<<<nBlocks, nThreadsPerBlock>>>(
-      in_data_floats, out_data_floats, nvalues, height, width,
-      device_gx, device_gy);
+      in_data_floats, out_data_floats, nvalues, height, width);
   // wait for it to finish, check errors
   gpuErrchk(cudaDeviceSynchronize());
 
