@@ -118,12 +118,14 @@ __global__ void sobel_kernel_gpu(
   // motif will be very similar here to that we used for vector add in Lab #2
   int width, height;
 
-  width = ncols;
   height = nrows;
-  int index = blockIdx.x * blockDim.x + threadIdx.x;
-  int stride = blockDim.x * gridDim.x;
-  for (int i = index; i < height; i += stride)
-    for (int j = 0; j < width; j++)
+  width = ncols;
+  int x_index = blockIdx.x * blockDim.x + threadIdx.x;
+  int x_stride = blockDim.x * gridDim.x;
+  int y_index = blockIdx.y * blockDim.y + threadIdx.y;
+  int y_stride = blockDim.y * gridDim.y;
+  for (int i = y_index; i < height; i += y_stride)
+    for (int j = x_index; j < width; j += x_stride)
       d[i * width + j] = sobel_filtered_pixel(s, i, j, width, height, gx, gy);
 }
 
@@ -185,11 +187,16 @@ int main(int ac, char *av[]) {
   cudaMemPrefetchAsync((void *)device_gy, sizeof(Gy), deviceID);
 
   // set up to run the kernel
-  int nBlocks = 1, nThreadsPerBlock = 256;
+  dim3 nThreadsPerBlock(16, 16);
 
   // ADD CODE HERE: insert your code here to set a different number of thread
   // blocks or # of threads per block
-  nBlocks = (nvalues + nThreadsPerBlock - 1) / nThreadsPerBlock;
+  int width, height;
+
+  width = data_dims[0];
+  height = data_dims[1];
+  dim3 nBlocks((width + nThreadsPerBlock.x - 1) / nThreadsPerBlock.x, (height + nThreadsPerBlock.y - 1) / nThreadsPerBlock.y);
+  //nBlocks = (nvalues + nThreadsPerBlock - 1) / nThreadsPerBlock;
 
   printf(" GPU configuration: %d blocks, %d threads per block \n", nBlocks,
          nThreadsPerBlock);
@@ -200,7 +207,7 @@ int main(int ac, char *av[]) {
       std::chrono::high_resolution_clock::now();
   // invoke the kernel on the device
   sobel_kernel_gpu<<<nBlocks, nThreadsPerBlock>>>(
-      in_data_floats, out_data_floats, nvalues, data_dims[1], data_dims[0],
+      in_data_floats, out_data_floats, nvalues, height, width,
       device_gx, device_gy);
   // wait for it to finish, check errors
   gpuErrchk(cudaDeviceSynchronize());
