@@ -1,0 +1,77 @@
+ Read data from the file ../data/zebra-gray-int8-4x 
+ GPU configuration: 142963 blocks, 256 threads per block 
+ Elapsed time is : 0.086281 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+Generating '/tmp/nsys-report-d2c1.qdstrm'
+[1/7] [0%                          ] report36.nsys-rep[1/7] [0%                          ] report36.nsys-rep[1/7] [====28%                     ] report36.nsys-rep[1/7] [======33%                   ] report36.nsys-rep[1/7] [============54%             ] report36.nsys-rep[1/7] [==============62%           ] report36.nsys-rep[1/7] [==================78%       ] report36.nsys-rep[1/7] [=======================95%  ] report36.nsys-rep[1/7] [========================100%] report36.nsys-rep[1/7] [========================100%] report36.nsys-rep
+[2/7] [0%                          ] report36.sqlite[2/7] [1%                          ] report36.sqlite[2/7] [2%                          ] report36.sqlite[2/7] [3%                          ] report36.sqlite[2/7] [4%                          ] report36.sqlite[2/7] [5%                          ] report36.sqlite[2/7] [6%                          ] report36.sqlite[2/7] [7%                          ] report36.sqlite[2/7] [8%                          ] report36.sqlite[2/7] [9%                          ] report36.sqlite[2/7] [10%                         ] report36.sqlite[2/7] [11%                         ] report36.sqlite[2/7] [12%                         ] report36.sqlite[2/7] [13%                         ] report36.sqlite[2/7] [14%                         ] report36.sqlite[2/7] [=15%                        ] report36.sqlite[2/7] [=16%                        ] report36.sqlite[2/7] [=17%                        ] report36.sqlite[2/7] [==18%                       ] report36.sqlite[2/7] [==19%                       ] report36.sqlite[2/7] [==20%                       ] report36.sqlite[2/7] [==21%                       ] report36.sqlite[2/7] [===22%                      ] report36.sqlite[2/7] [===23%                      ] report36.sqlite[2/7] [===24%                      ] report36.sqlite[2/7] [====25%                     ] report36.sqlite[2/7] [====26%                     ] report36.sqlite[2/7] [====27%                     ] report36.sqlite[2/7] [====28%                     ] report36.sqlite[2/7] [=====29%                    ] report36.sqlite[2/7] [=====30%                    ] report36.sqlite[2/7] [=====31%                    ] report36.sqlite[2/7] [=====32%                    ] report36.sqlite[2/7] [======33%                   ] report36.sqlite[2/7] [======34%                   ] report36.sqlite[2/7] [======35%                   ] report36.sqlite[2/7] [=======36%                  ] report36.sqlite[2/7] [=======37%                  ] report36.sqlite[2/7] [=======38%                  ] report36.sqlite[2/7] [=======39%                  ] report36.sqlite[2/7] [========40%                 ] report36.sqlite[2/7] [========41%                 ] report36.sqlite[2/7] [========42%                 ] report36.sqlite[2/7] [=========43%                ] report36.sqlite[2/7] [=========44%                ] report36.sqlite[2/7] [=========45%                ] report36.sqlite[2/7] [=========46%                ] report36.sqlite[2/7] [==========47%               ] report36.sqlite[2/7] [==========48%               ] report36.sqlite[2/7] [==========49%               ] report36.sqlite[2/7] [===========50%              ] report36.sqlite[2/7] [===========51%              ] report36.sqlite[2/7] [===========52%              ] report36.sqlite[2/7] [===========53%              ] report36.sqlite[2/7] [============54%             ] report36.sqlite[2/7] [============55%             ] report36.sqlite[2/7] [============56%             ] report36.sqlite[2/7] [============57%             ] report36.sqlite[2/7] [=============58%            ] report36.sqlite[2/7] [=============59%            ] report36.sqlite[2/7] [=============60%            ] report36.sqlite[2/7] [==============61%           ] report36.sqlite[2/7] [==============62%           ] report36.sqlite[2/7] [==============63%           ] report36.sqlite[2/7] [==============64%           ] report36.sqlite[2/7] [===============65%          ] report36.sqlite[2/7] [===============66%          ] report36.sqlite[2/7] [===============67%          ] report36.sqlite[2/7] [================68%         ] report36.sqlite[2/7] [================69%         ] report36.sqlite[2/7] [================70%         ] report36.sqlite[2/7] [================71%         ] report36.sqlite[2/7] [=================72%        ] report36.sqlite[2/7] [=================73%        ] report36.sqlite[2/7] [=================74%        ] report36.sqlite[2/7] [==================75%       ] report36.sqlite[2/7] [==================76%       ] report36.sqlite[2/7] [==================77%       ] report36.sqlite[2/7] [==================78%       ] report36.sqlite[2/7] [===================79%      ] report36.sqlite[2/7] [===================80%      ] report36.sqlite[2/7] [===================81%      ] report36.sqlite[2/7] [===================82%      ] report36.sqlite[2/7] [====================83%     ] report36.sqlite[2/7] [====================84%     ] report36.sqlite[2/7] [====================85%     ] report36.sqlite[2/7] [=====================86%    ] report36.sqlite[2/7] [=====================87%    ] report36.sqlite[2/7] [=====================88%    ] report36.sqlite[2/7] [=====================89%    ] report36.sqlite[2/7] [======================90%   ] report36.sqlite[2/7] [======================91%   ] report36.sqlite[2/7] [======================92%   ] report36.sqlite[2/7] [=======================93%  ] report36.sqlite[2/7] [=======================94%  ] report36.sqlite[2/7] [=======================95%  ] report36.sqlite[2/7] [=======================96%  ] report36.sqlite[2/7] [========================97% ] report36.sqlite[2/7] [========================98% ] report36.sqlite[2/7] [========================99% ] report36.sqlite[2/7] [========================100%] report36.sqlite[2/7] [========================100%] report36.sqlite
+[3/7] Executing 'nvtx_sum' stats report
+[4/7] Executing 'cuda_api_sum' stats report
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)      Med (ns)     Min (ns)    Max (ns)     StdDev (ns)            Name         
+ --------  ---------------  ---------  ------------  ------------  ----------  -----------  -------------  ----------------------
+     78.8      348,434,621          4  87,108,655.3      78,617.5       4,329  348,273,057  174,109,604.7  cudaMallocManaged     
+     14.8       65,404,347          1  65,404,347.0  65,404,347.0  65,404,347   65,404,347            0.0  cudaLaunchKernel      
+      4.7       20,844,025          1  20,844,025.0  20,844,025.0  20,844,025   20,844,025            0.0  cudaDeviceSynchronize 
+      1.7        7,654,372          4   1,913,593.0     189,086.0       2,645    7,273,555    3,577,283.5  cudaMemPrefetchAsync  
+      0.0            1,202          1       1,202.0       1,202.0       1,202        1,202            0.0  cuModuleGetLoadingMode
+
+[5/7] Executing 'cuda_gpu_kern_sum' stats report
+
+ Time (%)  Total Time (ns)  Instances    Avg (ns)      Med (ns)     Min (ns)    Max (ns)   StdDev (ns)                                          Name                                         
+ --------  ---------------  ---------  ------------  ------------  ----------  ----------  -----------  -------------------------------------------------------------------------------------
+    100.0       20,841,201          1  20,841,201.0  20,841,201.0  20,841,201  20,841,201          0.0  sobel_kernel_gpu(const float *, float *, int, int, int, const float *, const float *)
+
+[6/7] Executing 'cuda_gpu_mem_time_sum' stats report
+
+ Time (%)  Total Time (ns)  Count  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)               Operation              
+ --------  ---------------  -----  --------  --------  --------  --------  -----------  ------------------------------------
+     58.2       11,303,692    141  80,168.0  80,607.0     2,400    90,111      6,950.6  [CUDA memcpy Unified Host-to-Device]
+     41.8        8,124,943    840   9,672.6   3,519.5     1,855    50,272     13,120.1  [CUDA memcpy Unified Device-to-Host]
+
+[7/7] Executing 'cuda_gpu_mem_size_sum' stats report
+
+ Total (MB)  Count  Avg (MB)  Med (MB)  Min (MB)  Max (MB)  StdDev (MB)               Operation              
+ ----------  -----  --------  --------  --------  --------  -----------  ------------------------------------
+    292.794    141     2.077     2.097     0.004     2.097        0.182  [CUDA memcpy Unified Host-to-Device]
+    146.395    840     0.174     0.033     0.004     1.044        0.300  [CUDA memcpy Unified Device-to-Host]
+
+Generated:
+    /pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/report36.nsys-rep
+    /pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/report36.sqlite
+Successfully paused profiling.
+==PROF== Connected to process 503954 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_gpu)
+==PROF== Profiling "sobel_kernel_gpu" - 0: 0%....50%....100% - 5 passes
+ Read data from the file ../data/zebra-gray-int8-4x 
+ GPU configuration: 142963 blocks, 256 threads per block 
+ Elapsed time is : 3.051584 (sec) 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu.dat 
+==PROF== Disconnected from process 503954
+[503954] sobel_gpu@127.0.0.1
+  sobel_kernel_gpu(const float *, float *, int, int, int, const float *, const float *) (142963, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         0.88
+    gpu__time_duration.avg                                    msecond        20.84
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %         9.60
+    ----------------------------------------------------- ----------- ------------
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.13
+    Branch Instructions              inst   19,481,867
+    Branch Efficiency                   %        99.90
+    Avg. Divergent Branches                      36.00
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 320024886 excessive sectors (83% of the   
+          total 386421286 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+

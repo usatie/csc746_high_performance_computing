@@ -188,8 +188,8 @@ int main(int ac, char *av[]) {
   int nBlocks = 1, nThreadsPerBlock = 256;
 
   // ADD CODE HERE: insert your code here to set a different number of thread
-  // blocks or # of threads per block nBlocks = (nvalues + nThreadsPerBlock - 1)
-  // / nThreadsPerBlock;
+  // blocks or # of threads per block
+  nBlocks = (nvalues + nThreadsPerBlock - 1) / nThreadsPerBlock;
 
   printf(" GPU configuration: %d blocks, %d threads per block \n", nBlocks,
          nThreadsPerBlock);
