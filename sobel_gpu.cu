@@ -187,7 +187,7 @@ int main(int ac, char *av[]) {
   cudaMemPrefetchAsync((void *)device_gy, sizeof(Gy), deviceID);
 
   // set up to run the kernel
-  dim3 nThreadsPerBlock(32, 32);
+  dim3 nThreadsPerBlock(8, 8);
 
   // ADD CODE HERE: insert your code here to set a different number of thread
   // blocks or # of threads per block
