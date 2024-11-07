@@ -1,0 +1,89 @@
+Successfully paused profiling.
+==PROF== Connected to process 763966 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_cpu_omp_offload)
+==PROF== Profiling "nvkernel__Z18do_sobel_filteri..." - 0: 0%....50%....100% - 13 passes
+ Read data from the file ../data/zebra-gray-int8-4x 
+ Elapsed time is : 3.69219 
+ Wrote the output file ../data/processed-raw-int8-4x-cpu.dat 
+==PROF== Disconnected from process 763966
+[763966] sobel_cpu_omp_offload@127.0.0.1
+  nvkernel__Z18do_sobel_filteringPfS_ii_F1L104_2 (285925, 1, 1)x(128, 1, 1), Context 1, Stream 16, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %        29.27
+    gpu__time_duration.avg                                    usecond       616.70
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        99.60
+    ----------------------------------------------------- ----------- ------------
+
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ------------- ------------
+    Metric Name               Metric Unit Metric Value
+    ----------------------- ------------- ------------
+    DRAM Frequency          cycle/nsecond         1.21
+    SM Frequency            cycle/nsecond         1.09
+    Elapsed Cycles                  cycle      674,571
+    Memory Throughput                   %        48.09
+    DRAM Throughput                     %        29.27
+    Duration                      usecond       616.70
+    L1/TEX Cache Throughput             %        48.29
+    L2 Cache Throughput                 %        36.89
+    SM Active Cycles                cycle   671,585.49
+    Compute (SM) Throughput             %        74.97
+    ----------------------- ------------- ------------
+
+    OPT   Compute is more heavily utilized than Memory: Look at the Compute Workload Analysis section to see what the   
+          compute pipelines are spending their time doing. Also, consider whether any computation is redundant and      
+          could be reduced or moved to look-up tables.                                                                  
+
+    Section: Launch Statistics
+    -------------------------------- --------------- ---------------
+    Metric Name                          Metric Unit    Metric Value
+    -------------------------------- --------------- ---------------
+    Block Size                                                   128
+    Function Cache Configuration                     CachePreferNone
+    Grid Size                                                285,925
+    Registers Per Thread             register/thread              48
+    Shared Memory Configuration Size           Kbyte           32.77
+    Driver Shared Memory Per Block       Kbyte/block            1.02
+    Dynamic Shared Memory Per Block       byte/block               0
+    Static Shared Memory Per Block        byte/block               0
+    Threads                                   thread      36,598,400
+    Waves Per SM                                              264.75
+    -------------------------------- --------------- ---------------
+
+    Section: Occupancy
+    ------------------------------- ----------- ------------
+    Metric Name                     Metric Unit Metric Value
+    ------------------------------- ----------- ------------
+    Block Limit SM                        block           32
+    Block Limit Registers                 block           10
+    Block Limit Shared Mem                block           32
+    Block Limit Warps                     block           16
+    Theoretical Active Warps per SM        warp           40
+    Theoretical Occupancy                     %        62.50
+    Achieved Occupancy                        %        55.61
+    Achieved Active Warps Per SM           warp        35.59
+    ------------------------------- ----------- ------------
+
+    OPT   This kernel's theoretical occupancy (62.5%) is limited by the number of required registers. See the CUDA Best 
+          Practices Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more      
+          details on optimizing occupancy.                                                                              
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.07
+    Branch Instructions              inst   16,024,905
+    Branch Efficiency                   %        99.89
+    Avg. Divergent Branches                      17.81
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 6851808 excessive sectors (9% of the      
+          total 73162336 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source       
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
