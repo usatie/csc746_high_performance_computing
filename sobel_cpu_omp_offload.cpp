@@ -98,8 +98,8 @@ void do_sobel_filtering(float *in, float *out, int ncols, int nrows) {
 // ADD CODE HERE: you will need to add one more item to this line to map the
 // "out" data array such that it is returned from the the device after the
 // computation is complete. everything else here is input.
-#pragma omp target data map(to : in[0 : nvals]) map(to : width)                \
-    map(to : height) map(to : Gx[0 : 9]) map(to : Gy[0 : 9])                   \
+#pragma omp target data \
+    map(to : in[0 : nvals], width, height, Gx[0 : 9], Gy[0 : 9]) \
     map(from : out[0 : nvals])
   {
 
@@ -114,7 +114,7 @@ void do_sobel_filtering(float *in, float *out, int ncols, int nrows) {
 #pragma omp target teams distribute parallel for collapse(2)
     for (int y = 0; y < height; ++y) {
       for (int x = 0; x < width; ++x) {
-        // out[x, y] = sobel_filtered_pixel(x, y)
+        // out[x, y] = sobel_filtered_pixel(in, x, y)
         out_index = y * width + x;
         out[out_index] = sobel_filtered_pixel(in, x, y, width, height, Gx, Gy);
       }
