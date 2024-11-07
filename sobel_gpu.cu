@@ -117,9 +117,16 @@ __global__ void sobel_kernel_gpu(
   height = nrows;
   int index = blockIdx.x * blockDim.x + threadIdx.x;
   int stride = blockDim.x * gridDim.x;
-  for (int y = index; y < height; y += stride)
-    for (int x = 0; x < width; x++)
-      d[y * width + x] = sobel_filtered_pixel(s, x, y, width, height, device_gx, device_gy);
+  if (index >= n) {
+    return;
+  }
+  int i, x, y;
+  for (i = index; i < n; i += stride)
+  {
+    x = i % width;
+    y = i / width;
+    d[i] = sobel_filtered_pixel(s, x, y, width, height, device_gx, device_gy);
+  }
 }
 
 int main(int ac, char *av[]) {
