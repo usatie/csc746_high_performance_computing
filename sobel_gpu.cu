@@ -48,44 +48,39 @@ inline void gpuAssert(cudaError_t code, const char *file, int line,
 __constant__ float device_gx[9];
 __constant__ float device_gy[9];
 
-//
 // this function is callable only from device code
 //
-// perform the sobel filtering at a given i,j location
+// sobel_filtered_pixel(): perform the sobel filtering at a given x,y location
+//
 // input: float *s - the source data
-// input: int i,j - the location of the pixel in the source data where we want
-// to center our sobel convolution input: int nrows, ncols: the dimensions of
-// the input and output image buffers input: float *gx, gy:  arrays of length 9
-// each, these are logically 3x3 arrays of sobel filter weights
+// input: int x,y - the location of the pixel in the source data where we want to center our sobel convolution
+// input: int nrows, ncols: the dimensions of the input and output image buffers
+// input: float *gx, gy:  arrays of length 9 each, these are logically 3x3 arrays of sobel filter weights
 //
-// this routine computes Gx=gx*s centered at (i,j), Gy=gy*s centered at (i,j),
+// this routine computes Gx=gx*s centered at (x,y), Gy=gy*s centered at (x,y),
 // and returns G = sqrt(Gx^2 + Gy^2)
-
-// see https://en.wikipedia.org/wiki/Sobel_operator
-//
-__device__ float sobel_filtered_pixel(const float *s, int i, int j, int ncols, int nrows) {
-
+__device__
+float sobel_filtered_pixel(const float *s, int x, int y, int ncols, int nrows) {
   float t = 0.0;
+  
+  // if x or y is at the boundary of the img or out of the boundary, we can't compute
+  if (x <= 0 || x >= ncols - 1 || y <= 0 || y >= nrows - 1)
+	  return t;
 
-  // ADD CODE HERE:  add your code here for computing the sobel stencil
-  // computation at location (i,j) of input s, returning a float
+  // ADD CODE HERE: add your code here for computing the sobel stencil
+  // computation at location (x,y) of input s, returning a float
   float Gx = 0.0, Gy = 0.0;
-  for (int ii = 0; ii < 3; ++ii) {
-    for (int jj = 0; jj < 3; ++jj) {
-      int r = i - 1 + ii;
-      int c = j - 1 + jj;
-      if (r < 0 || r >= nrows || c < 0 || c >= ncols)
-        return 0;
-      if (r * ncols + c >= ncols * nrows)
-        return 0;
-      int s_index = r * ncols + c;
-      int g_index = ii * 3 + jj;
-      Gx += s[s_index] * device_gx[g_index];
-      Gy += s[s_index] * device_gy[g_index];
+  for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+      int xx = x - 1 + i;
+      int yy = y - 1 + j;
+      // Gx += s[xx, yy] * gx[i, j]
+      Gx += s[yy * ncols + xx] * device_gx[j * 3 + i];
+      // Gy += s[xx, yy] * gy[i, j]
+      Gy += s[yy * ncols + xx] * device_gy[j * 3 + i];
     }
   }
   t = sqrt(Gx * Gx + Gy * Gy);
-
   return t;
 }
 
@@ -109,7 +104,7 @@ __global__ void sobel_kernel_gpu(
     const float *s, // source image pixels
     float *d,       // dst image pixels
     int n,          // size of image cols*rows,
-    int nrows, int ncols)
+    int ncols, int nrows)
 {
   // ADD CODE HERE: insert your code here that iterates over every (i,j) of
   // input,  makes a call to sobel_filtered_pixel, and assigns the resulting
@@ -122,9 +117,9 @@ __global__ void sobel_kernel_gpu(
   height = nrows;
   int index = blockIdx.x * blockDim.x + threadIdx.x;
   int stride = blockDim.x * gridDim.x;
-  for (int i = index; i < height; i += stride)
-    for (int j = 0; j < width; j++)
-      d[i * width + j] = sobel_filtered_pixel(s, i, j, width, height);
+  for (int y = index; y < height; y += stride)
+    for (int x = 0; x < width; x++)
+      d[y * width + x] = sobel_filtered_pixel(s, x, y, width, height);
 }
 
 int main(int ac, char *av[]) {
@@ -204,7 +199,7 @@ int main(int ac, char *av[]) {
       std::chrono::high_resolution_clock::now();
   // invoke the kernel on the device
   sobel_kernel_gpu<<<nBlocks, nThreadsPerBlock>>>(
-      in_data_floats, out_data_floats, nvalues, data_dims[1], data_dims[0]);
+      in_data_floats, out_data_floats, nvalues, data_dims[0], data_dims[1]);
   // wait for it to finish, check errors
   gpuErrchk(cudaDeviceSynchronize());
 
