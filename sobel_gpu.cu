@@ -60,7 +60,7 @@ __constant__ float device_gy[9];
 // this routine computes Gx=gx*s centered at (x,y), Gy=gy*s centered at (x,y),
 // and returns G = sqrt(Gx^2 + Gy^2)
 __device__
-float sobel_filtered_pixel(const float *s, int x, int y, int ncols, int nrows) {
+float sobel_filtered_pixel(const float *s, int x, int y, int ncols, int nrows, const float *gx, const float *gy) {
   float t = 0.0;
   
   // if x or y is at the boundary of the img or out of the boundary, we can't compute
@@ -75,9 +75,9 @@ float sobel_filtered_pixel(const float *s, int x, int y, int ncols, int nrows) {
       int xx = x - 1 + i;
       int yy = y - 1 + j;
       // Gx += s[xx, yy] * gx[i, j]
-      Gx += s[yy * ncols + xx] * device_gx[j * 3 + i];
+      Gx += s[yy * ncols + xx] * gx[j * 3 + i];
       // Gy += s[xx, yy] * gy[i, j]
-      Gy += s[yy * ncols + xx] * device_gy[j * 3 + i];
+      Gy += s[yy * ncols + xx] * gy[j * 3 + i];
     }
   }
   t = sqrt(Gx * Gx + Gy * Gy);
@@ -119,7 +119,7 @@ __global__ void sobel_kernel_gpu(
   int stride = blockDim.x * gridDim.x;
   for (int y = index; y < height; y += stride)
     for (int x = 0; x < width; x++)
-      d[y * width + x] = sobel_filtered_pixel(s, x, y, width, height);
+      d[y * width + x] = sobel_filtered_pixel(s, x, y, width, height, device_gx, device_gy);
 }
 
 int main(int ac, char *av[]) {
