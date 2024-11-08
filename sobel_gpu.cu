@@ -117,9 +117,6 @@ __global__ void sobel_kernel_gpu(
   height = nrows;
   int index = blockIdx.x * blockDim.x + threadIdx.x;
   int stride = blockDim.x * gridDim.x;
-  if (index >= n) {
-    return;
-  }
   int i, x, y;
   for (i = index; i < n; i += stride)
   {
