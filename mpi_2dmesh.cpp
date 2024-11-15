@@ -40,7 +40,7 @@
 
 #include "mpi_2dmesh.hpp"  // for AppState and Tile2D class
 
-#define DEBUG_TRACE 1
+#define DEBUG_TRACE 0
 
 int
 parseArgs(int ac, char *av[], AppState *as)
@@ -438,6 +438,79 @@ recvStridedBuffer(float *dstBuf,
 // suggest using your cpu code from HW5, no OpenMP parallelism 
 //
 
+//
+// sobel_filtered_pixel(): perform the sobel filtering at a given i,j location
+//
+// input: float *s - the source data
+// input: int x,y - the location of the pixel in the source data where we want
+// to center our sobel convolution input: int nrows, ncols: the dimensions of
+// the input and output image buffers input: float *gx, gy:  arrays of length 9
+// each, these are logically 3x3 arrays of sobel filter weights
+//
+// this routine computes Gx=gx*s centered at (x,y), Gy=gy*s centered at (x,y),
+// and returns G = sqrt(Gx^2 + Gy^2)
+
+// see https://en.wikipedia.org/wiki/Sobel_operator
+//
+float sobel_filtered_pixel(float *s, int x, int y, int ncols, int nrows,
+                           float *gx, float *gy) {
+  float t = 0.0;
+  
+  // if x or y is at the boundary of the img or out of the boundary, we can't compute
+  if (x <= 0 || x >= ncols - 1 || y <= 0 || y >= nrows - 1)
+	  return t;
+
+  // ADD CODE HERE: add your code here for computing the sobel stencil
+  // computation at location (x,y) of input s, returning a float
+  float Gx = 0.0, Gy = 0.0;
+  for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+      int xx = x - 1 + i;
+      int yy = y - 1 + j;
+      // Gx += s[xx, yy] * gx[i, j]
+      Gx += s[yy * ncols + xx] * gx[j * 3 + i];
+      // Gy += s[xx, yy] * gy[i, j]
+      Gy += s[yy * ncols + xx] * gy[j * 3 + i];
+    }
+  }
+  t = sqrt(Gx * Gx + Gy * Gy);
+  return t;
+}
+
+//
+//  do_sobel_filtering() will iterate over all input image pixels and invoke the
+//  sobel_filtered_pixel() function at each (i,j) location of input to compute
+//  the sobel filtered output pixel at location (i,j) in output.
+//
+// input: float *s - the source data, size=rows*cols
+// input: int i,j - the location of the pixel in the source data where we want
+// to center our sobel convolution input: int nrows, ncols: the dimensions of
+// the input and output image buffers input: float *gx, gy:  arrays of length 9
+// each, these are logically 3x3 arrays of sobel filter weights output: float *d
+// - the buffer for the output, size=rows*cols.
+//
+
+void do_sobel_filtering(float *in, float *out, int ncols, int nrows) {
+  float Gx[] = {1.0, 0.0, -1.0, 2.0, 0.0, -2.0, 1.0, 0.0, -1.0};
+  float Gy[] = {1.0, 2.0, 1.0, 0.0, 0.0, 0.0, -1.0, -2.0, -1.0};
+
+  // ADD CODE HERE: insert your code here that iterates over every (i,j) of
+  // input,  makes a call to sobel_filtered_pixel, and assigns the resulting
+  // value at location (i,j) in the output.
+  int width, height;
+
+  width = ncols;
+  height = nrows;
+
+#pragma omp parallel for
+  for (int y = 0; y < height; ++y) {
+    for (int x = 0; x < width; ++x) {
+      // out[x, y] = sobel_filtered_pixel(x, y)
+      out[y * width + x] = sobel_filtered_pixel(in, x, y, width, height, Gx, Gy);
+    }
+  }
+}
+
 
 void
 sobelAllTiles(int myrank, vector < vector < Tile2D > > & tileArray) {
@@ -461,6 +534,7 @@ sobelAllTiles(int myrank, vector < vector < Tile2D > > & tileArray) {
 #endif
          // ADD YOUR CODE HERE
          // to call your sobel filtering code on each tile
+	    do_sobel_filtering(t->inputBuffer.data(), t->outputBuffer.data(), t->width, t->height);
          }
       }
    }

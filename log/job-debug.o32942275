@@ -1,0 +1,156 @@
+Hello world, I'm rank 1 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 15 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 10 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 3 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 12 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 8 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 13 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 5 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 6 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 7 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 9 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 11 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 14 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 2 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 4 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 0 of 16 total ranks running on <nid005042>
+AppState() = 
+	myrank = 0 
+	nranks=16 
+	decomp=1 
+	action = 0 
+	dims = [7112, 5146] 
+---- Contents of the tileArray, which is of length 16 
+ Row 0 of the tileArray is of length 1 
+ Tile at [0, 0], 	x/yloc: (0, 0),	base grid size [7112,321],	rank=0,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 1 of the tileArray is of length 1 
+ Tile at [1, 0], 	x/yloc: (0, 321),	base grid size [7112,321],	rank=1,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 2 of the tileArray is of length 1 
+ Tile at [2, 0], 	x/yloc: (0, 642),	base grid size [7112,321],	rank=2,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 3 of the tileArray is of length 1 
+ Tile at [3, 0], 	x/yloc: (0, 963),	base grid size [7112,321],	rank=3,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 4 of the tileArray is of length 1 
+ Tile at [4, 0], 	x/yloc: (0, 1284),	base grid size [7112,321],	rank=4,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 5 of the tileArray is of length 1 
+ Tile at [5, 0], 	x/yloc: (0, 1605),	base grid size [7112,321],	rank=5,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 6 of the tileArray is of length 1 
+ Tile at [6, 0], 	x/yloc: (0, 1926),	base grid size [7112,321],	rank=6,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 7 of the tileArray is of length 1 
+ Tile at [7, 0], 	x/yloc: (0, 2247),	base grid size [7112,321],	rank=7,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 8 of the tileArray is of length 1 
+ Tile at [8, 0], 	x/yloc: (0, 2568),	base grid size [7112,321],	rank=8,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 9 of the tileArray is of length 1 
+ Tile at [9, 0], 	x/yloc: (0, 2889),	base grid size [7112,321],	rank=9,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 10 of the tileArray is of length 1 
+ Tile at [10, 0], 	x/yloc: (0, 3210),	base grid size [7112,321],	rank=10,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 11 of the tileArray is of length 1 
+ Tile at [11, 0], 	x/yloc: (0, 3531),	base grid size [7112,321],	rank=11,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 12 of the tileArray is of length 1 
+ Tile at [12, 0], 	x/yloc: (0, 3852),	base grid size [7112,321],	rank=12,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 13 of the tileArray is of length 1 
+ Tile at [13, 0], 	x/yloc: (0, 4173),	base grid size [7112,321],	rank=13,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 14 of the tileArray is of length 1 
+ Tile at [14, 0], 	x/yloc: (0, 4494),	base grid size [7112,321],	rank=14,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 15 of the tileArray is of length 1 
+ Tile at [15, 0], 	x/yloc: (0, 4815),	base grid size [7112,331],	rank=15,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+
+
+Timing results from rank 0: 
+	Scatter time:	145.5925 (ms) 
+	Sobel time:	9.7300 (ms) 
+	Gather time:	108.2142 (ms) 
+Hello world, I'm rank 1 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 15 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 6 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 10 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 13 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 3 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 8 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 2 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 4 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 5 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 7 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 12 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 14 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 9 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 11 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 0 of 16 total ranks running on <nid005042>
+AppState() = 
+	myrank = 0 
+	nranks=16 
+	decomp=2 
+	action = 0 
+	dims = [7112, 5146] 
+---- Contents of the tileArray, which is of length 1 
+ Row 0 of the tileArray is of length 16 
+ Tile at [0, 0], 	x/yloc: (0, 0),	base grid size [444,5146],	rank=0,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 1], 	x/yloc: (444, 0),	base grid size [444,5146],	rank=1,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 2], 	x/yloc: (888, 0),	base grid size [444,5146],	rank=2,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 3], 	x/yloc: (1332, 0),	base grid size [444,5146],	rank=3,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 4], 	x/yloc: (1776, 0),	base grid size [444,5146],	rank=4,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 5], 	x/yloc: (2220, 0),	base grid size [444,5146],	rank=5,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 6], 	x/yloc: (2664, 0),	base grid size [444,5146],	rank=6,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 7], 	x/yloc: (3108, 0),	base grid size [444,5146],	rank=7,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 8], 	x/yloc: (3552, 0),	base grid size [444,5146],	rank=8,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 9], 	x/yloc: (3996, 0),	base grid size [444,5146],	rank=9,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 10], 	x/yloc: (4440, 0),	base grid size [444,5146],	rank=10,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 11], 	x/yloc: (4884, 0),	base grid size [444,5146],	rank=11,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 12], 	x/yloc: (5328, 0),	base grid size [444,5146],	rank=12,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 13], 	x/yloc: (5772, 0),	base grid size [444,5146],	rank=13,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 14], 	x/yloc: (6216, 0),	base grid size [444,5146],	rank=14,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 15], 	x/yloc: (6660, 0),	base grid size [452,5146],	rank=15,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+
+
+Timing results from rank 0: 
+	Scatter time:	154.5261 (ms) 
+	Sobel time:	10.6725 (ms) 
+	Gather time:	111.8862 (ms) 
+Hello world, I'm rank 1 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 7 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 11 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 8 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 13 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 2 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 12 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 3 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 9 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 14 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 15 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 4 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 6 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 10 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 5 of 16 total ranks running on <nid005042>
+Hello world, I'm rank 0 of 16 total ranks running on <nid005042>
+AppState() = 
+	myrank = 0 
+	nranks=16 
+	decomp=3 
+	action = 0 
+	dims = [7112, 5146] 
+---- Contents of the tileArray, which is of length 4 
+ Row 0 of the tileArray is of length 4 
+ Tile at [0, 0], 	x/yloc: (0, 0),	base grid size [1778,1286],	rank=0,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 1], 	x/yloc: (1778, 0),	base grid size [1778,1286],	rank=1,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 2], 	x/yloc: (3556, 0),	base grid size [1778,1286],	rank=2,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 3], 	x/yloc: (5334, 0),	base grid size [1778,1286],	rank=3,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 1 of the tileArray is of length 4 
+ Tile at [1, 0], 	x/yloc: (0, 1286),	base grid size [1778,1286],	rank=4,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [1, 1], 	x/yloc: (1778, 1286),	base grid size [1778,1286],	rank=5,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [1, 2], 	x/yloc: (3556, 1286),	base grid size [1778,1286],	rank=6,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [1, 3], 	x/yloc: (5334, 1286),	base grid size [1778,1286],	rank=7,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 2 of the tileArray is of length 4 
+ Tile at [2, 0], 	x/yloc: (0, 2572),	base grid size [1778,1286],	rank=8,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [2, 1], 	x/yloc: (1778, 2572),	base grid size [1778,1286],	rank=9,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [2, 2], 	x/yloc: (3556, 2572),	base grid size [1778,1286],	rank=10,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [2, 3], 	x/yloc: (5334, 2572),	base grid size [1778,1286],	rank=11,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 3 of the tileArray is of length 4 
+ Tile at [3, 0], 	x/yloc: (0, 3858),	base grid size [1778,1288],	rank=12,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [3, 1], 	x/yloc: (1778, 3858),	base grid size [1778,1288],	rank=13,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [3, 2], 	x/yloc: (3556, 3858),	base grid size [1778,1288],	rank=14,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [3, 3], 	x/yloc: (5334, 3858),	base grid size [1778,1288],	rank=15,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+
+
+Timing results from rank 0: 
+	Scatter time:	145.4338 (ms) 
+	Sobel time:	9.4348 (ms) 
+	Gather time:	106.7059 (ms) 
