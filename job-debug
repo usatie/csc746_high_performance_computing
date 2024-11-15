@@ -1,0 +1,16 @@
+#!/bin/bash -l
+#SBATCH --constraint=cpu
+#SBATCH --qos=debug
+#SBATCH --nodes=1
+#SBATCH --account=m3930
+#SBATCH --time=00:05:00
+#SBATCH --job-name=job-debug
+#SBATCH --output=log/job-debug.o%j
+#SBATCH --error=log/job-debug.e%j
+
+cd build
+for N in 16; do
+	srun -n $N ./mpi_2dmesh -g 1 -v -o "../data/processed-raw-int8-4x-cpu-row.dat"
+	srun -n $N ./mpi_2dmesh -g 2 -v -o "../data/processed-raw-int8-4x-cpu-col.dat"
+	srun -n $N ./mpi_2dmesh -g 3 -v -o "../data/processed-raw-int8-4x-cpu-tile.dat"
+done

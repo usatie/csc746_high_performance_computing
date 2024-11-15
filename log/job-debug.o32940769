@@ -1,0 +1,1209 @@
+Hello world, I'm rank 0 of 16 total ranks running on <nid006795>
+
+
+ ----- All ranks will computeMeshDecomposition 
+AppState() = 
+	myrank = 0 
+	nranks=16 
+	decomp=1 
+	action = 0 
+	dims = [7112, 5146] 
+---- Contents of the tileArray, which is of length 16 
+ Row 0 of the tileArray is of length 1 
+ Tile at [0, 0], 	x/yloc: (0, 0),	base grid size [7112,321],	rank=0,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 1 of the tileArray is of length 1 
+ Tile at [1, 0], 	x/yloc: (0, 321),	base grid size [7112,321],	rank=1,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 2 of the tileArray is of length 1 
+ Tile at [2, 0], 	x/yloc: (0, 642),	base grid size [7112,321],	rank=2,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 3 of the tileArray is of length 1 
+ Tile at [3, 0], 	x/yloc: (0, 963),	base grid size [7112,321],	rank=3,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 4 of the tileArray is of length 1 
+ Tile at [4, 0], 	x/yloc: (0, 1284),	base grid size [7112,321],	rank=4,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 5 of the tileArray is of length 1 
+ Tile at [5, 0], 	x/yloc: (0, 1605),	base grid size [7112,321],	rank=5,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 6 of the tileArray is of length 1 
+ Tile at [6, 0], 	x/yloc: (0, 1926),	base grid size [7112,321],	rank=6,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 7 of the tileArray is of length 1 
+ Tile at [7, 0], 	x/yloc: (0, 2247),	base grid size [7112,321],	rank=7,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 8 of the tileArray is of length 1 
+ Tile at [8, 0], 	x/yloc: (0, 2568),	base grid size [7112,321],	rank=8,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 9 of the tileArray is of length 1 
+ Tile at [9, 0], 	x/yloc: (0, 2889),	base grid size [7112,321],	rank=9,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 10 of the tileArray is of length 1 
+ Tile at [10, 0], 	x/yloc: (0, 3210),	base grid size [7112,321],	rank=10,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 11 of the tileArray is of length 1 
+ Tile at [11, 0], 	x/yloc: (0, 3531),	base grid size [7112,321],	rank=11,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 12 of the tileArray is of length 1 
+ Tile at [12, 0], 	x/yloc: (0, 3852),	base grid size [7112,321],	rank=12,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 13 of the tileArray is of length 1 
+ Tile at [13, 0], 	x/yloc: (0, 4173),	base grid size [7112,321],	rank=13,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 14 of the tileArray is of length 1 
+ Tile at [14, 0], 	x/yloc: (0, 4494),	base grid size [7112,321],	rank=14,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 15 of the tileArray is of length 1 
+ Tile at [15, 0], 	x/yloc: (0, 4815),	base grid size [7112,331],	rank=15,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+
+
+ Rank 0 is loading input 
+ Rank 0 is entering scatterAllTiles 
+scatterAllTiles() send side: t->tileRank=1, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=2, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=3, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=4, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=5, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=6, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=7, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=8, myrank=0, t->inputBuffer->size()=0 
+Hello world, I'm rank 1 of 16 total ranks running on <nid006795>
+ Rank 1 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=1, myrank=1, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+
+
+ ----- rank=1, inside scatterAllTiles debug printing of the tile array 
+---- Contents of the tileArray, which is of length 16 
+ Row 0 of the tileArray is of length 1 
+ Tile at [0, 0], 	x/yloc: (0, 0),	base grid size [7112,321],	rank=0,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 1 of the tileArray is of length 1 
+ Tile at [1, 0], 	x/yloc: (0, 321),	base grid size [7112,321],	rank=1,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=2282952, outputBuffer.size()=2282952 
+ Row 2 of the tileArray is of length 1 
+ Tile at [2, 0], 	x/yloc: (0, 642),	base grid size [7112,321],	rank=2,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 3 of the tileArray is of length 1 
+ Tile at [3, 0], 	x/yloc: (0, 963),	base grid size [7112,321],	rank=3,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 4 of the tileArray is of length 1 
+ Tile at [4, 0], 	x/yloc: (0, 1284),	base grid size [7112,321],	rank=4,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 5 of the tileArray is of length 1 
+ Tile at [5, 0], 	x/yloc: (0, 1605),	base grid size [7112,321],	rank=5,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 6 of the tileArray is of length 1 
+ Tile at [6, 0], 	x/yloc: (0, 1926),	base grid size [7112,321],	rank=6,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 7 of the tileArray is of length 1 
+ Tile at [7, 0], 	x/yloc: (0, 2247),	base grid size [7112,321],	rank=7,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 8 of the tileArray is of length 1 
+ Tile at [8, 0], 	x/yloc: (0, 2568),	base grid size [7112,321],	rank=8,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 9 of the tileArray is of length 1 
+ Tile at [9, 0], 	x/yloc: (0, 2889),	base grid size [7112,321],	rank=9,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 10 of the tileArray is of length 1 
+ Tile at [10, 0], 	x/yloc: (0, 3210),	base grid size [7112,321],	rank=10,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 11 of the tileArray is of length 1 
+ Tile at [11, 0], 	x/yloc: (0, 3531),	base grid size [7112,321],	rank=11,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 12 of the tileArray is of length 1 
+ Tile at [12, 0], 	x/yloc: (0, 3852),	base grid size [7112,321],	rank=12,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 13 of the tileArray is of length 1 
+ Tile at [13, 0], 	x/yloc: (0, 4173),	base grid size [7112,321],	rank=13,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 14 of the tileArray is of length 1 
+ Tile at [14, 0], 	x/yloc: (0, 4494),	base grid size [7112,321],	rank=14,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 15 of the tileArray is of length 1 
+ Tile at [15, 0], 	x/yloc: (0, 4815),	base grid size [7112,331],	rank=15,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=1, filling 1.000000
+:gatherAllTiles(): t->tileRank=0, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=1, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=2, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=1, t->outputBuffer->size()=0 
+Hello world, I'm rank 15 of 16 total ranks running on <nid006795>
+ Rank 15 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=15, myrank=15, t->inputBuffer->size()=2354072, t->outputBuffersize()=2354072 
+ sobelAllTiles(): filling the output buffer of size=2354072 with myrank=15, filling 15.000000
+:gatherAllTiles(): t->tileRank=0, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=15, t->outputBuffer->size()=2354072 
+Hello world, I'm rank 3 of 16 total ranks running on <nid006795>
+ Rank 3 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=3, myrank=3, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=3, filling 3.000000
+:gatherAllTiles(): t->tileRank=0, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=3, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=4, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=3, t->outputBuffer->size()=0 
+Hello world, I'm rank 2 of 16 total ranks running on <nid006795>
+ Rank 2 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=2, myrank=2, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=2, filling 2.000000
+:gatherAllTiles(): t->tileRank=0, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=2, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=3, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=2, t->outputBuffer->size()=0 
+Hello world, I'm rank 12 of 16 total ranks running on <nid006795>
+ Rank 12 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=12, myrank=12, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=12, filling 12.000000
+:gatherAllTiles(): t->tileRank=0, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=12, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=13, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=12, t->outputBuffer->size()=0 
+Hello world, I'm rank 10 of 16 total ranks running on <nid006795>
+ Rank 10 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=10, myrank=10, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=10, filling 10.000000
+:gatherAllTiles(): t->tileRank=0, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=10, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=11, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=10, t->outputBuffer->size()=0 
+Hello world, I'm rank 13 of 16 total ranks running on <nid006795>
+ Rank 13 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=13, myrank=13, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=13, filling 13.000000
+:gatherAllTiles(): t->tileRank=0, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=13, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=14, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=13, t->outputBuffer->size()=0 
+Hello world, I'm rank 14 of 16 total ranks running on <nid006795>
+ Rank 14 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=14, myrank=14, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=14, filling 14.000000
+:gatherAllTiles(): t->tileRank=0, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=14, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=15, myrank=14, t->outputBuffer->size()=0 
+Hello world, I'm rank 6 of 16 total ranks running on <nid006795>
+ Rank 6 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=6, myrank=6, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=6, filling 6.000000
+:gatherAllTiles(): t->tileRank=0, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=6, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=7, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=6, t->outputBuffer->size()=0 
+Hello world, I'm rank 7 of 16 total ranks running on <nid006795>
+ Rank 7 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=7, myrank=7, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=7, filling 7.000000
+:gatherAllTiles(): t->tileRank=0, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=7, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=8, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=7, t->outputBuffer->size()=0 
+Hello world, I'm rank 4 of 16 total ranks running on <nid006795>
+ Rank 4 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=4, myrank=4, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=4, filling 4.000000
+:gatherAllTiles(): t->tileRank=0, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=4, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=5, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=4, t->outputBuffer->size()=0 
+Hello world, I'm rank 5 of 16 total ranks running on <nid006795>
+ Rank 5 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=5, myrank=5, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=5, filling 5.000000
+:gatherAllTiles(): t->tileRank=0, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=5, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=6, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=5, t->outputBuffer->size()=0 
+Hello world, I'm rank 11 of 16 total ranks running on <nid006795>
+ Rank 11 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=11, myrank=11, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=11, filling 11.000000
+:gatherAllTiles(): t->tileRank=0, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=11, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=12, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=11, t->outputBuffer->size()=0 
+Hello world, I'm rank 8 of 16 total ranks running on <nid006795>
+ Rank 8 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=8, myrank=8, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=8, filling 8.000000
+:gatherAllTiles(): t->tileRank=0, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=8, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=9, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=8, t->outputBuffer->size()=0 
+Hello world, I'm rank 9 of 16 total ranks running on <nid006795>
+ Rank 9 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=9, myrank=9, t->inputBuffer->size()=2282952, t->outputBuffersize()=2282952 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=9, filling 9.000000
+:gatherAllTiles(): t->tileRank=0, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=9, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=10, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=9, t->outputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=9, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=10, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=11, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=12, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=13, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=14, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=15, myrank=0, t->inputBuffer->size()=0 
+ sobelAllTiles(): filling the output buffer of size=2282952 with myrank=0, filling 0.000000
+:gatherAllTiles(): t->tileRank=0, myrank=0, t->outputBuffer->size()=2282952 
+gatherAllTiles(): t->tileRank=1, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=0, t->outputBuffer->size()=0 
+
+
+Timing results from rank 0: 
+	Scatter time:	144.5166 (ms) 
+	Sobel time:	2.4587 (ms) 
+	Gather time:	113.3325 (ms) 
+Hello world, I'm rank 0 of 16 total ranks running on <nid006795>
+
+
+ ----- All ranks will computeMeshDecomposition 
+AppState() = 
+	myrank = 0 
+	nranks=16 
+	decomp=2 
+	action = 0 
+	dims = [7112, 5146] 
+---- Contents of the tileArray, which is of length 1 
+ Row 0 of the tileArray is of length 16 
+ Tile at [0, 0], 	x/yloc: (0, 0),	base grid size [444,5146],	rank=0,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 1], 	x/yloc: (444, 0),	base grid size [444,5146],	rank=1,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 2], 	x/yloc: (888, 0),	base grid size [444,5146],	rank=2,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 3], 	x/yloc: (1332, 0),	base grid size [444,5146],	rank=3,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 4], 	x/yloc: (1776, 0),	base grid size [444,5146],	rank=4,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 5], 	x/yloc: (2220, 0),	base grid size [444,5146],	rank=5,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 6], 	x/yloc: (2664, 0),	base grid size [444,5146],	rank=6,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 7], 	x/yloc: (3108, 0),	base grid size [444,5146],	rank=7,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 8], 	x/yloc: (3552, 0),	base grid size [444,5146],	rank=8,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 9], 	x/yloc: (3996, 0),	base grid size [444,5146],	rank=9,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 10], 	x/yloc: (4440, 0),	base grid size [444,5146],	rank=10,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 11], 	x/yloc: (4884, 0),	base grid size [444,5146],	rank=11,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 12], 	x/yloc: (5328, 0),	base grid size [444,5146],	rank=12,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 13], 	x/yloc: (5772, 0),	base grid size [444,5146],	rank=13,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 14], 	x/yloc: (6216, 0),	base grid size [444,5146],	rank=14,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 15], 	x/yloc: (6660, 0),	base grid size [452,5146],	rank=15,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+
+
+ Rank 0 is loading input 
+ Rank 0 is entering scatterAllTiles 
+scatterAllTiles() send side: t->tileRank=1, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=2, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=3, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=4, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=5, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=6, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=7, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=8, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=9, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=10, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=11, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=12, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=13, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=14, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=15, myrank=0, t->inputBuffer->size()=0 
+Hello world, I'm rank 15 of 16 total ranks running on <nid006795>
+ Rank 15 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=15, myrank=15, t->inputBuffer->size()=2325992, t->outputBuffersize()=2325992 
+ sobelAllTiles(): filling the output buffer of size=2325992 with myrank=15, filling 15.000000
+:gatherAllTiles(): t->tileRank=0, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=15, t->outputBuffer->size()=2325992 
+Hello world, I'm rank 1 of 16 total ranks running on <nid006795>
+ Rank 1 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=1, myrank=1, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+
+
+ ----- rank=1, inside scatterAllTiles debug printing of the tile array 
+---- Contents of the tileArray, which is of length 1 
+ Row 0 of the tileArray is of length 16 
+ Tile at [0, 0], 	x/yloc: (0, 0),	base grid size [444,5146],	rank=0,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 1], 	x/yloc: (444, 0),	base grid size [444,5146],	rank=1,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=2284824, outputBuffer.size()=2284824 
+ Tile at [0, 2], 	x/yloc: (888, 0),	base grid size [444,5146],	rank=2,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 3], 	x/yloc: (1332, 0),	base grid size [444,5146],	rank=3,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 4], 	x/yloc: (1776, 0),	base grid size [444,5146],	rank=4,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 5], 	x/yloc: (2220, 0),	base grid size [444,5146],	rank=5,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 6], 	x/yloc: (2664, 0),	base grid size [444,5146],	rank=6,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 7], 	x/yloc: (3108, 0),	base grid size [444,5146],	rank=7,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 8], 	x/yloc: (3552, 0),	base grid size [444,5146],	rank=8,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 9], 	x/yloc: (3996, 0),	base grid size [444,5146],	rank=9,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 10], 	x/yloc: (4440, 0),	base grid size [444,5146],	rank=10,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 11], 	x/yloc: (4884, 0),	base grid size [444,5146],	rank=11,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 12], 	x/yloc: (5328, 0),	base grid size [444,5146],	rank=12,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 13], 	x/yloc: (5772, 0),	base grid size [444,5146],	rank=13,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 14], 	x/yloc: (6216, 0),	base grid size [444,5146],	rank=14,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 15], 	x/yloc: (6660, 0),	base grid size [452,5146],	rank=15,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=1, filling 1.000000
+:gatherAllTiles(): t->tileRank=0, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=1, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=2, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=1, t->outputBuffer->size()=0 
+Hello world, I'm rank 9 of 16 total ranks running on <nid006795>
+ Rank 9 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=9, myrank=9, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=9, filling 9.000000
+:gatherAllTiles(): t->tileRank=0, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=9, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=10, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=9, t->outputBuffer->size()=0 
+Hello world, I'm rank 5 of 16 total ranks running on <nid006795>
+ Rank 5 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=5, myrank=5, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=5, filling 5.000000
+:gatherAllTiles(): t->tileRank=0, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=5, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=6, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=5, t->outputBuffer->size()=0 
+Hello world, I'm rank 12 of 16 total ranks running on <nid006795>
+ Rank 12 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=12, myrank=12, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=12, filling 12.000000
+:gatherAllTiles(): t->tileRank=0, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=12, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=13, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=12, t->outputBuffer->size()=0 
+Hello world, I'm rank 3 of 16 total ranks running on <nid006795>
+ Rank 3 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=3, myrank=3, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=3, filling 3.000000
+:gatherAllTiles(): t->tileRank=0, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=3, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=4, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=3, t->outputBuffer->size()=0 
+Hello world, I'm rank 10 of 16 total ranks running on <nid006795>
+ Rank 10 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=10, myrank=10, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=10, filling 10.000000
+:gatherAllTiles(): t->tileRank=0, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=10, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=11, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=10, t->outputBuffer->size()=0 
+Hello world, I'm rank 11 of 16 total ranks running on <nid006795>
+ Rank 11 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=11, myrank=11, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=11, filling 11.000000
+:gatherAllTiles(): t->tileRank=0, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=11, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=12, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=11, t->outputBuffer->size()=0 
+Hello world, I'm rank 2 of 16 total ranks running on <nid006795>
+ Rank 2 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=2, myrank=2, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=2, filling 2.000000
+:gatherAllTiles(): t->tileRank=0, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=2, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=3, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=2, t->outputBuffer->size()=0 
+Hello world, I'm rank 6 of 16 total ranks running on <nid006795>
+ Rank 6 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=6, myrank=6, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=6, filling 6.000000
+:gatherAllTiles(): t->tileRank=0, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=6, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=7, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=6, t->outputBuffer->size()=0 
+Hello world, I'm rank 13 of 16 total ranks running on <nid006795>
+ Rank 13 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=13, myrank=13, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=13, filling 13.000000
+:gatherAllTiles(): t->tileRank=0, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=13, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=14, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=13, t->outputBuffer->size()=0 
+Hello world, I'm rank 14 of 16 total ranks running on <nid006795>
+ Rank 14 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=14, myrank=14, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=14, filling 14.000000
+:gatherAllTiles(): t->tileRank=0, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=14, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=15, myrank=14, t->outputBuffer->size()=0 
+Hello world, I'm rank 4 of 16 total ranks running on <nid006795>
+ Rank 4 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=4, myrank=4, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=4, filling 4.000000
+:gatherAllTiles(): t->tileRank=0, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=4, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=5, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=4, t->outputBuffer->size()=0 
+Hello world, I'm rank 7 of 16 total ranks running on <nid006795>
+ Rank 7 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=7, myrank=7, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=7, filling 7.000000
+:gatherAllTiles(): t->tileRank=0, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=7, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=8, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=7, t->outputBuffer->size()=0 
+Hello world, I'm rank 8 of 16 total ranks running on <nid006795>
+ Rank 8 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=8, myrank=8, t->inputBuffer->size()=2284824, t->outputBuffersize()=2284824 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=8, filling 8.000000
+:gatherAllTiles(): t->tileRank=0, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=8, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=9, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=8, t->outputBuffer->size()=0 
+ sobelAllTiles(): filling the output buffer of size=2284824 with myrank=0, filling 0.000000
+:gatherAllTiles(): t->tileRank=0, myrank=0, t->outputBuffer->size()=2284824 
+gatherAllTiles(): t->tileRank=1, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=0, t->outputBuffer->size()=0 
+
+
+Timing results from rank 0: 
+	Scatter time:	150.0571 (ms) 
+	Sobel time:	2.3801 (ms) 
+	Gather time:	110.0495 (ms) 
+Hello world, I'm rank 0 of 16 total ranks running on <nid006795>
+
+
+ ----- All ranks will computeMeshDecomposition 
+AppState() = 
+	myrank = 0 
+	nranks=16 
+	decomp=3 
+	action = 0 
+	dims = [7112, 5146] 
+---- Contents of the tileArray, which is of length 4 
+ Row 0 of the tileArray is of length 4 
+ Tile at [0, 0], 	x/yloc: (0, 0),	base grid size [1778,1286],	rank=0,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 1], 	x/yloc: (1778, 0),	base grid size [1778,1286],	rank=1,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 2], 	x/yloc: (3556, 0),	base grid size [1778,1286],	rank=2,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 3], 	x/yloc: (5334, 0),	base grid size [1778,1286],	rank=3,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 1 of the tileArray is of length 4 
+ Tile at [1, 0], 	x/yloc: (0, 1286),	base grid size [1778,1286],	rank=4,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [1, 1], 	x/yloc: (1778, 1286),	base grid size [1778,1286],	rank=5,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [1, 2], 	x/yloc: (3556, 1286),	base grid size [1778,1286],	rank=6,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [1, 3], 	x/yloc: (5334, 1286),	base grid size [1778,1286],	rank=7,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 2 of the tileArray is of length 4 
+ Tile at [2, 0], 	x/yloc: (0, 2572),	base grid size [1778,1286],	rank=8,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [2, 1], 	x/yloc: (1778, 2572),	base grid size [1778,1286],	rank=9,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [2, 2], 	x/yloc: (3556, 2572),	base grid size [1778,1286],	rank=10,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [2, 3], 	x/yloc: (5334, 2572),	base grid size [1778,1286],	rank=11,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 3 of the tileArray is of length 4 
+ Tile at [3, 0], 	x/yloc: (0, 3858),	base grid size [1778,1288],	rank=12,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [3, 1], 	x/yloc: (1778, 3858),	base grid size [1778,1288],	rank=13,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [3, 2], 	x/yloc: (3556, 3858),	base grid size [1778,1288],	rank=14,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [3, 3], 	x/yloc: (5334, 3858),	base grid size [1778,1288],	rank=15,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+
+
+ Rank 0 is loading input 
+ Rank 0 is entering scatterAllTiles 
+scatterAllTiles() send side: t->tileRank=1, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=2, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=3, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=4, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=5, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=6, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=7, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=8, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=9, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=10, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=11, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=12, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=13, myrank=0, t->inputBuffer->size()=0 
+scatterAllTiles() send side: t->tileRank=14, myrank=0, t->inputBuffer->size()=0 
+Hello world, I'm rank 1 of 16 total ranks running on <nid006795>
+ Rank 1 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=1, myrank=1, t->inputBuffer->size()=2286508, t->outputBuffersize()=2286508 
+
+
+ ----- rank=1, inside scatterAllTiles debug printing of the tile array 
+---- Contents of the tileArray, which is of length 4 
+ Row 0 of the tileArray is of length 4 
+ Tile at [0, 0], 	x/yloc: (0, 0),	base grid size [1778,1286],	rank=0,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 1], 	x/yloc: (1778, 0),	base grid size [1778,1286],	rank=1,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=2286508, outputBuffer.size()=2286508 
+ Tile at [0, 2], 	x/yloc: (3556, 0),	base grid size [1778,1286],	rank=2,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [0, 3], 	x/yloc: (5334, 0),	base grid size [1778,1286],	rank=3,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 1 of the tileArray is of length 4 
+ Tile at [1, 0], 	x/yloc: (0, 1286),	base grid size [1778,1286],	rank=4,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [1, 1], 	x/yloc: (1778, 1286),	base grid size [1778,1286],	rank=5,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [1, 2], 	x/yloc: (3556, 1286),	base grid size [1778,1286],	rank=6,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [1, 3], 	x/yloc: (5334, 1286),	base grid size [1778,1286],	rank=7,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 2 of the tileArray is of length 4 
+ Tile at [2, 0], 	x/yloc: (0, 2572),	base grid size [1778,1286],	rank=8,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [2, 1], 	x/yloc: (1778, 2572),	base grid size [1778,1286],	rank=9,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [2, 2], 	x/yloc: (3556, 2572),	base grid size [1778,1286],	rank=10,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [2, 3], 	x/yloc: (5334, 2572),	base grid size [1778,1286],	rank=11,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Row 3 of the tileArray is of length 4 
+ Tile at [3, 0], 	x/yloc: (0, 3858),	base grid size [1778,1288],	rank=12,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [3, 1], 	x/yloc: (1778, 3858),	base grid size [1778,1288],	rank=13,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [3, 2], 	x/yloc: (3556, 3858),	base grid size [1778,1288],	rank=14,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ Tile at [3, 3], 	x/yloc: (5334, 3858),	base grid size [1778,1288],	rank=15,	gxmin/gxmax/gymin/gymax=[0,0,0,0],	inputBuffer.size()=0, outputBuffer.size()=0 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=1, filling 1.000000
+:gatherAllTiles(): t->tileRank=0, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=1, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=2, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=1, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=1, t->outputBuffer->size()=0 
+Hello world, I'm rank 5 of 16 total ranks running on <nid006795>
+ Rank 5 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=5, myrank=5, t->inputBuffer->size()=2286508, t->outputBuffersize()=2286508 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=5, filling 5.000000
+:gatherAllTiles(): t->tileRank=0, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=5, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=6, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=5, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=5, t->outputBuffer->size()=0 
+Hello world, I'm rank 4 of 16 total ranks running on <nid006795>
+ Rank 4 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=4, myrank=4, t->inputBuffer->size()=2286508, t->outputBuffersize()=2286508 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=4, filling 4.000000
+:gatherAllTiles(): t->tileRank=0, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=4, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=5, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=4, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=4, t->outputBuffer->size()=0 
+Hello world, I'm rank 6 of 16 total ranks running on <nid006795>
+ Rank 6 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=6, myrank=6, t->inputBuffer->size()=2286508, t->outputBuffersize()=2286508 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=6, filling 6.000000
+:gatherAllTiles(): t->tileRank=0, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=6, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=7, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=6, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=6, t->outputBuffer->size()=0 
+Hello world, I'm rank 11 of 16 total ranks running on <nid006795>
+ Rank 11 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=11, myrank=11, t->inputBuffer->size()=2286508, t->outputBuffersize()=2286508 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=11, filling 11.000000
+:gatherAllTiles(): t->tileRank=0, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=11, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=12, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=11, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=11, t->outputBuffer->size()=0 
+Hello world, I'm rank 8 of 16 total ranks running on <nid006795>
+ Rank 8 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=8, myrank=8, t->inputBuffer->size()=2286508, t->outputBuffersize()=2286508 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=8, filling 8.000000
+:gatherAllTiles(): t->tileRank=0, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=8, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=9, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=8, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=8, t->outputBuffer->size()=0 
+Hello world, I'm rank 7 of 16 total ranks running on <nid006795>
+ Rank 7 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=7, myrank=7, t->inputBuffer->size()=2286508, t->outputBuffersize()=2286508 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=7, filling 7.000000
+:gatherAllTiles(): t->tileRank=0, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=7, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=8, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=7, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=7, t->outputBuffer->size()=0 
+Hello world, I'm rank 3 of 16 total ranks running on <nid006795>
+ Rank 3 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=3, myrank=3, t->inputBuffer->size()=2286508, t->outputBuffersize()=2286508 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=3, filling 3.000000
+:gatherAllTiles(): t->tileRank=0, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=3, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=4, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=3, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=3, t->outputBuffer->size()=0 
+Hello world, I'm rank 10 of 16 total ranks running on <nid006795>
+ Rank 10 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=10, myrank=10, t->inputBuffer->size()=2286508, t->outputBuffersize()=2286508 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=10, filling 10.000000
+:gatherAllTiles(): t->tileRank=0, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=10, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=11, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=10, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=10, t->outputBuffer->size()=0 
+Hello world, I'm rank 12 of 16 total ranks running on <nid006795>
+ Rank 12 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=12, myrank=12, t->inputBuffer->size()=2290064, t->outputBuffersize()=2290064 
+ sobelAllTiles(): filling the output buffer of size=2290064 with myrank=12, filling 12.000000
+:gatherAllTiles(): t->tileRank=0, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=12, t->outputBuffer->size()=2290064 
+gatherAllTiles(): t->tileRank=13, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=12, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=12, t->outputBuffer->size()=0 
+Hello world, I'm rank 14 of 16 total ranks running on <nid006795>
+ Rank 14 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=14, myrank=14, t->inputBuffer->size()=2290064, t->outputBuffersize()=2290064 
+ sobelAllTiles(): filling the output buffer of size=2290064 with myrank=14, filling 14.000000
+:gatherAllTiles(): t->tileRank=0, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=14, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=14, t->outputBuffer->size()=2290064 
+gatherAllTiles(): t->tileRank=15, myrank=14, t->outputBuffer->size()=0 
+Hello world, I'm rank 2 of 16 total ranks running on <nid006795>
+ Rank 2 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=2, myrank=2, t->inputBuffer->size()=2286508, t->outputBuffersize()=2286508 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=2, filling 2.000000
+:gatherAllTiles(): t->tileRank=0, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=2, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=3, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=2, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=2, t->outputBuffer->size()=0 
+Hello world, I'm rank 13 of 16 total ranks running on <nid006795>
+ Rank 13 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=13, myrank=13, t->inputBuffer->size()=2290064, t->outputBuffersize()=2290064 
+ sobelAllTiles(): filling the output buffer of size=2290064 with myrank=13, filling 13.000000
+:gatherAllTiles(): t->tileRank=0, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=13, t->outputBuffer->size()=2290064 
+gatherAllTiles(): t->tileRank=14, myrank=13, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=13, t->outputBuffer->size()=0 
+Hello world, I'm rank 9 of 16 total ranks running on <nid006795>
+ Rank 9 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=9, myrank=9, t->inputBuffer->size()=2286508, t->outputBuffersize()=2286508 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=9, filling 9.000000
+:gatherAllTiles(): t->tileRank=0, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=9, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=10, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=9, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=9, t->outputBuffer->size()=0 
+Hello world, I'm rank 15 of 16 total ranks running on <nid006795>
+ Rank 15 is entering scatterAllTiles 
+scatterAllTiles() receive side:: t->tileRank=15, myrank=15, t->inputBuffer->size()=2290064, t->outputBuffersize()=2290064 
+ sobelAllTiles(): filling the output buffer of size=2290064 with myrank=15, filling 15.000000
+:gatherAllTiles(): t->tileRank=0, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=1, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=15, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=15, t->outputBuffer->size()=2290064 
+scatterAllTiles() send side: t->tileRank=15, myrank=0, t->inputBuffer->size()=0 
+ sobelAllTiles(): filling the output buffer of size=2286508 with myrank=0, filling 0.000000
+:gatherAllTiles(): t->tileRank=0, myrank=0, t->outputBuffer->size()=2286508 
+gatherAllTiles(): t->tileRank=1, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=2, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=3, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=4, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=5, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=6, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=7, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=8, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=9, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=10, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=11, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=12, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=13, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=14, myrank=0, t->outputBuffer->size()=0 
+gatherAllTiles(): t->tileRank=15, myrank=0, t->outputBuffer->size()=0 
+
+
+Timing results from rank 0: 
+	Scatter time:	148.2429 (ms) 
+	Sobel time:	2.4281 (ms) 
+	Gather time:	113.9250 (ms) 

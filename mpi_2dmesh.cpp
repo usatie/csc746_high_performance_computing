@@ -40,7 +40,7 @@
 
 #include "mpi_2dmesh.hpp"  // for AppState and Tile2D class
 
-#define DEBUG_TRACE 0 
+#define DEBUG_TRACE 1
 
 int
 parseArgs(int ac, char *av[], AppState *as)
@@ -48,7 +48,7 @@ parseArgs(int ac, char *av[], AppState *as)
    int rstat = 0;
    int c;
 
-   while ( (c = getopt(ac, av, "va:g:x:y:i:")) != -1) {
+   while ( (c = getopt(ac, av, "va:g:x:y:i:o:")) != -1) {
       switch(c) {
          case 'a': {
                       int action = std::atoi(optarg == NULL ? "-1" : optarg);
@@ -291,8 +291,8 @@ printTileArray(vector < vector < Tile2D > > & tileArray)
       printf(" Row %d of the tileArray is of length %d \n", row, tileArray[row].size());
       for (int col=0; col<tileArray[row].size(); col++)
       {  
-         Tile2D t = tileArray[row][col];
-         t.print(row, col);
+         Tile2D *t = &(tileArray[row][col]);
+         t->print(row, col);
       }
    }
 }
@@ -386,7 +386,17 @@ sendStridedBuffer(float *srcBuf,
    // sendWidth by sendHeight values, and the subregion is offset from the origin of
    // srcBuf by the values specificed by srcOffsetColumn, srcOffsetRow.
    //
+   // Create the subarray datatype
+   MPI_Datatype subarray_type;
+   int dimensions_full_array[2] = { srcHeight, srcWidth };
+   int dimensions_subarray[2] = { sendHeight, sendWidth };
+   int start_coordinates[2] = { srcOffsetRow, srcOffsetColumn };
+   MPI_Type_create_subarray(2,  dimensions_full_array, dimensions_subarray, start_coordinates, MPI_ORDER_C, MPI_FLOAT, &subarray_type);
+   MPI_Type_commit(&subarray_type);
 
+   // Send the message
+   int count = 1;
+   MPI_Send(srcBuf, count, subarray_type, toRank, msgTag, MPI_COMM_WORLD);
 }
 
 void
@@ -408,6 +418,17 @@ recvStridedBuffer(float *dstBuf,
    // at dstOffsetColumn, dstOffsetRow, and that is expectedWidth, expectedHeight in size.
    //
 
+   // Create the subarray datatype
+   MPI_Datatype subarray_type;
+   int dimensions_full_array[2] = { dstHeight, dstWidth };
+   int dimensions_subarray[2] = { expectedHeight, expectedWidth };
+   int start_coordinates[2] = { dstOffsetRow, dstOffsetColumn };
+   MPI_Type_create_subarray(2,  dimensions_full_array, dimensions_subarray, start_coordinates, MPI_ORDER_C, MPI_FLOAT, &subarray_type);
+   MPI_Type_commit(&subarray_type);
+
+   // Receive the message
+   int count = 1;
+   MPI_Recv(dstBuf, count, subarray_type, fromRank, msgTag, MPI_COMM_WORLD, &stat);
 }
 
 
@@ -420,6 +441,7 @@ recvStridedBuffer(float *dstBuf,
 
 void
 sobelAllTiles(int myrank, vector < vector < Tile2D > > & tileArray) {
+   int nrank = tileArray.size() * tileArray[0].size();
    for (int row=0;row<tileArray.size(); row++)
    {
       for (int col=0; col<tileArray[row].size(); col++)
@@ -428,14 +450,14 @@ sobelAllTiles(int myrank, vector < vector < Tile2D > > & tileArray) {
 
          if (t->tileRank == myrank)
          {
-#if 0
+#if DEBUG_TRACE
             // debug code
             // v1: fill the output buffer with the value of myrank
-            //            printf(" sobelAllTiles(): filling the output buffer of size=%d with myrank=%d\n:", t->outputBuffer.size(), myrank);
-            //std::fill(t->outputBuffer.begin(), t->outputBuffer.end(), myrank);
+	    printf(" sobelAllTiles(): filling the output buffer of size=%d with myrank=%d, filling %f\n:", t->outputBuffer.size(), myrank, static_cast<float>(myrank));
+            std::fill(t->outputBuffer.begin(), t->outputBuffer.end(), static_cast<float>(myrank) / static_cast<float>(nrank) * 1.0);
 
             // v2. copy the input to the output, umodified
-         //   std::copy(t->inputBuffer.begin(), t->inputBuffer.end(), t->outputBuffer.begin());
+            //std::copy(t->inputBuffer.begin(), t->inputBuffer.end(), t->outputBuffer.begin());
 #endif
          // ADD YOUR CODE HERE
          // to call your sobel filtering code on each tile
