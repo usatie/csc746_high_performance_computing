@@ -18,115 +18,66 @@ Assumptions: developed and tested using Python version 3.9.1 on macOS 14.5
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import math
+import os
 
 RESULT_DIR = "images/"
-PLOT_FORMATS = [
-    "r-o",
-    "b-x",
-    "g-^",
-    "k-s",
-    "m-v",
-    "c-+",
-    "y-d",
-]
-COLOR_LIST = ["red", "blue", "green", "black", "magenta", "cyan", "yellow"]
+PLOT_FORMATS = ["r-o", "b-x", "g-^", "k-s", "m-v", "c-+", "y-d"]
 
-
-def save_speedup_chrono_figure():
-    fname = f"data/speedup-chrono.csv"
-    df = pd.read_csv(fname, comment="#")
+def load_data(file_path):
+    df = pd.read_csv(file_path, comment="#")
     print(df)
-    var_names = list(df.columns)
-    print("var names =", var_names)
-    problem_sizes = df["N"].tolist()
-    basic_omp_1_time = df["omp-1"].tolist()
-    basic_omp_4_time = df["omp-4"].tolist()
-    basic_omp_16_time = df["omp-16"].tolist()
-    basic_omp_64_time = df["omp-64"].tolist()
+    return df
 
-    save_basic_speedup(
-        "Basic_Speedup_chrono.png",
-        "Basic Speedup by std::chrono (omp-4, omp-16, omp-64)",
-        problem_sizes,
-        basic_omp_1_time,
-        [basic_omp_4_time, basic_omp_16_time, basic_omp_64_time],
-        64,
-    )
-
-    fname = f"data/speedup-chrono-blocked.csv"
-    df = pd.read_csv(fname, comment="#")
-    print(df)
-    var_names = list(df.columns)
-    print("var names =", var_names)
-    problem_sizes = df["N"].tolist()
-    b4_omp_1_time = df["omp-1 (b=4)"].tolist()
-    b4_omp_4_time = df["omp-4 (b=4)"].tolist()
-    b4_omp_16_time = df["omp-16 (b=4)"].tolist()
-    b4_omp_64_time = df["omp-64 (b=4)"].tolist()
-    b16_omp_1_time = df["omp-1 (b=16)"].tolist()
-    b16_omp_4_time = df["omp-4 (b=16)"].tolist()
-    b16_omp_16_time = df["omp-16 (b=16)"].tolist()
-    b16_omp_64_time = df["omp-64 (b=16)"].tolist()
-
-    save_blocked_speedup(
-        "Blocked_Speedup_chrono.png",
-        "BMMCO Speedup by std::chrono (omp-4, omp-16, omp-64)",
-        problem_sizes,
-        b4_omp_1_time,
-        [b4_omp_4_time, b4_omp_16_time, b4_omp_64_time],
-        b16_omp_1_time,
-        [b16_omp_4_time, b16_omp_16_time, b16_omp_64_time],
-        64,
-    )
-
-
-def save_speedup_chart(fname, title, rank_sizes, df):
+def save_chart(fname, title, x_values, y_values_list, labels, xlabel, ylabel):
     plt.title(title)
-    plt.xlabel("Total Ranks") # 4, 9, 16, 25, 36, 49, 64, 81
-    plt.ylabel("Speedup")     # 2ms ~ 50ms
-    xlocs = [i for i in range(len(rank_sizes))]
-    plt.xticks(xlocs, rank_sizes)
-    #plt.yticks([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-    #plt.gca().set_yticklabels([str(i) for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]])
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    xlocs = [i for i in range(len(x_values))]
+    plt.xticks(xlocs, x_values)
 
-    print(fname)
-    print(df)
-    sobel_speedup = df["Sobel time (ms)"].iloc[0] / df["Sobel time (ms)"]
-    scatter_speedup = df["Scatter time (ms)"].iloc[0] / df["Scatter time (ms)"]
-    gather_speedup = df["Gather time (ms)"].iloc[0] / df["Gather time (ms)"]
-    plt.plot(xlocs, sobel_speedup, PLOT_FORMATS[0], label="Sobel")
-    plt.plot(xlocs, scatter_speedup, PLOT_FORMATS[1], label="Scatter")
-    plt.plot(xlocs, gather_speedup, PLOT_FORMATS[2], label="Gather")
-    plt.plot(xlocs, [rank / rank_sizes[0] for rank in rank_sizes], "k--", label="Ideal Speedup")
+    for idx, y_values in enumerate(y_values_list):
+        plt.plot(xlocs, y_values, PLOT_FORMATS[idx], label=labels[idx])
+
+    plt.plot(xlocs, [rank / x_values[0] for rank in x_values], "k--", label="Ideal Speedup")
     plt.grid(axis="both")
     plt.legend(loc="best")
-    #plt.show()
-    plt.savefig(RESULT_DIR + fname, dpi=300)
+
+    os.makedirs(RESULT_DIR, exist_ok=True)
+    plt.savefig(os.path.join(RESULT_DIR, fname), dpi=300)
     plt.clf()
 
+def process_speedup_data(df, title, decomposition_label):
+    selected_df = df[df['Decomposition'] == decomposition_label]
+    rank_sizes = selected_df["Total Ranks"].tolist()
+
+    # Extracting time columns for speedup calculations
+    sobel_time = selected_df["Sobel time (ms)"]
+    scatter_time = selected_df["Scatter time (ms)"]
+    gather_time = selected_df["Gather time (ms)"]
+
+    # Calculate speedups
+    sobel_speedup = sobel_time.iloc[0] / sobel_time
+    scatter_speedup = scatter_time.iloc[0] / scatter_time
+    gather_speedup = gather_time.iloc[0] / gather_time
+
+    save_chart(
+        f"{decomposition_label.lower()}_speedup.png",
+        f"{decomposition_label} Speedup",
+        rank_sizes,
+        [sobel_speedup, scatter_speedup, gather_speedup],
+        ["Sobel", "Scatter", "Gather"],
+        "Total Ranks",
+        "Speedup"
+    )
+
 def save_figures():
-    fname = f"data/performance.csv"
-    df = pd.read_csv(fname, comment="#")
-    row_df = df[df['Decomposition'] == 'Row-slab']
-    col_df = df[df['Decomposition'] == 'Column-slab']
-    tile_df = df[df['Decomposition'] == 'Tiled']
-    var_names = list(df.columns)
-
-    print("var names =", var_names)
-
-    # split the df into individual vars
-    rank_sizes = row_df["Total Ranks"].tolist()
-
-    # speedup
-    save_speedup_chart('row_speedup.png', 'Row-slab Speedup', rank_sizes, row_df)
-    save_speedup_chart('col_speedup.png', 'Column-slab Speedup', rank_sizes, col_df)
-    save_speedup_chart('tile_speedup.png', 'Tiled Speedup', rank_sizes, tile_df)
-
+    data_file = "data/performance.csv"
+    df = load_data(data_file)
+    for decomposition in ["Row-slab", "Column-slab", "Tiled"]:
+        process_speedup_data(df, f"{decomposition} Speedup", decomposition)
 
 if __name__ == "__main__":
     save_figures()
-
 
 # EOF
 
