@@ -1,0 +1,24 @@
+Total Ranks: 16
+Domain Decomposition method: Row-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	150.5777 (ms) 
+	Sobel time:	10.0793 (ms) 
+	Gather time:	107.2445 (ms) 
+Total Ranks: 16
+Domain Decomposition method: Column-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	151.5574 (ms) 
+	Sobel time:	10.5723 (ms) 
+	Gather time:	111.3806 (ms) 
+Total Ranks: 16
+Domain Decomposition method: Tiled
+
+
+Timing results from rank 0: 
+	Scatter time:	142.0269 (ms) 
+	Sobel time:	10.1887 (ms) 
+	Gather time:	114.9185 (ms) 

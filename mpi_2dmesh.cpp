@@ -681,11 +681,30 @@ int main(int ac, char *av[]) {
       MPI_Finalize();
       return 1;
    }
+   if (as.myrank == 0) {
+   	   printf("Total Ranks: %d\n", as.nranks);
+	   switch (as.decomp) {
+	   case ROW_DECOMP:
+		   printf("Domain Decomposition method: Row-slab\n");
+		   break;
+	   case COLUMN_DECOMP:
+		   printf("Domain Decomposition method: Column-slab\n");
+		   break;
+	   case TILE_DECOMP:
+		   printf("Domain Decomposition method: Tiled\n");
+		   break;
+	   default:
+		   ;
+	   }
+   }
 
+#if DEBUG_TRACE
    char hostname[256];
    gethostname(hostname, sizeof(hostname));
 
    printf("Hello world, I'm rank %d of %d total ranks running on <%s>\n", as.myrank, as.nranks, hostname);
+#endif
+
    MPI_Barrier(MPI_COMM_WORLD);
 
 #if DEBUG_TRACE
@@ -695,11 +714,13 @@ int main(int ac, char *av[]) {
 
    computeMeshDecomposition(&as, &tileArray);
    
+#if DEBUG_TRACE
    if (as.myrank == 0 && as.debug==1) // print out the AppState and tileArray
    {
       as.print();
       printTileArray(tileArray);
    }
+#endif
 
    MPI_Barrier(MPI_COMM_WORLD);
 
