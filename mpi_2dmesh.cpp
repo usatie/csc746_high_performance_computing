@@ -352,6 +352,7 @@ void writeOutputFile(AppState &as) {
   fclose(f);
 }
 
+int sent_count = 0, sent_bytes = 0;
 void sendStridedBuffer(float *srcBuf, int srcWidth, int srcHeight,
                        int srcOffsetColumn, int srcOffsetRow, int sendWidth,
                        int sendHeight, int fromRank, int toRank) {
@@ -379,6 +380,11 @@ void sendStridedBuffer(float *srcBuf, int srcWidth, int srcHeight,
   // Send the message
   int count = 1;
   MPI_Send(srcBuf, count, subarray_type, toRank, msgTag, MPI_COMM_WORLD);
+
+  int datatype_size;
+  MPI_Type_size(subarray_type, &datatype_size);
+  sent_count += count;
+  sent_bytes += count * datatype_size;
 
   // Free the datatype
   MPI_Type_free(&subarray_type);
@@ -787,12 +793,18 @@ int main(int ac, char *av[]) {
   }
 
   MPI_Barrier(MPI_COMM_WORLD);
+  int total_sent_count = 0;
+  int total_sent_bytes = 0;
+  MPI_Reduce(&sent_count, &total_sent_count, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+  MPI_Reduce(&sent_bytes, &total_sent_bytes, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
 
   if (as.myrank == 0) {
     printf("\n\nTiming results from rank 0: \n");
     printf("\tScatter time:\t%6.4f (ms) \n", elapsed_scatter_time * 1000.0);
     printf("\tSobel time:\t%6.4f (ms) \n", elapsed_sobel_time * 1000.0);
     printf("\tGather time:\t%6.4f (ms) \n", elapsed_gather_time * 1000.0);
+    printf("\tSent count:\t%d\n", total_sent_count);
+    printf("\tSent bytes:\t%d\n", total_sent_bytes);
   }
 
   MPI_Finalize();
