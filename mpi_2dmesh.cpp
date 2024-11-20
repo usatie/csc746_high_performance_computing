@@ -44,7 +44,7 @@
 
 #include "mpi_2dmesh.hpp" // for AppState and Tile2D class
 
-#define DEBUG_TRACE 1
+#define DEBUG_TRACE 0
 
 int parseArgs(int ac, char *av[], AppState *as) {
   int rstat = 0;
@@ -553,7 +553,7 @@ void sobelAllTiles(int myrank, vector<vector<Tile2D>> &tileArray) {
         // ADD YOUR CODE HERE
         // to call your sobel filtering code on each tile
         do_sobel_filtering(t->inputBuffer.data(), t->outputBuffer.data(),
-                           t->width, t->height);
+                           t->gwidth, t->gheight);
       }
     }
   }
@@ -573,8 +573,8 @@ void scatterAllTiles(int myrank, vector<vector<Tile2D>> &tileArray, float *s,
         int fromRank = 0;
 
         // receive a tile's buffer
-        t->inputBuffer.resize(t->width * t->height);
-        t->outputBuffer.resize(t->width * t->height);
+        t->inputBuffer.resize(t->gwidth * t->gheight);
+        t->outputBuffer.resize(t->gwidth * t->gheight);
 #if DEBUG_TRACE
         printf("scatterAllTiles() receive side:: t->tileRank=%d, myrank=%d, "
                "t->inputBuffer->size()=%d, t->outputBuffersize()=%d \n",
@@ -583,9 +583,9 @@ void scatterAllTiles(int myrank, vector<vector<Tile2D>> &tileArray, float *s,
 #endif
 
         recvStridedBuffer(
-            t->inputBuffer.data(), t->width, t->height, 0,
+            t->inputBuffer.data(), t->gwidth, t->gheight, 0,
             0, // offset into the tile buffer: we want the whole thing
-            t->width, t->height, // how much data coming from this tile
+            t->gwidth, t->gheight, // how much data coming from this tile
             fromRank, myrank);
       } else if (myrank == 0) {
         if (t->tileRank != 0) {
@@ -598,22 +598,22 @@ void scatterAllTiles(int myrank, vector<vector<Tile2D>> &tileArray, float *s,
           sendStridedBuffer(s, // ptr to the buffer to send
                             global_width,
                             global_height,       // size of the src buffer
-                            t->xloc, t->yloc,    // offset into the send buffer
-                            t->width, t->height, // size of the buffer to send,
+                            t->ghost_xmin, t->ghost_ymin,    // offset into the send buffer
+                            t->gwidth, t->gheight, // size of the buffer to send,
                             myrank, t->tileRank);
         } else // rather then have rank 0 send to rank 0, just do a strided copy
                // into a tile's input buffer
         {
-          t->inputBuffer.resize(t->width * t->height);
-          t->outputBuffer.resize(t->width * t->height);
+          t->inputBuffer.resize(t->gwidth * t->gheight);
+          t->outputBuffer.resize(t->gwidth * t->gheight);
 
           off_t s_offset = 0, d_offset = 0;
           float *d = t->inputBuffer.data();
 
-          for (int j = 0; j < t->height;
-               j++, s_offset += global_width, d_offset += t->width) {
+          for (int j = 0; j < t->gheight;
+               j++, s_offset += global_width, d_offset += t->gwidth) {
             memcpy((void *)(d + d_offset), (void *)(s + s_offset),
-                   sizeof(float) * t->width);
+                   sizeof(float) * t->gwidth);
           }
         }
       }
@@ -647,9 +647,11 @@ void gatherAllTiles(int myrank, vector<vector<Tile2D>> &tileArray, float *d,
 
       if (myrank != 0 && t->tileRank == myrank) {
         // send the tile's output buffer to rank 0
+	off_t offset_x = t->xloc - t->ghost_xmin;
+	off_t offset_y = t->yloc - t->ghost_ymin;
         sendStridedBuffer(t->outputBuffer.data(), // ptr to the buffer to send
-                          t->width, t->height,    // size of the src buffer
-                          0, 0,                   // offset into the send buffer
+                          t->gwidth, t->gheight,  // size of the src buffer
+                          offset_x, offset_y,     // offset into the send buffer
                           t->width, t->height,    // size of the buffer to send,
                           t->tileRank, 0);        // from rank, to rank
       } else if (myrank == 0) {
@@ -664,10 +666,11 @@ void gatherAllTiles(int myrank, vector<vector<Tile2D>> &tileArray, float *d,
         {
           float *s = t->outputBuffer.data();
           off_t s_offset = 0, d_offset = 0;
+	  s_offset = (t->yloc - t->ghost_ymin) * t->gwidth + (t->xloc - t->ghost_xmin);
           d_offset = t->yloc * global_width + t->xloc;
 
           for (int j = 0; j < t->height;
-               j++, s_offset += t->width, d_offset += global_width) {
+               j++, s_offset += t->gwidth, d_offset += global_width) {
             memcpy((void *)(d + d_offset), (void *)(s + s_offset),
                    sizeof(float) * t->width);
           }

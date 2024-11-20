@@ -75,6 +75,7 @@ public:
 
   int width, height; // dimensions of tile base grid
   int ghost_xmin, ghost_xmax, ghost_ymin, ghost_ymax;
+  int gwidth, gheight;
 
   int tileRank; // rank id owner of this tile
 
@@ -94,6 +95,8 @@ public:
     ghost_xmax = gxmax;
     ghost_ymin = gymin;
     ghost_ymax = gymax;
+    gwidth = gxmax - gxmin + 1;
+    gheight = gymax - gymin + 1;
 
     inputBuffer.resize(0); // start with empty tiles
     outputBuffer.resize(0);
