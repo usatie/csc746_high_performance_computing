@@ -83,14 +83,17 @@ public:
 
   // the constructor takes args that set the tile size and location in the
   // overall mesh
-  Tile2D(int tx, int ty, int xsize, int ysize, int rank) {
+  Tile2D(int tx, int ty, int xsize, int ysize, int rank, int gxmin, int gxmax, int gymin, int gymax) {
     xloc =
         tx; // tx,ty specify the origin of the tile in the overall global grid
     yloc = ty;
     width = xsize; // specify the width, height of the tile's base grid/buffer
     height = ysize;
     tileRank = rank;
-    ghost_xmin = ghost_xmax = ghost_ymin = ghost_ymax = 0;
+    ghost_xmin = gxmin;
+    ghost_xmax = gxmax;
+    ghost_ymin = gymin;
+    ghost_ymax = gymax;
 
     inputBuffer.resize(0); // start with empty tiles
     outputBuffer.resize(0);

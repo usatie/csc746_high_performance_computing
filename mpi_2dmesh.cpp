@@ -44,7 +44,7 @@
 
 #include "mpi_2dmesh.hpp" // for AppState and Tile2D class
 
-#define DEBUG_TRACE 0
+#define DEBUG_TRACE 1
 
 int parseArgs(int ac, char *av[], AppState *as) {
   int rstat = 0;
@@ -134,11 +134,17 @@ void computeMeshDecomposition(AppState *as, vector<vector<Tile2D>> *tileArray) {
     //  set up the y coords of the tile boundaries
     ytiles = as->nranks;
     int ylocs[ytiles + 1];
+    int gymins[ytiles];
+    int gymaxs[ytiles];
     int ysize = as->global_mesh_size[1] / as->nranks; // size of each tile in y
 
     int yval = 0;
     for (int i = 0; i < ytiles; i++, yval += ysize) {
       ylocs[i] = yval;
+      if (yval == 0) gymins[i] = 0;
+      else gymins[i] = yval - 1;
+      if (i == ytiles - 1) gymaxs[i] = as->global_mesh_size[1] - 1;
+      else gymaxs[i] = yval + ysize;
     }
     ylocs[ytiles] = as->global_mesh_size[1];
 
@@ -147,7 +153,7 @@ void computeMeshDecomposition(AppState *as, vector<vector<Tile2D>> *tileArray) {
       vector<Tile2D> tiles;
       int width = as->global_mesh_size[0];
       int height = ylocs[i + 1] - ylocs[i];
-      Tile2D t = Tile2D(0, ylocs[i], width, height, i);
+      Tile2D t = Tile2D(0, ylocs[i], width, height, i, 0, width - 1, gymins[i], gymaxs[i]);
       tiles.push_back(t);
       tileArray->push_back(tiles);
     }
@@ -159,11 +165,17 @@ void computeMeshDecomposition(AppState *as, vector<vector<Tile2D>> *tileArray) {
     // set up the x coords of the tile boundaries
     xtiles = as->nranks;
     int xlocs[xtiles + 1];
+    int gxmins[xtiles];
+    int gxmaxs[xtiles];
     int xsize = as->global_mesh_size[0] / as->nranks; // size of each tile in x
 
     int xval = 0;
     for (int i = 0; i < xtiles; i++, xval += xsize) {
       xlocs[i] = xval;
+      if (xval == 0) gxmins[i] = 0;
+      else gxmins[i] = xval - 1;
+      if (i == xtiles - 1) gxmaxs[i] = as->global_mesh_size[0] - 1;
+      else gxmaxs[i] = xval + xsize;
     }
     xlocs[xtiles] = as->global_mesh_size[0];
 
@@ -172,7 +184,7 @@ void computeMeshDecomposition(AppState *as, vector<vector<Tile2D>> *tileArray) {
     for (int i = 0; i < xtiles; i++) {
       int width = xlocs[i + 1] - xlocs[i];
       int height = as->global_mesh_size[1];
-      Tile2D t = Tile2D(xlocs[i], 0, width, height, i);
+      Tile2D t = Tile2D(xlocs[i], 0, width, height, i, gxmins[i], gxmaxs[i], 0, height - 1);
       tile_row.push_back(t);
     }
     tileArray->push_back(tile_row);
@@ -189,23 +201,35 @@ void computeMeshDecomposition(AppState *as, vector<vector<Tile2D>> *tileArray) {
 
     // set up x coords for tile boundaries
     int xlocs[xtiles + 1];
+    int gxmins[xtiles];
+    int gxmaxs[xtiles];
     int xsize =
         as->global_mesh_size[0] / nranks_per_axis; // size of each tile in x
 
     int xval = 0;
     for (int i = 0; i < xtiles; i++, xval += xsize) {
       xlocs[i] = xval;
+      if (xval == 0) gxmins[i] = 0;
+      else gxmins[i] = xval - 1;
+      if (i == xtiles - 1) gxmaxs[i] = as->global_mesh_size[0] - 1;
+      else gxmaxs[i] = xval + xsize;
     }
     xlocs[xtiles] = as->global_mesh_size[0];
 
     // set up y coords for tile boundaries
     int ylocs[ytiles + 1];
+    int gymins[ytiles];
+    int gymaxs[ytiles];
     int ysize =
         as->global_mesh_size[1] / nranks_per_axis; // size of each tile in y
 
     int yval = 0;
     for (int i = 0; i < ytiles; i++, yval += ysize) {
       ylocs[i] = yval;
+      if (yval == 0) gymins[i] = 0;
+      else gymins[i] = yval - 1;
+      if (i == ytiles - 1) gymaxs[i] = as->global_mesh_size[1] - 1;
+      else gymaxs[i] = yval + ysize;
     }
     ylocs[ytiles] = as->global_mesh_size[1];
 
@@ -217,7 +241,7 @@ void computeMeshDecomposition(AppState *as, vector<vector<Tile2D>> *tileArray) {
         int width, height;
         width = xlocs[i + 1] - xlocs[i];
         height = ylocs[j + 1] - ylocs[j];
-        Tile2D t = Tile2D(xlocs[i], ylocs[j], width, height, rank++);
+        Tile2D t = Tile2D(xlocs[i], ylocs[j], width, height, rank++, gxmins[i], gxmaxs[i], gymins[j], gymaxs[j]);
         tile_row.push_back(t);
       }
       tileArray->push_back(tile_row);
