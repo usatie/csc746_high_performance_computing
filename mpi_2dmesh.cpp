@@ -379,6 +379,9 @@ void sendStridedBuffer(float *srcBuf, int srcWidth, int srcHeight,
   // Send the message
   int count = 1;
   MPI_Send(srcBuf, count, subarray_type, toRank, msgTag, MPI_COMM_WORLD);
+
+  // Free the datatype
+  MPI_Type_free(&subarray_type);
 }
 
 void recvStridedBuffer(float *dstBuf, int dstWidth, int dstHeight,
@@ -412,6 +415,9 @@ void recvStridedBuffer(float *dstBuf, int dstWidth, int dstHeight,
   int count = 1;
   MPI_Recv(dstBuf, count, subarray_type, fromRank, msgTag, MPI_COMM_WORLD,
            &stat);
+
+  // Free the datatype
+  MPI_Type_free(&subarray_type);
 }
 
 //
@@ -485,7 +491,6 @@ void do_sobel_filtering(float *in, float *out, int ncols, int nrows) {
   width = ncols;
   height = nrows;
 
-#pragma omp parallel for
   for (int y = 0; y < height; ++y) {
     for (int x = 0; x < width; ++x) {
       // out[x, y] = sobel_filtered_pixel(x, y)
