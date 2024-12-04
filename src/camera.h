@@ -56,7 +56,7 @@ public:
 
     std::chrono::time_point<std::chrono::high_resolution_clock> start_time =
         std::chrono::high_resolution_clock::now();
-#pragma omp parallel for schedule(dynamic, 1)
+#pragma omp parallel for collapse(2) schedule(dynamic, 1)
     for (int j = 0; j < image_height; j++) {
 #ifdef SDL2
       if (omp_get_thread_num() == 0) {
