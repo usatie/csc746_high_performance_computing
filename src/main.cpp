@@ -88,9 +88,10 @@ int main(int argc, char **argv) {
   // -D n: set the maximum depth of the ray to n
   int samples_per_pixel = 32;
   int width = 512;
+  int height = 288;
   int max_depth = 32;
   int c;
-  while ((c = getopt(argc, argv, "S:W:D:")) != -1) {
+  while ((c = getopt(argc, argv, "S:W:H:D:")) != -1) {
     switch (c) {
     case 'S':
       samples_per_pixel = std::atoi(optarg == NULL ? "-999" : optarg);
@@ -98,22 +99,37 @@ int main(int argc, char **argv) {
     case 'W':
       width = std::atoi(optarg == NULL ? "-999" : optarg);
       break;
+    case 'H':
+      height = std::atoi(optarg == NULL ? "-999" : optarg);
+      break;
     case 'D':
       max_depth = std::atoi(optarg == NULL ? "-999" : optarg);
       break;
     }
   }
-  if (samples_per_pixel <= 0 || width <= 0 || max_depth <= 0) {
-    std::cerr << "Usage: " << argv[0]
-              << " [-S samples_per_pixel] [-W width] [-D max_depth]\n";
+  if (samples_per_pixel <= 0 || width <= 0 || height <= 0 || max_depth <= 0) {
+    std::cerr
+        << "Usage: " << argv[0]
+        << " [-S samples_per_pixel] [-W width] [-H height] [-D max_depth]\n";
     return 1;
   }
 
+  // Print configuration in a single line
+  std::clog << "==============================================================="
+               "==========="
+            << std::endl;
+  std::clog << "Sample: " << samples_per_pixel << ", Width: " << width
+            << ", Height: " << height << ", Depth: " << max_depth;
+#pragma omp parallel
+  {
+    if (omp_get_thread_num() == 0)
+      std::clog << ", Threads: " << omp_get_num_threads() << std::endl;
+  }
   setup_world(world, cam);
   cam.samples_per_pixel = samples_per_pixel;
   cam.image_width = width;
   cam.max_depth = max_depth;
-  cam.aspect_ratio = 1.0;
+  cam.aspect_ratio = double(width) / double(height);
 
   cam.render(world);
   return 0;

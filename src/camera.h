@@ -4,18 +4,21 @@
 #include "hittable.h"
 #include "material.h"
 #include <chrono>
+#include <iomanip>
 #include <omp.h>
 #ifdef SDL2
 #include <SDL2/SDL.h>
 #endif
+#define DEBUG 0
 
 class camera {
 public:
   /* Public Camera Parameters Here */
-  double aspect_ratio = 1.0;  // Ratio of image width over height
-  int image_width = 100;      // Rendered image width
-  int samples_per_pixel = 10; // Count of random samples for each pixel
-  int max_depth = 10;         // Maximum number of ray bounces into scene
+  double aspect_ratio = 1.0;         // Ratio of image width over height
+  int image_width = 100;             // Rendered image width
+  int samples_per_pixel = 10;        // Count of random samples for each pixel
+  int max_depth = 10;                // Maximum number of ray bounces into scene
+  uint64_t total_rays_simulated = 0; // Total number of rays simulated
 
   double vfov = 90.0;                // Vertical view angle (filed of view)
   point3 lookfrom = point3(0, 0, 0); // Point camera is looking from
@@ -37,12 +40,6 @@ public:
     }
   }
   void render(const hittable &world) {
-#pragma omp parallel
-    {
-      if (omp_get_thread_num() == 0)
-        std::clog << "Number of threads: " << omp_get_num_threads()
-                  << std::endl;
-    }
     initialize();
 
     std::vector<color> image(image_width * image_height);
@@ -53,7 +50,9 @@ public:
     omp_lock_t sdl_lock;
     omp_init_lock(&sdl_lock);
 #endif
+#if DEBUG
     int progress = 0;
+#endif
 
     std::chrono::time_point<std::chrono::high_resolution_clock> start_time =
         std::chrono::high_resolution_clock::now();
@@ -72,11 +71,13 @@ public:
 #endif
       for (int i = 0; i < image_width; i++) {
         color pixel_color = color(0, 0, 0);
+        int x = i;
+        int y = j;
         for (int s = 0; s < samples_per_pixel; s++) {
-          ray r = get_ray(i, j);
+          ray r = get_ray(x, y);
           pixel_color += ray_color(r, max_depth, world);
         }
-        image[j * image_width + i] += pixel_color;
+        image[y * image_width + x] += pixel_color;
       }
 #ifdef SDL2
       if (omp_test_lock(&sdl_lock)) {
@@ -84,20 +85,26 @@ public:
         omp_unset_lock(&sdl_lock);
       }
 #endif
+#if DEBUG
 #pragma omp critical
       {
         progress += image_width;
-        if (progress % 100 == 0)
+        if (progress % 2 == 0)
           std::clog << "\rPixels remaining: "
                     << (image_height * image_width - progress) << ' '
                     << std::flush;
       }
+#endif
     }
-    std::clog << "\rDone.\n";
     std::chrono::time_point<std::chrono::high_resolution_clock> end_time =
         std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed_time = end_time - start_time;
+    std::clog << std::endl;
     std::clog << "Elapsed time: " << elapsed_time.count() << " " << std::endl;
+    std::clog << "Total rays simulated: " << total_rays_simulated << std::endl;
+    std::clog << "Rays Simulated per second: "
+              << static_cast<int>(total_rays_simulated / elapsed_time.count())
+              << std::endl;
 
 #ifdef SDL2
     while (!quit) {
@@ -256,10 +263,12 @@ private:
     return center + p[0] * defocus_disk_u + p[1] * defocus_disk_v;
   }
 
-  color ray_color(const ray &r, int depth, const hittable &world) const {
+  color ray_color(const ray &r, int depth, const hittable &world) {
     if (depth <= 0)
       return color(0, 0, 0);
     hit_record rec;
+#pragma omp atomic
+    total_rays_simulated++;
 
     if (world.hit(r, interval(0.001, infinity), rec)) {
       ray scattered;
