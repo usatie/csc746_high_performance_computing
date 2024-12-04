@@ -1,0 +1,54 @@
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Threads: 256
+
+Elapsed time: 2.30213 
+Total rays simulated: 12566568
+Rays Simulated per second: 5458668
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Threads: 128
+
+Elapsed time: 2.70769 
+Total rays simulated: 12572266
+Rays Simulated per second: 4643178
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Threads: 64
+
+Elapsed time: 3.63719 
+Total rays simulated: 12571266
+Rays Simulated per second: 3456312
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Threads: 32
+
+Elapsed time: 5.23531 
+Total rays simulated: 12566665
+Rays Simulated per second: 2400366
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Threads: 16
+
+Elapsed time: 6.78532 
+Total rays simulated: 12568124
+Rays Simulated per second: 1852251
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Threads: 8
+
+Elapsed time: 8.2005 
+Total rays simulated: 12564265
+Rays Simulated per second: 1532133
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Threads: 4
+
+Elapsed time: 11.7398 
+Total rays simulated: 12567615
+Rays Simulated per second: 1070516
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Threads: 2
+
+Elapsed time: 19.58 
+Total rays simulated: 12564609
+Rays Simulated per second: 641705
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Threads: 1
+
+Elapsed time: 30.193 
+Total rays simulated: 12568507
+Rays Simulated per second: 416272
