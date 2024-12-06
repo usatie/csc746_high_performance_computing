@@ -15,7 +15,8 @@ if (SDL2_FOUND)
 	)
 	target_link_options(ray-tracing-omp PRIVATE -fopenmp)
 	target_compile_definitions(ray-tracing-omp PRIVATE -DSDL2)
-	target_compile_definitions(${TARGET_NAME} PUBLIC OMP_COLLAPSE=0) # We don't use collapse for SDL2
+	target_link_libraries(ray-tracing-omp PUBLIC OpenMP::OpenMP_CXX)
+	target_compile_definitions(ray-tracing-omp PUBLIC OMP_COLLAPSE=0) # We don't use collapse for SDL2
 	target_include_directories(ray-tracing-omp PRIVATE ${SDL2_INCLUDE_DIRS})
 	target_link_libraries(ray-tracing-omp PRIVATE ${SDL2_LIBRARIES})
 else ()
