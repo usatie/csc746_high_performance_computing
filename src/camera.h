@@ -5,7 +5,9 @@
 #include "material.h"
 #include <chrono>
 #include <iomanip>
+#include <fstream>
 #include <omp.h>
+#include "likwid-stuff.h"
 #ifdef SDL2
 #include <SDL2/SDL.h>
 #endif
@@ -28,14 +30,16 @@ public:
   double defocus_angle = 0; // Variation angle of rays through each pixel
   double focus_dist =
       10; // Distance from camera lookfrom point to plane of focus
+  std::string output_filename = "image.ppm";
 
   void write_ppm(const std::vector<color> &image) {
     // Write the image to the standard output stream
-    std::cout << "P3\n" << image_width << " " << image_height << "\n255\n";
+    std::ofstream ostrm(output_filename, std::ios::binary);
+    ostrm << "P3\n" << image_width << " " << image_height << "\n255\n";
     for (int j = 0; j < image_height; j++) {
       for (int i = 0; i < image_width; ++i) {
         color pixel_color = image[j * image_width + i];
-        write_color(std::cout, pixel_samples_scale * pixel_color);
+        write_color(ostrm, pixel_samples_scale * pixel_color);
       }
     }
   }
@@ -62,6 +66,9 @@ public:
 #pragma omp parallel for
 #endif
     for (int j = 0; j < image_height; j++) {
+#if defined(LIKWID_PERFMON) && !OMP_COLLAPSE
+    LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
+#endif
 #ifdef SDL2
       if (omp_get_thread_num() == 0) {
         while (SDL_PollEvent(&e) != 0) {
@@ -74,6 +81,9 @@ public:
       }
 #endif
       for (int i = 0; i < image_width; i++) {
+#if defined(LIKWID_PERFMON) && OMP_COLLAPSE
+    LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
+#endif
         color pixel_color = color(0, 0, 0);
         int x = i;
         int y = j;
@@ -82,6 +92,9 @@ public:
           pixel_color += ray_color(r, max_depth, world);
         }
         image[y * image_width + x] += pixel_color;
+#if defined(LIKWID_PERFMON) && OMP_COLLAPSE
+    LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
+#endif
       }
 #ifdef SDL2
       if (omp_test_lock(&sdl_lock)) {
@@ -98,6 +111,9 @@ public:
                     << (image_height * image_width - progress) << ' '
                     << std::flush;
       }
+#endif
+#if defined(LIKWID_PERFMON) && !OMP_COLLAPSE
+    LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
 #endif
     }
     std::chrono::time_point<std::chrono::high_resolution_clock> end_time =

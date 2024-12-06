@@ -44,6 +44,14 @@ The performance of our ray tracing implementation has been tested on an M3 MacBo
    ```
 
 2. Build the project:
+On Perlmutter, run this before build:
+   ```bash
+   module load e4s/23.08   # on Perlmutter
+   spack env activate gcc
+   spack load likwid
+   ```
+
+After that, to build:
    ```bash
    cmake -B build/
    cmake --build build/

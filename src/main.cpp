@@ -6,6 +6,7 @@
 #include "hittable.h"
 #include "hittable_list.h"
 #include "sphere.h"
+#include "likwid-stuff.h"
 
 void setup_world(hittable_list &world, camera &cam) {
   auto ground_material = make_shared<lambertian>(color(0.5, 0.5, 0.5));
@@ -94,6 +95,7 @@ int main(int argc, char **argv) {
   int max_depth = 32;
   int c;
   bool dynamic_schedule = false;
+  std::string output_filename = "image.ppm";
   while ((c = getopt(argc, argv, "S:W:H:D:d")) != -1) {
     switch (c) {
     case 'S':
@@ -111,12 +113,15 @@ int main(int argc, char **argv) {
     case 'd':
       dynamic_schedule = true;
       break;
+    case 'o':
+      if (optarg) output_filename = std::string(optarg);
+      break;
     }
   }
   if (samples_per_pixel <= 0 || width <= 0 || height <= 0 || max_depth <= 0) {
     std::cerr
         << "Usage: " << argv[0]
-        << " [-S samples_per_pixel] [-W width] [-H height] [-D max_depth]\n";
+        << " [-S samples_per_pixel] [-W width] [-H height] [-D max_depth] [-d] [-o filename]\n";
     return 1;
   }
 
@@ -135,17 +140,31 @@ int main(int argc, char **argv) {
             << ", Height: " << height << ", Depth: " << max_depth
 	    << ", Schedule: " << schedule_type
 	    << ", Collapse: " << collapse;
+
+  // initialize the LIKWID marker API in a serial code region once in the
+  // beginning
+  LIKWID_MARKER_INIT;
 #pragma omp parallel
   {
     if (omp_get_thread_num() == 0)
       std::clog << ", Threads: " << omp_get_num_threads() << std::endl;
+    // Each thread must add itself to the Marker API, therefore must be
+    // in parallel region
+    LIKWID_MARKER_THREADINIT;
+    // Register region name
+    LIKWID_MARKER_REGISTER(MY_MARKER_REGION_NAME);
   }
   setup_world(world, cam);
   cam.samples_per_pixel = samples_per_pixel;
   cam.image_width = width;
   cam.max_depth = max_depth;
   cam.aspect_ratio = double(width) / double(height);
+  cam.output_filename = output_filename;
 
   cam.render(world);
+
+  // Close Marker API and write results to file for further evaluation done
+  // by likwid-perfctr
+  LIKWID_MARKER_CLOSE;
   return 0;
 }
