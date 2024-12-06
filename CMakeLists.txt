@@ -53,11 +53,11 @@ else ()
 	    # Compile options
 	    target_compile_options(${TARGET_NAME} PRIVATE -fopenmp -march=native)
 
-	    target_include_directories(${TARGET_NAME} PRIVATE ${LIKWID_INCLUDE_DIR})
-	    target_compile_definitions(${TARGET_NAME} PRIVATE -DLIKWID_PERFMON)
-	    target_include_directories(${TARGET_NAME} PRIVATE ${LIKWID_INCLUDE_DIR})
-	    target_compile_definitions(${TARGET_NAME} PRIVATE -DLIKWID_PERFMON)
-	    target_link_libraries(${TARGET_NAME} PRIVATE ${LIKWID_LIBRARIES})
+	    #target_include_directories(${TARGET_NAME} PRIVATE ${LIKWID_INCLUDE_DIR})
+	    #target_compile_definitions(${TARGET_NAME} PRIVATE -DLIKWID_PERFMON)
+	    #target_include_directories(${TARGET_NAME} PRIVATE ${LIKWID_INCLUDE_DIR})
+	    #target_compile_definitions(${TARGET_NAME} PRIVATE -DLIKWID_PERFMON)
+	    #target_link_libraries(${TARGET_NAME} PRIVATE ${LIKWID_LIBRARIES})
 
 	endforeach()
 endif()
