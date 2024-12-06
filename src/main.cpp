@@ -5,8 +5,8 @@
 #include "camera.h"
 #include "hittable.h"
 #include "hittable_list.h"
-#include "sphere.h"
 #include "likwid-stuff.h"
+#include "sphere.h"
 
 void setup_world(hittable_list &world, camera &cam) {
   auto ground_material = make_shared<lambertian>(color(0.5, 0.5, 0.5));
@@ -114,23 +114,24 @@ int main(int argc, char **argv) {
       dynamic_schedule = true;
       break;
     case 'o':
-      if (optarg) output_filename = std::string(optarg);
+      if (optarg)
+        output_filename = std::string(optarg);
       break;
     }
   }
   if (samples_per_pixel <= 0 || width <= 0 || height <= 0 || max_depth <= 0) {
-    std::cerr
-        << "Usage: " << argv[0]
-        << " [-S samples_per_pixel] [-W width] [-H height] [-D max_depth] [-d] [-o filename]\n";
+    std::cerr << "Usage: " << argv[0]
+              << " [-S samples_per_pixel] [-W width] [-H height] [-D "
+                 "max_depth] [-d] [-o filename]\n";
     return 1;
   }
 
   const int collapse = OMP_COLLAPSE;
   std::string schedule_type = "static";
   if (dynamic_schedule) {
-	schedule_type = "dynamic";
-	const int chunk_size = 1;
-	omp_set_schedule(omp_sched_dynamic, chunk_size);
+    schedule_type = "dynamic";
+    const int chunk_size = 1;
+    omp_set_schedule(omp_sched_dynamic, chunk_size);
   }
   // Print configuration in a single line
   std::clog << "==============================================================="
@@ -138,8 +139,7 @@ int main(int argc, char **argv) {
             << std::endl;
   std::clog << "Sample: " << samples_per_pixel << ", Width: " << width
             << ", Height: " << height << ", Depth: " << max_depth
-	    << ", Schedule: " << schedule_type
-	    << ", Collapse: " << collapse;
+            << ", Schedule: " << schedule_type << ", Collapse: " << collapse;
 
   // initialize the LIKWID marker API in a serial code region once in the
   // beginning
