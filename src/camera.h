@@ -109,6 +109,11 @@ public:
           ray r = get_ray(x, y);
           pixel_color += ray_color(r, max_depth, world);
         }
+#if DEBUG
+        pixel_color = color(double(omp_get_thread_num()) * samples_per_pixel /
+                                double(omp_get_num_threads()),
+                            samples_per_pixel, samples_per_pixel);
+#endif
         image[y * image_width + x] += pixel_color;
 #if defined(LIKWID_PERFMON) && OMP_COLLAPSE
         LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
