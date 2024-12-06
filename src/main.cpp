@@ -85,13 +85,16 @@ int main(int argc, char **argv) {
   // Parse command line arguments
   // -S n: set the number of samples per pixel to n
   // -W n: set the width of the image to n
+  // -H n: set the height of the image to n
   // -D n: set the maximum depth of the ray to n
+  // -d  : set the OpenMP scheduling dynamic
   int samples_per_pixel = 32;
   int width = 512;
   int height = 288;
   int max_depth = 32;
   int c;
-  while ((c = getopt(argc, argv, "S:W:H:D:")) != -1) {
+  bool dynamic_schedule = false;
+  while ((c = getopt(argc, argv, "S:W:H:D:d")) != -1) {
     switch (c) {
     case 'S':
       samples_per_pixel = std::atoi(optarg == NULL ? "-999" : optarg);
@@ -105,6 +108,9 @@ int main(int argc, char **argv) {
     case 'D':
       max_depth = std::atoi(optarg == NULL ? "-999" : optarg);
       break;
+    case 'd':
+      dynamic_schedule = true;
+      break;
     }
   }
   if (samples_per_pixel <= 0 || width <= 0 || height <= 0 || max_depth <= 0) {
@@ -114,12 +120,21 @@ int main(int argc, char **argv) {
     return 1;
   }
 
+  const int collapse = OMP_COLLAPSE;
+  std::string schedule_type = "static";
+  if (dynamic_schedule) {
+	schedule_type = "dynamic";
+	const int chunk_size = 1;
+	omp_set_schedule(omp_sched_dynamic, chunk_size);
+  }
   // Print configuration in a single line
   std::clog << "==============================================================="
                "==========="
             << std::endl;
   std::clog << "Sample: " << samples_per_pixel << ", Width: " << width
-            << ", Height: " << height << ", Depth: " << max_depth;
+            << ", Height: " << height << ", Depth: " << max_depth
+	    << ", Schedule: " << schedule_type
+	    << ", Collapse: " << collapse;
 #pragma omp parallel
   {
     if (omp_get_thread_num() == 0)
