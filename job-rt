@@ -17,16 +17,17 @@ unset OMP_NUM_THREADS
 export PERF_COUNTER_GROUP=FLOPS_DP
 export MARKER_FLAG="-m"
 
-#for t in 256 128 64 32 16 8 4 2 1; do
 for schedule in static dynamic; do
 	echo "Experiments with $schedule without collapse"
-	for t in 256 128 64 32; do
+	for t in 256 128 64 32 16 8 4 2 1; do
+	#for t in 256 128 64 32; do
 		echo OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-$t.ppm
 		OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-$t.ppm
 	done
 
 	echo "Experiments with $schedule with collapse"
-	for t in 256 128 64 32; do
+	for t in 256 128 64 32 16 8 4 2 1; do
+	#for t in 256 128 64 32; do
 		echo OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-$t.ppm
 		OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-$t.ppm
 	done
