@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
   int max_depth = 32;
   int c;
   std::string output_filename = "image.ppm";
-  while ((c = getopt(argc, argv, "S:W:H:D:")) != -1) {
+  while ((c = getopt(argc, argv, "S:W:H:D:o:")) != -1) {
     switch (c) {
     case 'S':
       samples_per_pixel = std::atoi(optarg == NULL ? "-999" : optarg);
