@@ -2,16 +2,19 @@
 #define CAMERA_H
 
 #include "hittable.h"
+#include "likwid-stuff.h"
 #include "material.h"
 #include <chrono>
-#include <iomanip>
 #include <fstream>
+#include <iomanip>
 #include <omp.h>
-#include "likwid-stuff.h"
 #ifdef SDL2
 #include <SDL2/SDL.h>
 #endif
 #define DEBUG 0
+
+#define LOOPORDER_YX 0
+#define LOOPORDER_XY 1
 
 class camera {
 public:
@@ -31,6 +34,7 @@ public:
   double focus_dist =
       10; // Distance from camera lookfrom point to plane of focus
   std::string output_filename = "image.ppm";
+  int loop_order = LOOPORDER_YX;
 
   void write_ppm(const std::vector<color> &image) {
     // Write the image to the standard output stream
@@ -53,6 +57,12 @@ public:
     SDL_Event e;
     omp_lock_t sdl_lock;
     omp_init_lock(&sdl_lock);
+    // For display the window to prepare screen recording
+    render_on_sdl(image);
+    while (SDL_PollEvent(&e) != 0) {
+      ;
+    }
+    sleep(1);
 #endif
 #if DEBUG
     int progress = 0;
@@ -60,14 +70,19 @@ public:
 
     std::chrono::time_point<std::chrono::high_resolution_clock> start_time =
         std::chrono::high_resolution_clock::now();
+    int imax = image_width;
+    int jmax = image_height;
+    if (loop_order == LOOPORDER_YX) {
+      std::swap(imax, jmax);
+    }
 #if OMP_COLLAPSE
-#pragma omp parallel for collapse(2)
+#pragma omp parallel for collapse(2) schedule(runtime)
 #else
-#pragma omp parallel for
+#pragma omp parallel for schedule(runtime)
 #endif
-    for (int j = 0; j < image_height; j++) {
+    for (int i = 0; i < imax; i++) {
 #if defined(LIKWID_PERFMON) && !OMP_COLLAPSE
-    LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
+      LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
 #endif
 #ifdef SDL2
       if (omp_get_thread_num() == 0) {
@@ -80,20 +95,23 @@ public:
           continue;
       }
 #endif
-      for (int i = 0; i < image_width; i++) {
+      for (int j = 0; j < jmax; j++) {
 #if defined(LIKWID_PERFMON) && OMP_COLLAPSE
-    LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
+        LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
 #endif
         color pixel_color = color(0, 0, 0);
         int x = i;
         int y = j;
+        if (loop_order == LOOPORDER_YX) {
+          std::swap(x, y);
+        }
         for (int s = 0; s < samples_per_pixel; s++) {
           ray r = get_ray(x, y);
           pixel_color += ray_color(r, max_depth, world);
         }
         image[y * image_width + x] += pixel_color;
 #if defined(LIKWID_PERFMON) && OMP_COLLAPSE
-    LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
+        LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
 #endif
       }
 #ifdef SDL2
@@ -113,7 +131,7 @@ public:
       }
 #endif
 #if defined(LIKWID_PERFMON) && !OMP_COLLAPSE
-    LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
+      LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
 #endif
     }
     std::chrono::time_point<std::chrono::high_resolution_clock> end_time =

@@ -88,15 +88,13 @@ int main(int argc, char **argv) {
   // -W n: set the width of the image to n
   // -H n: set the height of the image to n
   // -D n: set the maximum depth of the ray to n
-  // -d  : set the OpenMP scheduling dynamic
   int samples_per_pixel = 32;
   int width = 512;
   int height = 288;
   int max_depth = 32;
   int c;
-  bool dynamic_schedule = false;
   std::string output_filename = "image.ppm";
-  while ((c = getopt(argc, argv, "S:W:H:D:d")) != -1) {
+  while ((c = getopt(argc, argv, "S:W:H:D:")) != -1) {
     switch (c) {
     case 'S':
       samples_per_pixel = std::atoi(optarg == NULL ? "-999" : optarg);
@@ -110,9 +108,6 @@ int main(int argc, char **argv) {
     case 'D':
       max_depth = std::atoi(optarg == NULL ? "-999" : optarg);
       break;
-    case 'd':
-      dynamic_schedule = true;
-      break;
     case 'o':
       if (optarg)
         output_filename = std::string(optarg);
@@ -122,32 +117,54 @@ int main(int argc, char **argv) {
   if (samples_per_pixel <= 0 || width <= 0 || height <= 0 || max_depth <= 0) {
     std::cerr << "Usage: " << argv[0]
               << " [-S samples_per_pixel] [-W width] [-H height] [-D "
-                 "max_depth] [-d] [-o filename]\n";
+                 "max_depth] [-o filename]\n";
     return 1;
   }
 
   const int collapse = OMP_COLLAPSE;
-  std::string schedule_type = "static";
-  if (dynamic_schedule) {
-    schedule_type = "dynamic";
-    const int chunk_size = 1;
-    omp_set_schedule(omp_sched_dynamic, chunk_size);
-  }
   // Print configuration in a single line
   std::clog << "==============================================================="
                "==========="
             << std::endl;
   std::clog << "Sample: " << samples_per_pixel << ", Width: " << width
-            << ", Height: " << height << ", Depth: " << max_depth
-            << ", Schedule: " << schedule_type << ", Collapse: " << collapse;
+            << ", Height: " << height << ", Depth: " << max_depth;
+  if (collapse) {
+    std::clog << ", Collapse: enabled";
+  } else {
+    std::clog << ", Collapse: disabled";
+  }
+
+#pragma omp parallel
+  {
+    if (omp_get_thread_num() == 0) {
+      std::clog << ", Threads: " << omp_get_num_threads();
+      omp_sched_t schedule;
+      int chunk_size;
+      omp_get_schedule(&schedule, &chunk_size);
+      if (schedule & omp_sched_static) {
+        std::clog << ", Schedule: Static, chunk size: " << chunk_size
+                  << std::endl;
+      } else if (schedule & omp_sched_dynamic) {
+        std::clog << ", Schedule: Dynamic, chunk size: " << chunk_size
+                  << std::endl;
+      } else if (schedule & omp_sched_guided) {
+        std::clog << ", Schedule: Guided, chunk size: " << chunk_size
+                  << std::endl;
+      } else if (schedule & omp_sched_auto) {
+        std::clog << ", Schedule: Auto, chunk size: " << chunk_size
+                  << std::endl;
+      } else {
+        std::clog << ", Schedule: Unknown, chunk size: " << chunk_size
+                  << std::endl;
+      }
+    }
+  }
 
   // initialize the LIKWID marker API in a serial code region once in the
   // beginning
   LIKWID_MARKER_INIT;
 #pragma omp parallel
   {
-    if (omp_get_thread_num() == 0)
-      std::clog << ", Threads: " << omp_get_num_threads() << std::endl;
     // Each thread must add itself to the Marker API, therefore must be
     // in parallel region
     LIKWID_MARKER_THREADINIT;
