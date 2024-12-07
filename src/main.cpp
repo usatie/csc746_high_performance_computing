@@ -138,6 +138,7 @@ int main(int argc, char **argv) {
   {
     if (omp_get_thread_num() == 0) {
       std::clog << ", Threads: " << omp_get_num_threads();
+      cam.nthreads = omp_get_num_threads();
       omp_sched_t schedule;
       int chunk_size;
       omp_get_schedule(&schedule, &chunk_size);

@@ -8,10 +8,6 @@
 #include <fstream>
 #include <iomanip>
 #include <omp.h>
-#ifdef SDL2
-#include <SDL2/SDL.h>
-#endif
-#define DEBUG 0
 
 #define LOOPORDER_YX 0
 #define LOOPORDER_XY 1
@@ -35,6 +31,7 @@ public:
       10; // Distance from camera lookfrom point to plane of focus
   std::string output_filename = "image.ppm";
   int loop_order = LOOPORDER_YX;
+  int nthreads = 1;
 
   void write_ppm(const std::vector<color> &image) {
     // Write the image to the standard output stream
@@ -52,22 +49,6 @@ public:
 
     std::vector<color> image(image_width * image_height);
 
-#ifdef SDL2
-    bool quit = false;
-    SDL_Event e;
-    omp_lock_t sdl_lock;
-    omp_init_lock(&sdl_lock);
-    // For display the window to prepare screen recording
-    render_on_sdl(image);
-    while (SDL_PollEvent(&e) != 0) {
-      ;
-    }
-    sleep(1);
-#endif
-#if DEBUG
-    int progress = 0;
-#endif
-
     std::chrono::time_point<std::chrono::high_resolution_clock> start_time =
         std::chrono::high_resolution_clock::now();
     int imax = image_width;
@@ -75,30 +56,17 @@ public:
     if (loop_order == LOOPORDER_YX) {
       std::swap(imax, jmax);
     }
+    std::clog << "nthreads: " << nthreads << std::endl;
+    std::vector<std::chrono::duration<double>> runtimes(nthreads);
 #if OMP_COLLAPSE
 #pragma omp parallel for collapse(2) schedule(runtime)
 #else
 #pragma omp parallel for schedule(runtime)
 #endif
     for (int i = 0; i < imax; i++) {
-#if defined(LIKWID_PERFMON) && !OMP_COLLAPSE
-      LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
-#endif
-#ifdef SDL2
-      if (omp_get_thread_num() == 0) {
-        while (SDL_PollEvent(&e) != 0) {
-          if (e.type == SDL_QUIT) {
-            quit = true;
-          }
-        }
-        if (quit)
-          continue;
-      }
-#endif
       for (int j = 0; j < jmax; j++) {
-#if defined(LIKWID_PERFMON) && OMP_COLLAPSE
-        LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
-#endif
+    std::chrono::time_point<std::chrono::high_resolution_clock> s =
+        std::chrono::high_resolution_clock::now();
         color pixel_color = color(0, 0, 0);
         int x = i;
         int y = j;
@@ -109,35 +77,11 @@ public:
           ray r = get_ray(x, y);
           pixel_color += ray_color(r, max_depth, world);
         }
-#if DEBUG
-        pixel_color = color(double(omp_get_thread_num()) * samples_per_pixel /
-                                double(omp_get_num_threads()),
-                            samples_per_pixel, samples_per_pixel);
-#endif
         image[y * image_width + x] += pixel_color;
-#if defined(LIKWID_PERFMON) && OMP_COLLAPSE
-        LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
-#endif
+    std::chrono::time_point<std::chrono::high_resolution_clock> e =
+        std::chrono::high_resolution_clock::now();
+    	runtimes[omp_get_thread_num()] += (e-s);
       }
-#ifdef SDL2
-      if (omp_test_lock(&sdl_lock)) {
-        render_on_sdl(image);
-        omp_unset_lock(&sdl_lock);
-      }
-#endif
-#if DEBUG
-#pragma omp critical
-      {
-        progress += image_width;
-        if (progress % 2 == 0)
-          std::clog << "\rPixels remaining: "
-                    << (image_height * image_width - progress) << ' '
-                    << std::flush;
-      }
-#endif
-#if defined(LIKWID_PERFMON) && !OMP_COLLAPSE
-      LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
-#endif
     }
     std::chrono::time_point<std::chrono::high_resolution_clock> end_time =
         std::chrono::high_resolution_clock::now();
@@ -148,19 +92,10 @@ public:
     std::clog << "Rays Simulated per second: "
               << static_cast<int>(total_rays_simulated / elapsed_time.count())
               << std::endl;
-
-#ifdef SDL2
-    while (!quit) {
-      while (SDL_PollEvent(&e) != 0) {
-        if (e.type == SDL_QUIT) {
-          quit = true;
-        }
-      }
-      render_on_sdl(image);
+    for (int i = 0; i < nthreads; i++) {
+	std::clog << "(#" << i << "): " << runtimes[i].count() << "s" << std::endl;
     }
-    omp_destroy_lock(&sdl_lock);
-    cleanup();
-#endif
+
     write_ppm(image);
   }
 
@@ -175,35 +110,6 @@ private:
   vec3 u, v, w;               // Camera frame basis vectors
   vec3 defocus_disk_u;        // Defocus disk horizontal radius
   vec3 defocus_disk_v;        // Defocus disk vertical radius
-#ifdef SDL2
-  /* SDL2 Rendering Parameters */
-  SDL_Window *window;     // SDL window
-  SDL_Renderer *renderer; // SDL renderer
-  SDL_Texture *texture;   // SDL texture
-  void render_on_sdl(const std::vector<color> &image) {
-    // Convert to SDL surface format (RGB 8-bit per channel)
-    std::vector<uint8_t> pixels(image_width * image_height * 3);
-    for (int j = 0; j < image_height; j++) {
-      for (int i = 0; i < image_width; ++i) {
-        color pixel_color = image[j * image_width + i] * pixel_samples_scale;
-        sdl_write_color(&pixels[3 * (j * image_width + i)], pixel_color);
-      }
-    }
-    // Update SDL texture with ray traced image
-    SDL_UpdateTexture(texture, nullptr, pixels.data(), image_width * 3);
-
-    // Clear renderer and copy texture to the window
-    SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, texture, nullptr, nullptr);
-    SDL_RenderPresent(renderer);
-  }
-  void cleanup() {
-    SDL_DestroyTexture(texture);
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-  }
-#endif
 
   void initialize() {
     image_height = static_cast<int>(image_width / aspect_ratio);
@@ -245,44 +151,6 @@ private:
     defocus_disk_u = defocus_radius * u;
     defocus_disk_v = defocus_radius * v;
 
-#ifdef SDL2
-    // Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-      std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError()
-                << std::endl;
-      return;
-    }
-
-    window = SDL_CreateWindow("Ray Tracing", SDL_WINDOWPOS_UNDEFINED,
-                              SDL_WINDOWPOS_UNDEFINED, image_width,
-                              image_height, SDL_WINDOW_SHOWN);
-    if (!window) {
-      std::cerr << "Window could not be created! SDL_Error: " << SDL_GetError()
-                << std::endl;
-      return;
-    }
-
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) {
-      std::cerr << "Renderer could not be created! SDL_Error: "
-                << SDL_GetError() << std::endl;
-      SDL_DestroyWindow(window);
-      SDL_Quit();
-      return;
-    }
-
-    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGB24,
-                                SDL_TEXTUREACCESS_STREAMING, image_width,
-                                image_height);
-    if (!texture) {
-      std::cerr << "Texture could not be created! SDL_Error: " << SDL_GetError()
-                << std::endl;
-      SDL_DestroyRenderer(renderer);
-      SDL_DestroyWindow(window);
-      SDL_Quit();
-      return;
-    }
-#endif
   }
 
   ray get_ray(int i, int j) const {
