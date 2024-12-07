@@ -91,7 +91,7 @@ public:
     std::clog << "Rays Simulated per second: "
               << static_cast<int>(total_rays_simulated / elapsed_time.count())
               << std::endl;
-    std::chrono::duration<double> min = runtimes[0], sum, max;
+    std::chrono::duration<double> min = runtimes[0], sum(0), max(0);
     for (int i = 0; i < nthreads; i++) {
 	std::clog << "(#" << i << "): " << runtimes[i].count() << "s" << std::endl;
 	min = std::min(min, runtimes[i]);
