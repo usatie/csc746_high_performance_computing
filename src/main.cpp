@@ -123,9 +123,6 @@ int main(int argc, char **argv) {
 
   const int collapse = OMP_COLLAPSE;
   // Print configuration in a single line
-  std::clog << "==============================================================="
-               "==========="
-            << std::endl;
   std::clog << "Sample: " << samples_per_pixel << ", Width: " << width
             << ", Height: " << height << ", Depth: " << max_depth;
   if (collapse) {

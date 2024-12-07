@@ -56,7 +56,6 @@ public:
     if (loop_order == LOOPORDER_YX) {
       std::swap(imax, jmax);
     }
-    std::clog << "nthreads: " << nthreads << std::endl;
     std::vector<std::chrono::duration<double>> runtimes(nthreads);
 #if OMP_COLLAPSE
 #pragma omp parallel for collapse(2) schedule(runtime)
@@ -92,9 +91,16 @@ public:
     std::clog << "Rays Simulated per second: "
               << static_cast<int>(total_rays_simulated / elapsed_time.count())
               << std::endl;
+    std::chrono::duration<double> min = runtimes[0], sum, max;
     for (int i = 0; i < nthreads; i++) {
 	std::clog << "(#" << i << "): " << runtimes[i].count() << "s" << std::endl;
+	min = std::min(min, runtimes[i]);
+	max = std::max(max, runtimes[i]);
+	sum += runtimes[i];
     }
+    std::clog << "Min: " << min.count() << "s"
+		<< " | Max: " << max.count() << "s"
+    		<< " | Avg: " << sum.count() / nthreads << "s" << std::endl;
 
     write_ppm(image);
   }
