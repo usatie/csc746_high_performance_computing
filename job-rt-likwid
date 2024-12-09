@@ -13,21 +13,21 @@
 export OMP_PLACES=threads
 export OMP_PROC_BIND=spread
 unset OMP_NUM_THREADS
+concurrency_levels=(1 2 4 8 16 32 64 128 256)
 
 export PERF_COUNTER_GROUP=FLOPS_DP
 export MARKER_FLAG="-m"
 
-#for t in 256 128 64 32 16 8 4 2 1; do
 for schedule in static dynamic; do
 	echo "Experiments with $schedule without collapse"
-	for t in 256 128 64 32; do
+	for t in ${concurrency_levels[@]}; do
 		let maxcore=$t-1
 		echo OMP_SCHEDULE=$schedule likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-$t.ppm
 		OMP_SCHEDULE=$schedule likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-$t.ppm
 	done
 
 	echo "Experiments with $schedule with collapse"
-	for t in 256 128 64 32; do
+	for t in ${concurrency_levels[@]}; do
 		let maxcore=$t-1
 		echo OMP_SCHEDULE=$schedule likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-$t.ppm
 		OMP_SCHEDULE=$schedule likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-$maxcore ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-$t.ppm
