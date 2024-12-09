@@ -20,7 +20,6 @@ for t in ${concurrency_levels[@]}; do
 	echo OMP_SCHEDULE=static OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-$t.ppm
 	OMP_SCHEDULE=static OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-$t.ppm
 done
-exit
 for schedule in 'dynamic,1' 'dynamic,4' 'dynamic,16' 'dynamic,64'; do
 	echo "Experiments with $schedule without collapse"
 	for t in ${concurrency_levels[@]}; do
