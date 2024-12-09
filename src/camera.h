@@ -15,11 +15,10 @@
 class camera {
 public:
   /* Public Camera Parameters Here */
-  double aspect_ratio = 1.0;         // Ratio of image width over height
-  int image_width = 100;             // Rendered image width
-  int samples_per_pixel = 10;        // Count of random samples for each pixel
-  int max_depth = 10;                // Maximum number of ray bounces into scene
-  uint64_t total_rays_simulated = 0; // Total number of rays simulated
+  double aspect_ratio = 1.0;  // Ratio of image width over height
+  int image_width = 100;      // Rendered image width
+  int samples_per_pixel = 10; // Count of random samples for each pixel
+  int max_depth = 10;         // Maximum number of ray bounces into scene
 
   double vfov = 90.0;                // Vertical view angle (filed of view)
   point3 lookfrom = point3(0, 0, 0); // Point camera is looking from
@@ -87,10 +86,6 @@ public:
     std::chrono::duration<double> elapsed_time = end_time - start_time;
     std::clog << std::endl;
     std::clog << "Elapsed time: " << elapsed_time.count() << " " << std::endl;
-    std::clog << "Total rays simulated: " << total_rays_simulated << std::endl;
-    std::clog << "Rays Simulated per second: "
-              << static_cast<int>(total_rays_simulated / elapsed_time.count())
-              << std::endl;
     std::chrono::duration<double> min = runtimes[0], sum(0), max(0);
     for (int i = 0; i < nthreads; i++) {
       std::clog << "(#" << i << "): " << runtimes[i].count() << "s"
@@ -184,8 +179,6 @@ private:
     if (depth <= 0)
       return color(0, 0, 0);
     hit_record rec;
-#pragma omp atomic
-    total_rays_simulated++;
 
     if (world.hit(r, interval(0.001, infinity), rec)) {
       ray scattered;
