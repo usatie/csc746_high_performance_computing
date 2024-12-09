@@ -79,6 +79,9 @@ void setup_world(hittable_list &world, camera &cam) {
   cam.focus_dist = 10.0;
 }
 
+// omp_sched_monotonic = 0x80000000u can be combined with these kinds
+#define OMP_SCHED_MASK 0x7
+
 int main(int argc, char **argv) {
   hittable_list world;
   camera cam;
@@ -136,23 +139,23 @@ int main(int argc, char **argv) {
     if (omp_get_thread_num() == 0) {
       std::clog << ", Threads: " << omp_get_num_threads();
       cam.nthreads = omp_get_num_threads();
-      omp_sched_t schedule;
+      omp_sched_t kind;
       int chunk_size;
-      omp_get_schedule(&schedule, &chunk_size);
-      if (schedule & omp_sched_static) {
+      omp_get_schedule(&kind, &chunk_size);
+      if ((kind & OMP_SCHED_MASK) == omp_sched_static) {
         std::clog << ", Schedule: Static, chunk size: " << chunk_size
                   << std::endl;
-      } else if (schedule & omp_sched_dynamic) {
+      } else if ((kind & OMP_SCHED_MASK) == omp_sched_dynamic) {
         std::clog << ", Schedule: Dynamic, chunk size: " << chunk_size
                   << std::endl;
-      } else if (schedule & omp_sched_guided) {
+      } else if ((kind & OMP_SCHED_MASK) == omp_sched_guided) {
         std::clog << ", Schedule: Guided, chunk size: " << chunk_size
                   << std::endl;
-      } else if (schedule & omp_sched_auto) {
+      } else if ((kind & OMP_SCHED_MASK) == omp_sched_auto) {
         std::clog << ", Schedule: Auto, chunk size: " << chunk_size
                   << std::endl;
       } else {
-        std::clog << ", Schedule: Unknown, chunk size: " << chunk_size
+        std::clog << ", Schedule: Unknown(" << kind << "), chunk size: " << chunk_size
                   << std::endl;
       }
     }
