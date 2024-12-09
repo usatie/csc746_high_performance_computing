@@ -55,7 +55,6 @@ public:
     if (loop_order == LOOPORDER_YX) {
       std::swap(imax, jmax);
     }
-    std::vector<std::chrono::duration<double>> runtimes(nthreads);
 #if OMP_COLLAPSE
 #pragma omp parallel for collapse(2) schedule(runtime)
 #else
@@ -63,8 +62,6 @@ public:
 #endif
     for (int i = 0; i < imax; i++) {
       for (int j = 0; j < jmax; j++) {
-        std::chrono::time_point<std::chrono::high_resolution_clock> s =
-            std::chrono::high_resolution_clock::now();
         color pixel_color = color(0, 0, 0);
         int x = i;
         int y = j;
@@ -76,9 +73,6 @@ public:
           pixel_color += ray_color(r, max_depth, world);
         }
         image[y * image_width + x] += pixel_color;
-        std::chrono::time_point<std::chrono::high_resolution_clock> e =
-            std::chrono::high_resolution_clock::now();
-        runtimes[omp_get_thread_num()] += (e - s);
       }
     }
     std::chrono::time_point<std::chrono::high_resolution_clock> end_time =
@@ -86,17 +80,6 @@ public:
     std::chrono::duration<double> elapsed_time = end_time - start_time;
     std::clog << std::endl;
     std::clog << "Elapsed time: " << elapsed_time.count() << " " << std::endl;
-    std::chrono::duration<double> min = runtimes[0], sum(0), max(0);
-    for (int i = 0; i < nthreads; i++) {
-      std::clog << "(#" << i << "): " << runtimes[i].count() << "s"
-                << std::endl;
-      min = std::min(min, runtimes[i]);
-      max = std::max(max, runtimes[i]);
-      sum += runtimes[i];
-    }
-    std::clog << "Min: " << min.count() << "s"
-              << " | Max: " << max.count() << "s"
-              << " | Avg: " << sum.count() / nthreads << "s" << std::endl;
 
     write_ppm(image);
   }

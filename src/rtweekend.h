@@ -25,8 +25,8 @@ inline double degrees_to_radians(double degrees) {
 
 inline double random_double() {
   // Returns a random real in [0, 1).
-  static std::uniform_real_distribution<double> distribution(0.0, 1.0);
-  static std::mt19937 generator;
+  thread_local std::uniform_real_distribution<double> distribution(0.0, 1.0);
+  thread_local std::mt19937 generator;
   return distribution(generator);
 }
 
