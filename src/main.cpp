@@ -97,7 +97,8 @@ int main(int argc, char **argv) {
   int max_depth = 32;
   int c;
   std::string output_filename = "image.ppm";
-  while ((c = getopt(argc, argv, "S:W:H:D:o:")) != -1) {
+  int loop_order = LOOPORDER_YX;
+  while ((c = getopt(argc, argv, "S:W:H:D:o:l:")) != -1) {
     switch (c) {
     case 'S':
       samples_per_pixel = std::atoi(optarg == NULL ? "-999" : optarg);
@@ -115,12 +116,20 @@ int main(int argc, char **argv) {
       if (optarg)
         output_filename = std::string(optarg);
       break;
+    case 'l':
+      if (std::string(optarg) == "XY")
+	      loop_order = LOOPORDER_XY;
+      else if (std::string(optarg) == "YX")
+	      loop_order = LOOPORDER_YX;
+      else
+	      loop_order = -999;
+      break;
     }
   }
-  if (samples_per_pixel <= 0 || width <= 0 || height <= 0 || max_depth <= 0) {
+  if (samples_per_pixel <= 0 || width <= 0 || height <= 0 || max_depth <= 0 || loop_order < 0) {
     std::cerr << "Usage: " << argv[0]
               << " [-S samples_per_pixel] [-W width] [-H height] [-D "
-                 "max_depth] [-o filename]\n";
+                 "max_depth] [-o filename] [-l loop_order]\n";
     return 1;
   }
 
@@ -132,6 +141,11 @@ int main(int argc, char **argv) {
     std::clog << ", Collapse: enabled";
   } else {
     std::clog << ", Collapse: disabled";
+  }
+  if (loop_order == LOOPORDER_YX) {
+    std::clog << ", Loop Order: YX";
+  } else if (loop_order = LOOPORDER_XY) {
+    std::clog << ", Loop Order: XY";
   }
 
 #pragma omp parallel
@@ -178,6 +192,7 @@ int main(int argc, char **argv) {
   cam.max_depth = max_depth;
   cam.aspect_ratio = double(width) / double(height);
   cam.output_filename = output_filename;
+  cam.loop_order = loop_order;
 
   cam.render(world);
 

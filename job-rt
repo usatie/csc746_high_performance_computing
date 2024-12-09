@@ -15,23 +15,25 @@ export OMP_PROC_BIND=spread
 unset OMP_NUM_THREADS
 concurrency_levels=(1 2 4 8 16 32 64 128 256)
 
-for t in ${concurrency_levels[@]}; do
-	echo "------------------------------------------------------------------------------------------------------------------------"
-	echo OMP_SCHEDULE=static OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-$t.ppm
-	OMP_SCHEDULE=static OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-$t.ppm
-done
-for schedule in 'dynamic,1' 'dynamic,4' 'dynamic,16' 'dynamic,64' 'guided' 'auto'; do
-	echo "Experiments with $schedule without collapse"
+for loop_order in YX XY; do
 	for t in ${concurrency_levels[@]}; do
 		echo "------------------------------------------------------------------------------------------------------------------------"
-		echo OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/$schedule-image-$t.ppm
-		OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/$schedule-image-$t.ppm
+		echo OMP_SCHEDULE=static OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-$t.ppm -l $loop_order
+		OMP_SCHEDULE=static OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-$t.ppm -l $loop_order
 	done
+	for schedule in 'dynamic,1' 'dynamic,4' 'dynamic,16' 'dynamic,64' 'guided' 'auto'; do
+		echo "Experiments with $schedule without collapse"
+		for t in ${concurrency_levels[@]}; do
+			echo "------------------------------------------------------------------------------------------------------------------------"
+			echo OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/$schedule-image-$t.ppm -l $loop_order
+			OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/$schedule-image-$t.ppm -l $loop_order
+		done
 
-	echo "Experiments with $schedule with collapse"
-	for t in ${concurrency_levels[@]}; do
-		echo "------------------------------------------------------------------------------------------------------------------------"
-		echo OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/$schedule-collapse-image-$t.ppm
-		OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/$schedule-collapse-image-$t.ppm
+		echo "Experiments with $schedule with collapse"
+		for t in ${concurrency_levels[@]}; do
+			echo "------------------------------------------------------------------------------------------------------------------------"
+			echo OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/$schedule-collapse-image-$t.ppm -l $loop_order
+			OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/$schedule-collapse-image-$t.ppm -l $loop_order
+		done
 	done
 done

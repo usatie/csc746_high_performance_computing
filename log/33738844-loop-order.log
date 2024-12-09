@@ -1,0 +1,1194 @@
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 1, Schedule: Static, chunk size: 0
+
+Elapsed time: 20.0423 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 2, Schedule: Static, chunk size: 0
+
+Elapsed time: 13.4814 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 4, Schedule: Static, chunk size: 0
+
+Elapsed time: 8.3872 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 8, Schedule: Static, chunk size: 0
+
+Elapsed time: 5.34055 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 16, Schedule: Static, chunk size: 0
+
+Elapsed time: 3.84429 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 32, Schedule: Static, chunk size: 0
+
+Elapsed time: 2.69565 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 64, Schedule: Static, chunk size: 0
+
+Elapsed time: 1.84905 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 128, Schedule: Static, chunk size: 0
+
+Elapsed time: 1.29145 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 256, Schedule: Static, chunk size: 0
+
+Elapsed time: 1.06016 
+Experiments with dynamic,1 without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 1, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 19.8552 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 2, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 12.4674 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 4, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 7.04346 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 8, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 4.39807 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 16, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.64357 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.51801 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.71713 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.31912 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.07372 
+Experiments with dynamic,1 with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 1, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 19.9326 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 2, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 12.0412 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 4, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 6.84178 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 8, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 4.49976 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 16, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.97222 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.67365 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.77767 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.31643 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.06464 
+Experiments with dynamic,4 without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 1, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 19.9209 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 2, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 12.4352 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 4, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 7.15206 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 8, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 4.47791 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 16, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 3.72908 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 32, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 2.64572 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 64, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.83254 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 128, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.48344 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 256, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.53265 
+Experiments with dynamic,4 with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 1, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 19.9332 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 2, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 12.0797 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 4, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 6.86744 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 8, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 4.40906 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 16, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 3.76218 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 32, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 2.52832 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 64, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.71959 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 128, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.32605 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 256, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.06633 
+Experiments with dynamic,16 without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 1, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 19.9869 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 2, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 12.5842 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 4, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 7.4738 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 8, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 4.94459 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 16, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 3.73383 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 32, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 3.39246 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 64, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 2.99528 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 128, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 2.71883 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 256, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 3.43819 
+Experiments with dynamic,16 with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 1, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 20.0194 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 2, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 12.1805 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 4, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 6.95969 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 8, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 4.34655 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 16, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 3.62457 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 32, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 2.48721 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 64, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 1.73016 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 128, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 1.32163 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 256, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 0.926121 
+Experiments with dynamic,64 without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 1, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 19.9269 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 2, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 12.7978 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 4, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 8.12247 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 8, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 8.01292 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 16, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 7.26277 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 32, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 7.2004 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 64, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 6.29651 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 128, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 6.03753 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 256, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 10.3283 
+Experiments with dynamic,64 with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 1, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 19.9428 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 2, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 12.3199 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 4, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 7.03376 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 8, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 4.35672 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 16, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 3.59456 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 32, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 2.48996 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 64, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 1.73349 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 128, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 1.3326 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 256, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 0.927688 
+Experiments with guided without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 1, Schedule: Guided, chunk size: 1
+
+Elapsed time: 19.8975 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 2, Schedule: Guided, chunk size: 1
+
+Elapsed time: 12.4519 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 4, Schedule: Guided, chunk size: 1
+
+Elapsed time: 7.11539 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 8, Schedule: Guided, chunk size: 1
+
+Elapsed time: 4.44107 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 16, Schedule: Guided, chunk size: 1
+
+Elapsed time: 3.56609 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 32, Schedule: Guided, chunk size: 1
+
+Elapsed time: 2.53845 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 64, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.79431 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 128, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.35794 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 256, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.13226 
+Experiments with guided with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 1, Schedule: Guided, chunk size: 1
+
+Elapsed time: 19.9786 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 2, Schedule: Guided, chunk size: 1
+
+Elapsed time: 12.4266 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 4, Schedule: Guided, chunk size: 1
+
+Elapsed time: 7.06762 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 8, Schedule: Guided, chunk size: 1
+
+Elapsed time: 4.3758 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 16, Schedule: Guided, chunk size: 1
+
+Elapsed time: 3.57395 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 32, Schedule: Guided, chunk size: 1
+
+Elapsed time: 2.50186 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 64, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.74081 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 128, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.30568 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 256, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.06697 
+Experiments with auto without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 1, Schedule: Auto, chunk size: 1
+
+Elapsed time: 19.9603 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 2, Schedule: Auto, chunk size: 1
+
+Elapsed time: 13.3695 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 4, Schedule: Auto, chunk size: 1
+
+Elapsed time: 8.44381 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 8, Schedule: Auto, chunk size: 1
+
+Elapsed time: 5.47899 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 16, Schedule: Auto, chunk size: 1
+
+Elapsed time: 3.83849 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 32, Schedule: Auto, chunk size: 1
+
+Elapsed time: 2.6969 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 64, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.85164 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 128, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.29266 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: YX, Threads: 256, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.06266 
+Experiments with auto with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-1.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 1, Schedule: Auto, chunk size: 1
+
+Elapsed time: 20.3323 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-2.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 2, Schedule: Auto, chunk size: 1
+
+Elapsed time: 13.3636 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-4.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 4, Schedule: Auto, chunk size: 1
+
+Elapsed time: 8.51833 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-8.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 8, Schedule: Auto, chunk size: 1
+
+Elapsed time: 5.31038 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-16.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 16, Schedule: Auto, chunk size: 1
+
+Elapsed time: 3.81852 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-32.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 32, Schedule: Auto, chunk size: 1
+
+Elapsed time: 2.68475 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-64.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 64, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.88512 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-128.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 128, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.3755 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-256.ppm -l YX
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: YX, Threads: 256, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.1229 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 1, Schedule: Static, chunk size: 0
+
+Elapsed time: 19.8546 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 2, Schedule: Static, chunk size: 0
+
+Elapsed time: 12.6293 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 4, Schedule: Static, chunk size: 0
+
+Elapsed time: 7.71169 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 8, Schedule: Static, chunk size: 0
+
+Elapsed time: 4.98921 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 16, Schedule: Static, chunk size: 0
+
+Elapsed time: 3.86556 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 32, Schedule: Static, chunk size: 0
+
+Elapsed time: 2.71393 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 64, Schedule: Static, chunk size: 0
+
+Elapsed time: 1.8451 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 128, Schedule: Static, chunk size: 0
+
+Elapsed time: 1.32001 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=static OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 256, Schedule: Static, chunk size: 0
+
+Elapsed time: 1.04938 
+Experiments with dynamic,1 without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 19.9607 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 12.4124 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 7.0598 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 4.41003 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.63628 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.50534 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.74755 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.29912 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.06995 
+Experiments with dynamic,1 with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 19.9701 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 12.0247 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 6.86868 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 4.45194 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.94514 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.67049 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.7742 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.28842 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-collapse-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.04444 
+Experiments with dynamic,4 without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 19.9546 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 12.4086 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 7.12912 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 4.46883 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 3.66847 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 2.61396 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.82397 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.37576 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.26623 
+Experiments with dynamic,4 with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 19.9175 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 12.059 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 6.87038 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 4.40301 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 3.67687 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 2.54719 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.74199 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.27703 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,4 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,4-collapse-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 4
+
+Elapsed time: 1.04413 
+Experiments with dynamic,16 without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 19.863 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 12.4308 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 7.48568 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 4.74161 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 3.72108 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 2.7824 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 2.2138 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 1.89385 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 2.0669 
+Experiments with dynamic,16 with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 19.8294 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 12.2025 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 6.98074 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 4.36838 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 3.54506 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 2.5367 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 1.74425 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 1.28294 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,16 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,16-collapse-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 16
+
+Elapsed time: 0.910449 
+Experiments with dynamic,64 without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 19.9797 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 12.5102 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 7.34335 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 5.1202 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 5.01247 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 4.37679 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 4.18993 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 3.61682 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 6.1104 
+Experiments with dynamic,64 with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 19.9295 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 12.341 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 7.07333 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 4.39001 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 3.55113 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 2.54392 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 1.7565 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 1.29568 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,64 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,64-collapse-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 64
+
+Elapsed time: 0.923117 
+Experiments with guided without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 1, Schedule: Guided, chunk size: 1
+
+Elapsed time: 19.8916 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 2, Schedule: Guided, chunk size: 1
+
+Elapsed time: 12.4934 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 4, Schedule: Guided, chunk size: 1
+
+Elapsed time: 7.1188 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 8, Schedule: Guided, chunk size: 1
+
+Elapsed time: 4.43512 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 16, Schedule: Guided, chunk size: 1
+
+Elapsed time: 3.58747 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 32, Schedule: Guided, chunk size: 1
+
+Elapsed time: 2.5479 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 64, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.75772 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 128, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.30489 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/guided-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 256, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.1022 
+Experiments with guided with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Guided, chunk size: 1
+
+Elapsed time: 19.8663 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Guided, chunk size: 1
+
+Elapsed time: 12.4641 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Guided, chunk size: 1
+
+Elapsed time: 7.10722 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Guided, chunk size: 1
+
+Elapsed time: 4.39665 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Guided, chunk size: 1
+
+Elapsed time: 3.52908 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Guided, chunk size: 1
+
+Elapsed time: 2.51521 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.73286 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.28156 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=guided OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/guided-collapse-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Guided, chunk size: 1
+
+Elapsed time: 1.05822 
+Experiments with auto without collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=1 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 1, Schedule: Auto, chunk size: 1
+
+Elapsed time: 19.9721 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=2 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 2, Schedule: Auto, chunk size: 1
+
+Elapsed time: 12.6009 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=4 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 4, Schedule: Auto, chunk size: 1
+
+Elapsed time: 7.7799 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=8 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 8, Schedule: Auto, chunk size: 1
+
+Elapsed time: 5.13313 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=16 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 16, Schedule: Auto, chunk size: 1
+
+Elapsed time: 3.86508 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 32, Schedule: Auto, chunk size: 1
+
+Elapsed time: 2.76723 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 64, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.84802 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 128, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.31952 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/auto-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Loop Order: XY, Threads: 256, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.05145 
+Experiments with auto with collapse
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-1.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Auto, chunk size: 1
+
+Elapsed time: 19.8516 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-2.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Auto, chunk size: 1
+
+Elapsed time: 12.519 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-4.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Auto, chunk size: 1
+
+Elapsed time: 7.6852 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-8.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Auto, chunk size: 1
+
+Elapsed time: 4.96228 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-16.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Auto, chunk size: 1
+
+Elapsed time: 3.83251 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-32.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Auto, chunk size: 1
+
+Elapsed time: 2.75582 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-64.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.83334 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-128.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.31439 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=auto OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/auto-collapse-image-256.ppm -l XY
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Auto, chunk size: 1
+
+Elapsed time: 1.05211 
