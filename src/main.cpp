@@ -8,15 +8,15 @@
 #include "likwid-stuff.h"
 #include "sphere.h"
 
-void setup_world(hittable_list &world, camera &cam) {
+void setup_world(hittable_list &world, camera &cam, int sphere_grid_size) {
   auto ground_material = make_shared<lambertian>(color(0.5, 0.5, 0.5));
   world.add(make_shared<sphere>(point3(0, -1000, 0), 1000, ground_material));
 
   std::vector<point3> large_sphere_centers(
       {point3(0, 1, 0), point3(-4, 1, 0), point3(4, 1, 0)});
   std::vector<point3> centers;
-  for (int a = -11; a < 11; a++) {
-    for (int b = -11; b < 11; b++) {
+  for (int a = -sphere_grid_size; a < sphere_grid_size; a++) {
+    for (int b = -sphere_grid_size; b < sphere_grid_size; b++) {
       auto choose_mat = random_double();
       point3 center(a + 0.9 * random_double(), 0.2, b + 0.9 * random_double());
       // Only add a sphere if it is not too close to another one.
@@ -98,7 +98,8 @@ int main(int argc, char **argv) {
   int c;
   std::string output_filename = "image.ppm";
   int loop_order = LOOPORDER_YX;
-  while ((c = getopt(argc, argv, "S:W:H:D:o:l:")) != -1) {
+  int sphere_grid_size = 11;
+  while ((c = getopt(argc, argv, "S:W:H:D:o:l:g:")) != -1) {
     switch (c) {
     case 'S':
       samples_per_pixel = std::atoi(optarg == NULL ? "-999" : optarg);
@@ -124,19 +125,21 @@ int main(int argc, char **argv) {
       else
 	      loop_order = -999;
       break;
+    case 'g':
+      sphere_grid_size = std::atoi(optarg == NULL ? "-999" : optarg);
     }
   }
-  if (samples_per_pixel <= 0 || width <= 0 || height <= 0 || max_depth <= 0 || loop_order < 0) {
+  if (samples_per_pixel <= 0 || width <= 0 || height <= 0 || max_depth <= 0 || loop_order < 0 || sphere_grid_size <= 0) {
     std::cerr << "Usage: " << argv[0]
               << " [-S samples_per_pixel] [-W width] [-H height] [-D "
-                 "max_depth] [-o filename] [-l loop_order]\n";
+                 "max_depth] [-o filename] [-l loop_order] [-g sphere_grid_size]\n";
     return 1;
   }
 
   const int collapse = OMP_COLLAPSE;
   // Print configuration in a single line
   std::clog << "Sample: " << samples_per_pixel << ", Width: " << width
-            << ", Height: " << height << ", Depth: " << max_depth;
+            << ", Height: " << height << ", Depth: " << max_depth << "Sphere Grid Size: " << sphere_grid_size;
   if (collapse) {
     std::clog << ", Collapse: enabled";
   } else {
@@ -186,7 +189,8 @@ int main(int argc, char **argv) {
     // Register region name
     LIKWID_MARKER_REGISTER(MY_MARKER_REGION_NAME);
   }
-  setup_world(world, cam);
+  setup_world(world, cam, sphere_grid_size);
+  std::clog << "Objects.size(): " << world.objects.size() << std::endl;
   cam.samples_per_pixel = samples_per_pixel;
   cam.image_width = width;
   cam.max_depth = max_depth;
