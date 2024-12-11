@@ -58,7 +58,10 @@ def plot_speedup_chart(df, complexities, title="Speedup Comparison"):
         all_threads.update(threads)
 
         plt.plot(
-            threads, speedups, PLOT_FORMATS[idx], label=f"Scene-Complexity-{complexity}"
+            threads,
+            speedups,
+            PLOT_FORMATS[idx],
+            label=f"Scene-Complexity-{complexity} ({4 * complexity * complexity} spheres)",
         )
 
     # Sort threads to create a clean ideal speedup line
@@ -83,7 +86,9 @@ def plot_speedup_chart(df, complexities, title="Speedup Comparison"):
 
 
 if __name__ == "__main__":
-    data_file = "parsed_data.csv"  # Update this to your actual parsed CSV file path
+    data_file = (
+        "data/scene-complexity.csv"  # Update this to your actual parsed CSV file path
+    )
     df = load_data(data_file)
 
     # Create chart with the three complexities and ideal speedup
