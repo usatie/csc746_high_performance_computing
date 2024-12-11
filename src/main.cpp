@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <unistd.h> // getopt
 // After including rtweekend.h, we can include the other headers.
+#include "bvh.h"
 #include "camera.h"
 #include "hittable.h"
 #include "hittable_list.h"
@@ -64,6 +65,7 @@ void setup_world(hittable_list &world, camera &cam, int sphere_grid_size) {
 
   auto material3 = make_shared<metal>(color(0.7, 0.6, 0.5), 0.0);
   world.add(make_shared<sphere>(point3(4, 1, 0), 1.0, material3));
+  world = hittable_list(make_shared<bvh_node>(world));
 
   cam.aspect_ratio = 16.0 / 9.0;
   cam.image_width = 1200;
@@ -119,27 +121,30 @@ int main(int argc, char **argv) {
       break;
     case 'l':
       if (std::string(optarg) == "XY")
-	      loop_order = LOOPORDER_XY;
+        loop_order = LOOPORDER_XY;
       else if (std::string(optarg) == "YX")
-	      loop_order = LOOPORDER_YX;
+        loop_order = LOOPORDER_YX;
       else
-	      loop_order = -999;
+        loop_order = -999;
       break;
     case 'g':
       sphere_grid_size = std::atoi(optarg == NULL ? "-999" : optarg);
     }
   }
-  if (samples_per_pixel <= 0 || width <= 0 || height <= 0 || max_depth <= 0 || loop_order < 0 || sphere_grid_size <= 0) {
-    std::cerr << "Usage: " << argv[0]
-              << " [-S samples_per_pixel] [-W width] [-H height] [-D "
-                 "max_depth] [-o filename] [-l loop_order] [-g sphere_grid_size]\n";
+  if (samples_per_pixel <= 0 || width <= 0 || height <= 0 || max_depth <= 0 ||
+      loop_order < 0 || sphere_grid_size <= 0) {
+    std::cerr
+        << "Usage: " << argv[0]
+        << " [-S samples_per_pixel] [-W width] [-H height] [-D "
+           "max_depth] [-o filename] [-l loop_order] [-g sphere_grid_size]\n";
     return 1;
   }
 
   const int collapse = OMP_COLLAPSE;
   // Print configuration in a single line
   std::clog << "Sample: " << samples_per_pixel << ", Width: " << width
-            << ", Height: " << height << ", Depth: " << max_depth << "Sphere Grid Size: " << sphere_grid_size;
+            << ", Height: " << height << ", Depth: " << max_depth
+            << "Sphere Grid Size: " << sphere_grid_size;
   if (collapse) {
     std::clog << ", Collapse: enabled";
   } else {
@@ -172,8 +177,8 @@ int main(int argc, char **argv) {
         std::clog << ", Schedule: Auto, chunk size: " << chunk_size
                   << std::endl;
       } else {
-        std::clog << ", Schedule: Unknown(" << kind << "), chunk size: " << chunk_size
-                  << std::endl;
+        std::clog << ", Schedule: Unknown(" << kind
+                  << "), chunk size: " << chunk_size << std::endl;
       }
     }
   }
