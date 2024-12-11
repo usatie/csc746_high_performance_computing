@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import os
 
 RESULT_DIR = "images/"
-PLOT_FORMATS = ["r-o", "b-x", "g-^", "k--"]
+PLOT_FORMATS = ["r-o", "b-x", "g-^", "m-+", "c-*", "y-s", "k-d"]
 
 
 def load_data(file_path):
@@ -25,7 +25,7 @@ def load_data(file_path):
 
 def compute_speedup_for_complexity(df, complexity):
     # Filter rows for the given complexity
-    cdf = df[df["Objects.size()"] == complexity].copy()
+    cdf = df[df["Sphere Grid Size"] == complexity].copy()
     # Ensure sorting by Threads to maintain a consistent x-axis
     cdf.sort_values(by="Threads", inplace=True)
 
@@ -70,6 +70,10 @@ def plot_speedup_chart(df, complexities, title="Speedup Comparison"):
     ideal_speedup = all_threads  # since at 1 thread speedup=1, at 2 threads=2, etc.
     plt.plot(all_threads, ideal_speedup, "k--", label="Ideal Speedup")
 
+    # x-axis ticks should be equally spaced, i.e. log scale
+    plt.xscale("log", base=2)
+    plt.xticks(all_threads, all_threads)
+
     plt.grid(True)
     plt.legend(loc="best")
 
@@ -83,7 +87,7 @@ if __name__ == "__main__":
     df = load_data(data_file)
 
     # Create chart with the three complexities and ideal speedup
-    complexities_of_interest = [8, 1028, 16388]
+    complexities_of_interest = [1, 2, 4, 8, 16, 32, 64]
     plot_speedup_chart(
         df, complexities_of_interest, title="Speedup for Different Scene Complexities"
     )
