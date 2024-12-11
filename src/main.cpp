@@ -195,7 +195,6 @@ int main(int argc, char **argv) {
     LIKWID_MARKER_REGISTER(MY_MARKER_REGION_NAME);
   }
   setup_world(world, cam, sphere_grid_size);
-  std::clog << "Objects.size(): " << world.objects.size() << std::endl;
   cam.samples_per_pixel = samples_per_pixel;
   cam.image_width = width;
   cam.max_depth = max_depth;
