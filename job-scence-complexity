@@ -15,13 +15,13 @@ export OMP_PROC_BIND=spread
 unset OMP_NUM_THREADS
 concurrency_levels=(1 2 4 8 16 32 64 128 256)
 
-for sphere_grid_size in 1 16 64; do
+for sphere_grid_size in 1 2 4 8 16 32 64; do
 	for loop_order in XY; do
 		for schedule in 'dynamic,1'; do
 			for t in ${concurrency_levels[@]}; do
 				echo "------------------------------------------------------------------------------------------------------------------------"
-				echo OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/$schedule-collapse-image-$t.ppm -l $loop_order -g $sphere_grid_size
-				OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/$schedule-collapse-image-$t.ppm -l $loop_order -g $sphere_grid_size
+				echo OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/$schedule-sphere-$sphere_grid_size-threads-$t.ppm -l $loop_order -g $sphere_grid_size
+				OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/$schedule-sphere-$sphere_grid_size-threads-$t.ppm -l $loop_order -g $sphere_grid_size
 			done
 		done
 	done
