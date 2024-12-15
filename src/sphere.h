@@ -36,7 +36,7 @@ public:
 
   aabb bounding_box() const override { return bbox; }
 
-private:
+  // private:
   point3 center;
   double radius;
   shared_ptr<material> mat;

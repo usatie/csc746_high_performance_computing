@@ -59,7 +59,7 @@ public:
 
   aabb bounding_box() const override { return bbox; }
 
-private:
+  // private:
   shared_ptr<hittable> left;
   shared_ptr<hittable> right;
   aabb bbox;

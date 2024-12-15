@@ -9,6 +9,66 @@
 #include "likwid-stuff.h"
 #include "sphere.h"
 
+#include <iomanip>
+// Custom locale to format numbers with commas
+struct comma_numpunct : std::numpunct<char> {
+protected:
+  virtual char do_thousands_sep() const override {
+    return ','; // Comma as the thousands separator
+  }
+
+  virtual std::string do_grouping() const override {
+    return "\3"; // Groups of 3 digits
+  }
+};
+
+size_t calculate_hittable_size(const hittable *object);
+
+size_t calculate_sphere_size(const sphere *s) {
+  size_t size = sizeof(*s); // Size of the sphere itself
+  if (s->mat) {
+    // Add the size of the material object
+    size += sizeof(*(s->mat)); // Material size (approximation)
+  }
+  return size;
+}
+
+size_t calculate_bvh_node_size(const bvh_node *bvh) {
+  size_t size = sizeof(*bvh); // Size of the BVH node itself
+  if (bvh->left) {
+    size += calculate_hittable_size(bvh->left.get());
+  }
+  if (bvh->right) {
+    size += calculate_hittable_size(bvh->right.get());
+  }
+  return size;
+}
+
+size_t calculate_hittable_list_size(const hittable_list *list) {
+  size_t size = sizeof(*list); // Size of the list itself
+  for (const auto &obj : list->objects) {
+    size += calculate_hittable_size(obj.get());
+  }
+  return size;
+}
+
+size_t calculate_hittable_size(const hittable *object) {
+  if (const sphere *s = dynamic_cast<const sphere *>(object)) {
+    return calculate_sphere_size(s);
+  } else if (const bvh_node *bvh = dynamic_cast<const bvh_node *>(object)) {
+    return calculate_bvh_node_size(bvh);
+  } else if (const hittable_list *list =
+                 dynamic_cast<const hittable_list *>(object)) {
+    return calculate_hittable_list_size(list);
+  } else {
+    return sizeof(*object); // Default for unknown types
+  }
+}
+
+size_t calculate_scene_size(const hittable_list &world) {
+  return calculate_hittable_list_size(&world);
+}
+
 void setup_world(hittable_list &world, camera &cam, int sphere_grid_size) {
   auto ground_material = make_shared<lambertian>(color(0.5, 0.5, 0.5));
   world.add(make_shared<sphere>(point3(0, -1000, 0), 1000, ground_material));
@@ -202,8 +262,59 @@ int main(int argc, char **argv) {
   cam.output_filename = output_filename;
   cam.loop_order = loop_order;
 
-  cam.render(world);
+  // cam.render(world);
+  std::cout << "Sizes of primitive types:\n";
+  std::cout << "Size of double:                " << sizeof(double)
+            << " bytes\n";
+  std::cout << "Size of int:                   " << sizeof(int) << " bytes\n";
+  std::cout << "Size of bool:                  " << sizeof(bool) << " bytes\n";
 
+  std::cout << "\nSizes of standard library types:\n";
+  std::cout << "Size of std::shared_ptr<void>: "
+            << sizeof(std::shared_ptr<void>) << " bytes\n";
+  std::cout << "Size of std::vector<void*>:    " << sizeof(std::vector<void *>)
+            << " bytes\n";
+  std::cout << "Size of std::string:           " << sizeof(std::string)
+            << " bytes\n";
+
+  std::cout << "\nSizes of custom classes:\n";
+  std::cout << "Size of aabb:                  " << sizeof(aabb) << " bytes\n";
+  std::cout << "Size of interval:              " << sizeof(interval)
+            << " bytes\n";
+  std::cout << "Size of point3 (vec3):         " << sizeof(point3)
+            << " bytes\n";
+  std::cout << "Size of vec3:                  " << sizeof(vec3) << " bytes\n";
+  std::cout << "Size of ray:                   " << sizeof(ray) << " bytes\n";
+  std::cout << "Size of color (vec3):          " << sizeof(color) << " bytes\n";
+  std::cout << "Size of hit_record:            " << sizeof(hit_record)
+            << " bytes\n";
+  std::cout << "Size of hittable:              " << sizeof(hittable)
+            << " bytes\n";
+  std::cout << "Size of hittable_list:         " << sizeof(hittable_list)
+            << " bytes\n";
+  std::cout << "Size of bvh_node:              " << sizeof(bvh_node)
+            << " bytes\n";
+  std::cout << "Size of camera:                " << sizeof(camera)
+            << " bytes\n";
+  std::cout << "Size of material:              " << sizeof(material)
+            << " bytes\n";
+  std::cout << "Size of lambertian:            " << sizeof(lambertian)
+            << " bytes\n";
+  std::cout << "Size of metal:                 " << sizeof(metal) << " bytes\n";
+  std::cout << "Size of dielectric:            " << sizeof(dielectric)
+            << " bytes\n";
+  std::cout << "Size of sphere:                " << sizeof(sphere)
+            << " bytes\n";
+
+  int world_size = calculate_scene_size(world);
+  // Print out the world size comma separated
+  // Apply the custom locale
+  std::locale comma_locale(std::locale(), new comma_numpunct());
+  std::cout.imbue(comma_locale);
+  int world_size_kb = world_size / 1024;
+  int world_size_mb = world_size_kb / 1024;
+  std::cout << "World size: " << world_size << " bytes, " << world_size_kb
+            << " KB, " << world_size_mb << " MB" << std::endl;
   // Close Marker API and write results to file for further evaluation done
   // by likwid-perfctr
   LIKWID_MARKER_CLOSE;
