@@ -30,7 +30,7 @@ for block in blocks:
     info_match = info_pattern.search(block)
     obj_match = objects_pattern.search(block)
     time_match = time_pattern.search(block)
-    if info_match and obj_match and time_match:
+    if info_match and time_match:
         exp_data = {
             "Sample": info_match.group("sample"),
             "Width": info_match.group("width"),
@@ -42,9 +42,10 @@ for block in blocks:
             "Threads": info_match.group("threads"),
             "Schedule": info_match.group("schedule"),
             "Chunk Size": info_match.group("chunk_size"),
-            "Objects.size()": obj_match.group("objects"),
             "Elapsed Time": time_match.group("time"),
         }
+        if obj_match:
+            exp_data["Objects.size()"] = obj_match.group("objects")
         experiments.append(exp_data)
 
 # Write to CSV
