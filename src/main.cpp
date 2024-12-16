@@ -6,7 +6,6 @@
 #include "camera.h"
 #include "hittable.h"
 #include "hittable_list.h"
-#include "likwid-stuff.h"
 #include "sphere.h"
 
 #include <iomanip>
@@ -243,17 +242,6 @@ int main(int argc, char **argv) {
     }
   }
 
-  // initialize the LIKWID marker API in a serial code region once in the
-  // beginning
-  LIKWID_MARKER_INIT;
-#pragma omp parallel
-  {
-    // Each thread must add itself to the Marker API, therefore must be
-    // in parallel region
-    LIKWID_MARKER_THREADINIT;
-    // Register region name
-    LIKWID_MARKER_REGISTER(MY_MARKER_REGION_NAME);
-  }
   setup_world(world, cam, sphere_grid_size);
   cam.samples_per_pixel = samples_per_pixel;
   cam.image_width = width;
@@ -315,8 +303,5 @@ int main(int argc, char **argv) {
   int world_size_mb = world_size_kb / 1024;
   std::cout << "World size: " << world_size << " bytes, " << world_size_kb
             << " KB, " << world_size_mb << " MB" << std::endl;
-  // Close Marker API and write results to file for further evaluation done
-  // by likwid-perfctr
-  LIKWID_MARKER_CLOSE;
   return 0;
 }

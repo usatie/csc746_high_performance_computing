@@ -2,7 +2,6 @@
 #define CAMERA_H
 
 #include "hittable.h"
-#include "likwid-stuff.h"
 #include "material.h"
 #include <chrono>
 #include <fstream>
