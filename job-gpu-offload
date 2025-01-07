@@ -1,0 +1,30 @@
+#!/bin/bash -l
+#SBATCH --constraint=gpu
+#SBATCH --qos=debug
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=1
+#SBATCH --gpus=1
+#SBATCH --account=m3930
+#SBATCH --time=00:05:00
+#SBATCH --job-name=job-gpu-offload
+#SBATCH --output=log/job-gpu-offload.o%j
+#SBATCH --error=log/job-gpu-offload.e%j
+
+# set some openmp variables:
+# OMP_PLACES=threads maps OpenMP threads to hardware threads
+# OMP_PROC_BIND=spread binds threads as evenly as possible
+#
+# see https://docs.nersc.gov/jobs/affinity/ for more information
+
+unset OMP_NUM_THREADS
+export OMP_PLACES=threads
+export OMP_PROC_BIND=spread
+
+cd build
+
+# nsys
+# nsys nvprof ./sobel_cpu_omp_offload
+
+# ncu
+dcgmi profile --pause
+ncu --set default --section SourceCounters --section Occupancy --section LaunchStats --section SpeedOfLight --metrics smsp__cycles_active.avg.pct_of_peak_sustained_elapsed,dram__throughput.avg.pct_of_peak_sustained_elapsed,gpu__time_duration.avg ./sobel_cpu_omp_offload

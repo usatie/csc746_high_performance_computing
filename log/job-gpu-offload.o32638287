@@ -1,0 +1,100 @@
+Successfully paused profiling.
+==PROF== Connected to process 1374347 (/pscratch/sd/u/usatie/csc746-cp5-gpu-stencil/build/sobel_cpu_omp_offload)
+==PROF== Profiling "nvkernel__Z18do_sobel_filteri..." - 0: 0%....50%....100% - 13 passes
+ Read data from the file ../data/zebra-gray-int8-4x 
+ Elapsed time is : 4.59262 
+ Wrote the output file ../data/processed-raw-int8-4x-gpu-offload.dat 
+==PROF== Disconnected from process 1374347
+[1374347] sobel_cpu_omp_offload@127.0.0.1
+  nvkernel__Z18do_sobel_filteringPfS_ii_F1L104_2 (41, 1, 1)x(128, 1, 1), Context 1, Stream 16, Device 0, CC 8.0
+    Section: Command line profiler metrics
+    ----------------------------------------------------- ----------- ------------
+    Metric Name                                           Metric Unit Metric Value
+    ----------------------------------------------------- ----------- ------------
+    dram__throughput.avg.pct_of_peak_sustained_elapsed              %         3.35
+    gpu__time_duration.avg                                    msecond         5.43
+    smsp__cycles_active.avg.pct_of_peak_sustained_elapsed           %        36.81
+    ----------------------------------------------------- ----------- ------------
+
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ------------- ------------
+    Metric Name               Metric Unit Metric Value
+    ----------------------- ------------- ------------
+    DRAM Frequency          cycle/nsecond         1.22
+    SM Frequency            cycle/nsecond         1.10
+    Elapsed Cycles                  cycle    5,949,734
+    Memory Throughput                   %        19.06
+    DRAM Throughput                     %         3.35
+    Duration                      msecond         5.43
+    L1/TEX Cache Throughput             %        51.15
+    L2 Cache Throughput                 %        17.24
+    SM Active Cycles                cycle 2,216,364.31
+    Compute (SM) Throughput             %         4.99
+    ----------------------- ------------- ------------
+
+    OPT   This kernel grid is too small to fill the available resources on this device, resulting in only 0.0 full      
+          waves across all SMs. Look at Launch Statistics for more details.                                             
+
+    Section: Launch Statistics
+    -------------------------------- --------------- ---------------
+    Metric Name                          Metric Unit    Metric Value
+    -------------------------------- --------------- ---------------
+    Block Size                                                   128
+    Function Cache Configuration                     CachePreferNone
+    Grid Size                                                     41
+    Registers Per Thread             register/thread              56
+    Shared Memory Configuration Size           Kbyte           32.77
+    Driver Shared Memory Per Block       Kbyte/block            1.02
+    Dynamic Shared Memory Per Block       byte/block               0
+    Static Shared Memory Per Block        byte/block               0
+    Threads                                   thread           5,248
+    Waves Per SM                                                0.04
+    -------------------------------- --------------- ---------------
+
+    OPT   Estimated Speedup: 62.04%                                                                                     
+          The grid for this launch is configured to execute only 41 blocks, which is less than the GPU's 108            
+          multiprocessors. This can underutilize some multiprocessors. If you do not intend to execute this kernel      
+          concurrently with other workloads, consider reducing the block size to have at least one block per            
+          multiprocessor or increase the size of the grid to fully utilize the available hardware resources. See the    
+          Hardware Model (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model)            
+          description for more details on launch configurations.                                                        
+
+    Section: Occupancy
+    ------------------------------- ----------- ------------
+    Metric Name                     Metric Unit Metric Value
+    ------------------------------- ----------- ------------
+    Block Limit SM                        block           32
+    Block Limit Registers                 block            9
+    Block Limit Shared Mem                block           32
+    Block Limit Warps                     block           16
+    Theoretical Active Warps per SM        warp           36
+    Theoretical Occupancy                     %        56.25
+    Achieved Occupancy                        %         6.18
+    Achieved Active Warps Per SM           warp         3.95
+    ------------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 89.02%                                                                                     
+          This kernel's theoretical occupancy (56.2%) is limited by the number of required registers. The difference    
+          between calculated theoretical (56.2%) and measured achieved occupancy (6.2%) can be the result of warp       
+          scheduling overheads or workload imbalances during the kernel execution. Load imbalances can occur between    
+          warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices Guide           
+          (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on           
+          optimizing occupancy.                                                                                         
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.06
+    Branch Instructions              inst    5,747,465
+    Branch Efficiency                   %        99.55
+    Avg. Divergent Branches                      35.85
+    ------------------------- ----------- ------------
+
+    OPT   Estimated Speedup: 0%                                                                                         
+          This kernel has uncoalesced global accesses resulting in a total of 319973224 excessive sectors (83% of the   
+          total 386367692 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source      
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) had additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+
