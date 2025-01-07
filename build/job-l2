@@ -1,0 +1,46 @@
+#!/bin/bash -l
+#SBATCH --constraint=cpu
+#SBATCH --cpus-per-task=1
+#SBATCH --qos=debug
+#SBATCH --nodes=1
+#SBATCH --time=00:15:00
+#SBATCH --job-name=job-l2
+#SBATCH --account=m3930
+#SBATCH --perf=generic
+# turn off OMP_NUM_THREADS as it doesn't play nicely with likwid-perfctr on Perlmutter
+unset OMP_NUM_THREADS
+
+# set some openmp variables:
+# OMP_PLACES=threads maps OpenMP threads to hardware threads
+# OMP_PROC_BIND=spread binds threads as evenly as possible
+#
+# see https://docs.nersc.gov/jobs/affinity/ for more information
+
+export OMP_PLACES=threads
+export OMP_PROC_BIND=spread
+
+# use PERF_COUNTER_GROUP to tell likwif-perfctr which perf counter group to monitor
+# the default here, L2CACHE, measures the locality of your data accesses with regard to the L2 cache.
+export PERF_COUNTER_GROUP=L2CACHE
+
+# use the MARKER_FLAG variable to activate LIKWID's marker API, which will result in
+# perf counter data being collected only in the region of code surrounded by marker start/stop
+# calls. If MARKER_FLAG is not defined, then the LIKWID marker API will not be activated,
+# and the resulting performance data reflects the run of the entire program
+export MARKER_FLAG="-m"
+
+for method in basic-omp blocked-omp blas; do # loop over methods
+	if [ $method == "blocked-omp" ]; then
+		for block_size in 4 16; do
+			for N in 128 512 2048; do # loop over problem sizes
+				echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N -B $block_size
+				likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N -B $block_size
+			done # iterate over problem size
+		done  # iterate over block size
+	else
+		for N in 128 512 2048; do # loop over problem sizes
+			echo likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N
+			likwid-perfctr $MARKER_FLAG -g $PERF_COUNTER_GROUP -C N:0-0 ./benchmark-$method -N $N
+		done # iterate over problem size
+	fi
+done # iterate over methods

@@ -1,2 +1,2 @@
-*.csv
-*.png
+data/*.csv
+images/*.png

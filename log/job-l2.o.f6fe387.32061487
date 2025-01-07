@@ -1,0 +1,132 @@
+likwid-perfctr -m -g L2CACHE -C N:0-0 ./benchmark-basic-omp -N 128
+--------------------------------------------------------------------------------
+CPU name:	AMD EPYC 7763 64-Core Processor                
+CPU type:	AMD K19 (Zen3) architecture
+CPU clock:	2.45 GHz
+--------------------------------------------------------------------------------
+Description:	Basic implementation, OpenMP-enabled, three-loop dgemm.
+
+Hello world, I'm thread 0 out of 1 total threads. 
+Working on problem size N=128 
+ Elapsed time is : 0.0197 (sec) 
+--------------------------------------------------------------------------------
+Region MMUL_Region, Group 1: L2CACHE
++-------------------+------------+
+|    Region Info    | HWThread 0 |
++-------------------+------------+
+| RDTSC Runtime [s] |   0.002409 |
+|     call count    |        128 |
++-------------------+------------+
+
++--------------------------------+---------+------------+
+|              Event             | Counter | HWThread 0 |
++--------------------------------+---------+------------+
+|  REQUESTS_TO_L2_GRP1_ALL_NO_PF |   PMC0  |    2291154 |
+|         L2_PF_HIT_IN_L2        |   PMC1  |    1989990 |
+|         L2_PF_HIT_IN_L3        |   PMC2  |       2031 |
+|        L2_PF_MISS_IN_L3        |   PMC3  |       2754 |
+| CORE_TO_L2_CACHE_REQUESTS_HITS |   PMC4  |    2293044 |
+|      RETIRED_INSTRUCTIONS      |   PMC5  |   11233000 |
++--------------------------------+---------+------------+
+
++----------------------+--------------+
+|        Metric        |  HWThread 0  |
++----------------------+--------------+
+|  Runtime (RDTSC) [s] |       0.0024 |
+| Runtime unhalted [s] | 4.089581e-10 |
+|    L2 request rate   |       0.3815 |
+|     L2 miss rate     |       0.0003 |
+|     L2 miss ratio    |       0.0007 |
+|      L2 accesses     |      4285929 |
+|        L2 hits       |      4283034 |
+|       L2 misses      |         2895 |
++----------------------+--------------+
+
+likwid-perfctr -m -g L2CACHE -C N:0-0 ./benchmark-basic-omp -N 512
+--------------------------------------------------------------------------------
+CPU name:	AMD EPYC 7763 64-Core Processor                
+CPU type:	AMD K19 (Zen3) architecture
+CPU clock:	2.45 GHz
+--------------------------------------------------------------------------------
+Description:	Basic implementation, OpenMP-enabled, three-loop dgemm.
+
+Hello world, I'm thread 0 out of 1 total threads. 
+Working on problem size N=512 
+ Elapsed time is : 0.8837 (sec) 
+--------------------------------------------------------------------------------
+Region MMUL_Region, Group 1: L2CACHE
++-------------------+------------+
+|    Region Info    | HWThread 0 |
++-------------------+------------+
+| RDTSC Runtime [s] |   0.813381 |
+|     call count    |        512 |
++-------------------+------------+
+
++--------------------------------+---------+------------+
+|              Event             | Counter | HWThread 0 |
++--------------------------------+---------+------------+
+|  REQUESTS_TO_L2_GRP1_ALL_NO_PF |   PMC0  |  138752300 |
+|         L2_PF_HIT_IN_L2        |   PMC1  |   28811020 |
+|         L2_PF_HIT_IN_L3        |   PMC2  |  122730000 |
+|        L2_PF_MISS_IN_L3        |   PMC3  |     200285 |
+| CORE_TO_L2_CACHE_REQUESTS_HITS |   PMC4  |   29065410 |
+|      RETIRED_INSTRUCTIONS      |   PMC5  |  677221300 |
++--------------------------------+---------+------------+
+
++----------------------+--------------+
+|        Metric        |  HWThread 0  |
++----------------------+--------------+
+|  Runtime (RDTSC) [s] |       0.8134 |
+| Runtime unhalted [s] | 4.089923e-10 |
+|    L2 request rate   |       0.4289 |
+|     L2 miss rate     |       0.3435 |
+|     L2 miss ratio    |       0.8008 |
+|      L2 accesses     |    290493605 |
+|        L2 hits       |     57876430 |
+|       L2 misses      |    232617175 |
++----------------------+--------------+
+
+likwid-perfctr -m -g L2CACHE -C N:0-0 ./benchmark-basic-omp -N 2048
+--------------------------------------------------------------------------------
+CPU name:	AMD EPYC 7763 64-Core Processor                
+CPU type:	AMD K19 (Zen3) architecture
+CPU clock:	2.45 GHz
+--------------------------------------------------------------------------------
+Description:	Basic implementation, OpenMP-enabled, three-loop dgemm.
+
+Hello world, I'm thread 0 out of 1 total threads. 
+Working on problem size N=2048 
+ Elapsed time is : 134.9627 (sec) 
+--------------------------------------------------------------------------------
+Region MMUL_Region, Group 1: L2CACHE
++-------------------+------------+
+|    Region Info    | HWThread 0 |
++-------------------+------------+
+| RDTSC Runtime [s] | 134.652400 |
+|     call count    |       2048 |
++-------------------+------------+
+
++--------------------------------+---------+-------------+
+|              Event             | Counter |  HWThread 0 |
++--------------------------------+---------+-------------+
+|  REQUESTS_TO_L2_GRP1_ALL_NO_PF |   PMC0  | 22971590000 |
+|         L2_PF_HIT_IN_L2        |   PMC1  |  6862169000 |
+|         L2_PF_HIT_IN_L3        |   PMC2  | 13761270000 |
+|        L2_PF_MISS_IN_L3        |   PMC3  |   407509900 |
+| CORE_TO_L2_CACHE_REQUESTS_HITS |   PMC4  |  7926698000 |
+|      RETIRED_INSTRUCTIONS      |   PMC5  | 43024570000 |
++--------------------------------+---------+-------------+
+
++----------------------+--------------+
+|        Metric        |  HWThread 0  |
++----------------------+--------------+
+|  Runtime (RDTSC) [s] |     134.6524 |
+| Runtime unhalted [s] | 4.089532e-10 |
+|    L2 request rate   |       1.0227 |
+|     L2 miss rate     |       0.6790 |
+|     L2 miss ratio    |       0.6639 |
+|      L2 accesses     |  44002538900 |
+|        L2 hits       |  14788867000 |
+|       L2 misses      |  29213671900 |
++----------------------+--------------+
+
