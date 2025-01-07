@@ -1,0 +1,95 @@
+\subsubsection{L1 Cache Utilization}
+\label{subsubsec:memory-hierarchy-utilization-l2}
+    % \item Question: looking at data in this table, what observations do you make about the relative number of L2 Accesses being made by each code? How do you reason these values might affect runtime?
+
+L2 accesses represent the number of requests that are not satisfied by the L1 cache and, therefore, must be handled by the L2 cache. The Basic implementation shows L2 accesses that are between 50 and 100 times greater than those for CBLAS, indicating significantly poorer cache efficiency. In contrast, Blocked B4 has L2 accesses roughly 5 to 8 times higher than CBLAS, indicating an improvement compared to Basic but still relatively far from optimal. Blocked B16, with L2 accesses between 1.2 and 1.8 times that of CBLAS, demonstrates the closest behavior to the highly optimized CBLAS implementation.
+
+These results indicate that Blocked B16 achieves the most efficient use of the L2 cache, as its L2 access values are closest to those of CBLAS, which serves as the baseline for an optimized memory access pattern. Increasing the block size from 4 to 16 leads to a significant reduction in L2 accesses, highlighting the impact of larger block sizes in enhancing data locality and reducing the need for higher-level cache accesses.
+
+It is reasonable to assume that the runtime of these methods is proportional to the number of L2 accesses, given that the number of floating-point operations (FLOPs) remains largely consistent across implementations. Therefore, the primary factor contributing to runtime differences is the efficiency of memory access patterns and cache utilization. The reduced L2 cache accesses observed in the blocked methods, particularly Blocked B16, should contribute to lower runtimes compared to Basic OMP, as fewer requests to higher levels of the memory hierarchy result in fewer latency penalties.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrrr}
+    \toprule
+    N &  CBLAS &  Basic &  Blocked B4 &  Blocked B16 \\
+    \midrule
+    128  &      1 &  47.89&       5.37&         1.19\\
+    512  &      1 &  45.53&       4.41&         1.30\\
+    2048 &      1 & 116.14&       7.91&         1.86\\
+    \bottomrule
+    \end{tabular}
+    \caption{\textbf{L2 Cache accesses.} The table shows the value of the L2 Accesses metric normalized by the corresponding value of the L2 Accesses metric for CBLAS. Blocked B4 refers to the blocked method with a block size of 4, and Blocked B16 refers to the blocked method with a block size of 16. The CBLAS column serves as a baseline with all values equal to 1, while the other columns represent the ratio of L2 accesses compared to CBLAS for each problem size. Basic OMP shows significantly higher L2 accesses compared to CBLAS, whereas Blocked B16 achieves the closest values to CBLAS, indicating more efficient cache usage and better alignment with an optimized memory access pattern.}
+    \label{tab:l2-cache}
+\end{table}
+
+\FloatBarrier
+\subsubsection{L2 Cache Utilization}
+\label{subsubsec:memory-hierarchy-utilization-l3}
+% \item Question: looking at data in this table, what observations do you make about the relative number of L3\_CACHE\_REQ being made by each code? How do you reason these values might affect runtime?
+
+L3\_CACHE\_REQ represents the number of requests that are not satisfied by the L2 cache and, therefore, must be handled by the L3 cache. For larger matrix sizes (\(N = 512\) and \(N = 2048\)), the Basic implementation exhibits an order of magnitude more L3 cache requests compared to the blocked methods, indicating inefficient L2 cache utilization. Blocked B16 consistently demonstrates approximately 5 to 6 times fewer L3 cache requests than Blocked B4, suggesting that increasing the block size significantly improves data locality and cache efficiency, thus reducing the dependency on L3 cache. 
+
+Interestingly, for \(N = 128\), Basic, Blocked B4, and Blocked B16 show fewer L3 cache requests than CBLAS. This suggests some overhead in the CBLAS implementation that necessitates additional L3 cache accesses.
+
+We assume that the runtime of these methods is closely correlated to the number of L3 cache requests, as the number of FLOPs required for MM remains relatively constant across implementations. Therefore, the primary factor contributing to runtime differences is the efficiency of memory access patterns and cache utilization. The significant reduction in L3 cache requests observed in the blocked methods, particularly Blocked B16, likely translates to lower runtimes compared to Basic OMP due to fewer accesses to higher memory levels and the associated lower latency penalties.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrrr}
+    \toprule
+    N &  CBLAS &  Basic &  Blocked B4 &  Blocked B16 \\
+    \midrule
+    128  &      1 &  0.41 &       0.44 &         0.60 \\
+    512  &      1 & 283.96 &      18.51 &         3.61 \\
+    2048 &      1 & 578.74 &      22.49 &         4.16 \\
+    \bottomrule
+    \end{tabular}
+    \caption{\textbf{L3 Cache accesses.} The table shows the value of the L3\_CACHE\_REQ counter normalized to the corresponding value for CBLAS. The CBLAS column contains values of 1, serving as a baseline, while the other columns represent the ratio of L3 cache requests relative to CBLAS for each problem size. Blocked B4 refers to the blocked method with a block size of 4, and Blocked B16 refers to the blocked method with a block size of 16. For larger matrix sizes (\(N = 512, 2048\)), Basic OMP shows significantly higher L3 cache requests compared to CBLAS, whereas Blocked B16 achieves values closest to CBLAS, indicating more efficient L3 cache usage. However, for \(N = 128\), Basic, Blocked B4, and Blocked B16 show fewer requests than CBLAS, suggesting an overhead in CBLAS that increases L3 access.}
+    \label{tab:l3-cache}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lccccc}
+    \toprule
+    N &  CBLAS &  Basic &  Blocked B4 &  Blocked B16 & L2 \\
+    \midrule
+    128  & 384 KiB & 384 KiB & 384 KiB & 390 KiB & Yes \\
+    512  & 6 MiB   & 6 MiB   & 6 MiB   & 6 MiB   & No  \\
+    2048 & 96 MiB  & 96 MiB  & 96 MiB  & 96 MiB  & No  \\
+    \bottomrule
+    \end{tabular}
+    \caption{\textbf{Memory Footprint for Different Matrix Sizes and Methods.} The table shows the memory required for matrices of each size and whether they fit within the L2 cache (512 KiB). Each method requires memory for three matrices. In addition, the blocked methods require three blocks, which are relatively small except for Blocked B16 at \(N = 128\).}
+    \label{tab:memory-footprint}
+\end{table}
+
+
+\FloatBarrier
+\subsubsection{Instruction count analysis: RETIRED\_INSTRUCTIONS}
+\label{subsubsec:instruction-count}
+% \item Question: looking at the values in this table, please provide observations and reasoning about:
+% \begin{itemize}
+%     \item The relative number of instructions being executed compared to CBLAS.
+%     \item How do you reason these differences might impact code performance?
+%     \item What difference do you see in the blocked B4 and B16 codes? How do you reason about their meaning and their potential impact on performance?
+% \end{itemize}
+
+The relative number of instructions executed compared to CBLAS is approximately 10 times greater for Basic, 24 to 28 times for Blocked B4, and 12 to 13 times for Blocked B16. In the case of Basic, the increased instruction count does not significantly impact runtime since the primary bottleneck lies in memory access rather than arithmetic operations. This is indicative of Basic's poor cache utilization and frequent memory accesses.
+
+For the blocked methods, however, memory access is significantly optimized, which makes the number of retired instructions more directly proportional to runtime. The larger instruction counts for Blocked B4 compared to Blocked B16 suggest inefficiencies that could be linked to fewer vectorization opportunities or less efficient use of fused multiply-add (FMA) instructions. Blocked B16, with a lower instruction count than Blocked B4, indicates more efficient execution likely due to better cache locality and greater potential for hardware-level optimizations such as vectorization and FMA usage. As such, the reduced instruction count in Blocked B16 can contribute to improved runtime performance.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrrr}
+    \toprule
+    N &  CBLAS &  Basic &  Blocked B4 &  Blocked B16 \\
+    \midrule
+    128  &      1 &  9.99 &      24.66 &         11.88 \\
+    512  &      1 & 10.60 &      27.48 &         13.28 \\
+    2048 &      1 & 10.64 &      27.74 &         13.42 \\
+    \bottomrule
+    \end{tabular}
+    \caption{\textbf{Instruction Count Analysis.} The table shows the RETIRED\_INSTRUCTIONS counter values normalized by the corresponding value for CBLAS, with CBLAS values set to 1 as a baseline. The relative instruction counts for Basic, Blocked B4, and Blocked B16 provide insights into the efficiency of different implementations. Basic OMP has significantly higher instruction counts compared to CBLAS, while Blocked B16 shows lower instruction counts than Blocked B4, indicating more efficient execution due to better optimization techniques.}
+    \label{tab:instruction-count}
+\end{table}

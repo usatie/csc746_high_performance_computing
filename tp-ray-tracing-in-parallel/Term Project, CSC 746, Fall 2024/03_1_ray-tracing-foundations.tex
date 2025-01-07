@@ -1,0 +1,83 @@
+\subsection{Ray tracing foundations}
+\label{subsec:ray-tracing-foundations}
+The objective of this section is to establish the core principles and computational steps underlying the ray tracing process. By defining methods for rendering an image, generating rays, determining ray colors through recursive evaluation, and testing for intersections, we set the groundwork for producing visually accurate, physically plausible images.
+
+This section introduces the essential components of a ray tracing pipeline, from pixel-by-pixel rendering to ray generation, color computation, and intersection handling. The details, supported by pseudo-code and listings, show how rays are cast, how intersections and scattering are computed, and how final colors are accumulated.
+
+\subsubsection{Rendering}
+This subsection outlines the process of computing the final image by iterating over each pixel, generating multiple rays per pixel, computing their colors, and averaging the results, as shown in Algorithm \ref{alg:rendering}.
+
+\begin{algorithm}[htbp]
+\KwData{image\_height, image\_width, samples\_per\_pixel, max\_recursion\_depth, world}
+initialize image\;
+\For{$y = 0$ \KwTo $image\_height$}{
+    \For{$x = 0$ \KwTo $image\_width$}{
+        \For{$i = 0$ \KwTo $samples\_per\_pixel$}{
+            $r \gets get\_ray(x, y)$\;
+            $image[x, y] \gets image[x, y] + ray\_color(r, max\_recursion\_depth, world)$\;
+        }
+    }
+}
+write image\;
+\caption{\textbf{Render Image.} Loop structure for rendering an image by averaging multiple samples per pixel.}
+\label{alg:rendering}
+\end{algorithm}
+
+\FloatBarrier
+\subsubsection{Generating Ray}
+This subsection details how a ray is constructed from the camera to a specific pixel, incorporating randomness for anti-aliasing and depth-of-field effects, as shown in Listing \ref{listing:get-ray}.
+
+\begin{lstlisting}[caption={\textbf{Generating a ray from the camera to a screen pixel}},label={listing:get-ray}, name=get-ray, float=htbp, style=mystyle,language=C++]
+ray get_ray(int i, int j) const {
+    auto offset = sample_square();
+    auto pixel_sample = pixel00_loc + (i + offset.x()) * pixel_delta_u + (j + offset.y()) * pixel_delta_v;
+    auto ray_origin = (defocus_angle <= 0) ? center : defocus_disk_sample();
+    auto ray_direction = pixel_sample - ray_origin;
+    return ray(ray_origin, ray_direction);
+}
+\end{lstlisting}
+
+\FloatBarrier
+\subsubsection{Computing a ray's color}
+This subsection explains the recursive computation of a ray’s color as it interacts with objects, possibly scattering to produce reflections and other effects, or returning a background color if no objects are hit, as shown in Listing \ref{listing:ray-color}.
+
+\begin{lstlisting}[caption={\textbf{Computing a ray's color}},label={listing:ray-color}, name=ray-color, float=htbp, style=mystyle,language=C++]
+color ray_color(const ray &r, int depth, const hittable &world) {
+    if (depth <= 0) return color(0, 0, 0);
+    hit_record rec;
+    if (world.hit(r, interval(0.001, infinity), rec)) {
+      ray scattered;
+      color attenuation;
+      if (rec.mat->scatter(r, rec, attenuation, scattered))
+        return attenuation * ray_color(scattered, depth - 1, world);
+      return color(0, 0, 0);
+    }
+    return sky_color(r);
+}
+\end{lstlisting}
+
+\FloatBarrier
+\subsubsection{Intersection test with ray and scene}
+This subsection describes how the ray is tested against a set of objects to find the closest intersection, enabling accurate shading calculations. This implementation naively iterates over every object in the scene, without employing more advanced acceleration structures such as Bounding Volume Hierarchies\cite{Kay1986}. See Listing \ref{listing:hittable-list}.
+
+\begin{lstlisting}[caption={\textbf{Hittable List Implementation}}, label={listing:hittable-list}, name=hittable-list, float=htbp, style=mystyle, language=C++]
+class hittable_list : public hittable {
+  std::vector<shared_ptr<hittable>> objects;
+
+  bool hit(const ray &r, interval ray_t, hit_record &rec) const override {
+    hit_record temp_rec;
+    bool hit_anything = false;
+    auto closest_so_far = ray_t.max;
+
+    for (const auto &object : objects) {
+      if (object->hit(r, interval(ray_t.min, closest_so_far), temp_rec)) {
+        hit_anything = true;
+        closest_so_far = temp_rec.t;
+        rec = temp_rec;
+      }
+    }
+
+    return hit_anything;
+  }
+};
+\end{lstlisting}

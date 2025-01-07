@@ -1,0 +1,39 @@
+\subsection{Scaling Study for CPU with OpenMP Parallelism}
+\label{subsec:cpu-omp-study}
+% Scaling study of CPU/OpenMP code. Present the results of running your code at varying concurrency, and make observations about the speedup you observe as you increase concurrency. Describe how runtime changes as you increase concurrency. Explain why you believe this is the case. This section should contain either a Table or a chart showing these performance numbers (your choice). 
+
+This experiment aims to analyze the scalability of the Sobel Filter and identify optimal memory access patterns on the CPU. Table~\ref{tab:cpu-omp} presents the runtime and speedup as thread count increases.
+
+The results show that runtime decreases with more threads, highlighting the Sobel Filter’s high parallelizability. As Amdahl's Law \cite{amdahl1967validity} suggests, the small serial portion of this function enables efficient workload distribution across threads. This parallel nature also makes it well-suited for GPU acceleration, where additional performance gains are achievable.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{c|cc}
+        Threads (T) & Runtime (s) & Speedup \\
+        \hline
+        1 & 0.185 & 1.0 \\
+        2 & 0.093 & 1.992 \\
+        4 & 0.046 & 3.979 \\
+        8 & 0.024 & 7.746 \\
+        16 & 0.013 & 14.558 \\
+    \end{tabular}
+    \caption{\textbf{Runtime performance of CPU with OpenMP parallel implementation of the Sobel Filter.} As the number of threads increases, runtime decreases substantially, illustrating the parallelizable nature of the operation.}
+    \label{tab:cpu-omp}
+\end{table}
+
+We also tested an alternative parallel approach by applying \textit{collapse(2)} to the OpenMP pragma, collapsing the nested loop structure. The results, shown in Table~\ref{tab:cpu-omp-collapsed}, indicate that this approach leads to degraded performance and lower speedup. This is due to the fact that CPU threads require sequential memory access patterns to optimize cache utilization and minimize cache misses.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{c|cc}
+        Threads (T) & Runtime (s) & Speedup \\
+        \hline
+        1 & 0.204 & 1.0 \\
+        2 & 0.103 & 1.981 \\
+        4 & 0.055 & 3.708 \\
+        8 & 0.032 & 6.433 \\
+        16 & 0.021 & 9.910 \\
+    \end{tabular}
+    \caption{\textbf{Runtime performance of CPU with collapsed OpenMP parallel implementation of the Sobel Filter.} When collapsing the nested loop, performance degrades due to less efficient memory access patterns.}
+    \label{tab:cpu-omp-collapsed}
+\end{table}

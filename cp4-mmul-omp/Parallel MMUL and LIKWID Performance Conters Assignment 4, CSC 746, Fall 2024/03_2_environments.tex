@@ -1,0 +1,31 @@
+% What machine did you run your tests on? What was the processor, its clock rate (GHz), size of L1/L2/L3 cache, how much memory (DRAM), what OS?
+
+% What compiler did you use, what compilation flags?
+
+% Include a subsection describing your computational platform and software environment. Please add a citation to the location where you found this information (hint: use the LaTeX \cite{} command, and add a new entry to the template.bib file provided with the Overleaf template).
+
+The experiments were conducted on a CPU node of the Perlmutter supercomputer at NERSC. Each node is equipped with two AMD EPYC 7763 (Milan) processors, each featuring 64 cores running at a clock rate of 2.45 GHz. These cores support Simultaneous Multi-threading (SMT), enabling two threads per core. Each core has 32 KiB of L1 cache and 512 KiB of L2 cache, while 8 cores share a 32 MiB L3 cache. The AMD EPYC 7763 processor also features 8 memory channels per socket, with 2 DIMMs per channel, and 4 NUMA domains per socket (NPS=4) \cite{amd_epyc_tuning_guide}.
+
+The system is supported by 512 GiB of DDR4 DRAM, offering a memory bandwidth of 204.8 GiB/s per CPU. The processors utilize the AVX2 instruction set for vector processing, and each core has a peak computational throughput of 39.2 GFLOPS \cite{nersc_perlmutter_architecture}.
+
+All experiments were conducted on a single CPU node running \textit{SUSE Linux Enterprise Server 15 SP4}, with kernel version \textit{5.14.21-150400.24.81\_12.0.87-cray\_shasta\_c} \cite{usami2024hostnamectl}. The C++ code was compiled using \textit{g++-12 (SUSE Linux) 12.3.0} with the following optimization flags: \texttt{-fopenmp -Wall -pedantic -march=native}. Note that the \texttt{-fopenmp} flag was not used for compiling the CBLAS implementation.
+
+The following OpenMP environmental variables were used for the VMM OpenMP implementation. The variable \texttt{OMP\_NUM\_THREADS} was left unset as it conflicts with \texttt{likwid-perfctr} on Perlmutter:
+\begin{itemize}
+    \item \texttt{OMP\_PLACES=threads}: Assigns each OpenMP thread to a separate hardware thread, ensuring efficient mapping to processing units.
+    \item \texttt{OMP\_PROC\_BIND=spread}: Distributes threads evenly across the available CPUs, aiming for optimal workload balancing.
+\end{itemize}
+
+The execution command for each program was:
+\begin{quote}
+\texttt{likwid-perfctr -m -g FLOPS\_DP -C N:0-\${num\_threads-1} ./benchmark -N \$N}
+\end{quote}
+
+The command runs the benchmark executable while collecting performance metrics using \texttt{likwid-perfctr}. The options used in the command are as follows:
+\begin{itemize}
+    \item \texttt{-g FLOPS\_DP}: Specifies the performance group to measure, in this case, the \textit{FLOPS\_DP} group, which tracks double-precision floating-point operations to evaluate computational throughput.
+    \item \texttt{-C N:0-\${num\_threads-1}}: Binds the execution to a set of cores. The option \texttt{N:0-\${num\_threads-1}} allows specification of core IDs from 0 to \texttt{num\_threads-1}, where \texttt{num\_threads} represents the nuMiBer of threads being used. This ensures that only the desired cores are used during the run.
+\end{itemize}
+% What machine did you run your tests on? What was the processor, its clock rate (GHz), size of L1/L2/L3 cache, how much memory (DRAM), what OS?
+
+% What compiler did you use, what compilation flags?

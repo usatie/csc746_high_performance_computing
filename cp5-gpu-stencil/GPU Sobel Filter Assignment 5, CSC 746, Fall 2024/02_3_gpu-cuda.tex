@@ -1,0 +1,30 @@
+\subsection{GPU Implementation Using CUDA}
+\label{subsec:gpu-cuda}
+
+% State the objective for the implementation (2-3 sentences).
+The goal of implementing the Sobel Filter with CUDA is to exploit GPU parallelism to maximize computational efficiency. Among the three implementations, this CUDA-based approach is expected to yield the highest efficiency.
+
+% Describe the implementation (2-3 sentences, or more if needed).
+In this approach, the CUDA kernel \texttt{sobel\_kernel\_gpu()} (shown in Listing~\ref{listing:sobel-gpu-cuda}) applies the Sobel filter to the image in parallel. The Sobel operator is defined as a device function, \texttt{sobel\_filtered\_pixel()}, using the \texttt{\_\_device\_\_} qualifier. Each thread is assigned a subset of the pixels, iterating over them with strides based on the total thread count. The Sobel filter kernel weights are stored in constant memory with \texttt{\_\_constant\_\_} for faster access.
+
+\begin{lstlisting}[caption={\textbf{CUDA Implementation of Sobel Filtering.} The \texttt{sobel\_kernel\_gpu()} function applies the Sobel filter with strided access and utilizes constant memory for optimal GPU performance.},label={listing:sobel-gpu-cuda},float=htbp,style=mystyle,language=C++]
+__constant__ float gx[] = {...};
+__constant__ float gy[] = {...};
+
+__global__
+void sobel_kernel_gpu(
+    const float *in,
+    float *out,
+    int width, int height)
+{
+  int index = blockIdx.x * blockDim.x + threadIdx.x;
+  int stride = blockDim.x * gridDim.x;
+  int x, y;
+  for (int i = index; i < width * height; i += stride)
+  {
+    x = i % width;
+    y = i / width;
+    out[i] = sobel_filtered_pixel(in, x, y, width, height, gx, gy);
+  }
+}
+\end{lstlisting}

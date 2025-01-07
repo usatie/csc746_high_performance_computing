@@ -1,0 +1,25 @@
+\subsection{Data Movement Performance Study}
+\label{subsec:data-movement-performance-study}
+
+In this section, we analyze the data movement performance for different grid decomposition strategies (Column-slab, Row-slab, and Tiled) in terms of the number of messages sent and the total data moved between ranks during the scatter and gather phases. Table~\ref{tab:data-movement} summarizes the number of messages and the total data moved for varying levels of concurrency.
+
+The observed data movement is consistent across all decomposition methods due to the use of subarray data types for inter-rank communication. This approach minimizes the number of messages sent, as subarrays allow the transmission of contiguous subregions of data in a single operation rather than row-by-row communication.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{c|c|c|c|c|c|c} 
+        \textbf{Ranks} & \multicolumn{2}{c|}{\textbf{Column-slab}} & \multicolumn{2}{c|}{\textbf{Row-slab}} & \multicolumn{2}{c}{\textbf{Tiled}} \\ 
+         & \textbf{Count} & \textbf{Bytes} & \textbf{Count} & \textbf{Bytes} & \textbf{Count} & \textbf{Bytes} \\ 
+        \hline
+        4  & 6   & 220MB & 6   & 220MB & 6   & 220MB \\ 
+        9  & 16  & 261MB & 16  & 261MB & 16  & 260MB \\ 
+        16 & 30  & 275MB & 30  & 275MB & 30  & 275MB \\
+        25 & 48  & 282MB & 48  & 282MB & 48  & 281MB \\
+        36 & 70  & 286MB & 70  & 287MB & 70  & 285MB \\
+        49 & 96  & 289MB & 96  & 290MB & 96  & 287MB \\
+        64 & 126 & 291MB & 126 & 292MB & 126 & 289MB \\
+        81 & 160 & 292MB & 160 & 294MB & 160 & 290MB \\ 
+    \end{tabular}
+    \caption{\textbf{Number of messages sent and total data moved between ranks during the scatter and gather phases.}}
+    \label{tab:data-movement}
+\end{table}

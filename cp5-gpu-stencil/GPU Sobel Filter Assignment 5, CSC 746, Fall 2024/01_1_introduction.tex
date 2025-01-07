@@ -1,0 +1,15 @@
+% For homework writeups, the Introduction section should state the general thrust of the assignment.
+
+% What is the problem being studied? Explain in 2-3 sentences.
+
+% What is the approach for studying the problem? Hint: the approach consists of the program(s) you are writing, so say in 2-3 sentences something about those programs. If you like, it is ok to use a forward reference, and say something like "we present the implementation in \S\ref{sec:implementation}. 
+
+% What are the main results? Say something about the results in 2-3 sentences: what is the nature of your experiment that tests your implementation, and say something about the insights gained. 
+
+% for each of the problem statement, approach statement, and findings/result statement from the abstract, amplify these into a short paragraph for each. Here, "short paragraph" means 3-4 sentences.
+
+This assignment investigates the implementation and performance of the Sobel filter, an essential edge-detection algorithm in image processing, on both CPU and GPU platforms. Edge detection is a critical operation in computer vision applications, aiding in feature extraction, object recognition, and other image analysis tasks. Given the computationally intensive nature of the Sobel filter, this assignment seeks to explore how parallelization techniques can enhance its performance across different hardware architectures.
+
+To study this problem, we developed three parallelized implementations of the Sobel filter. The first, a CPU-based approach using OpenMP, establishes a baseline for comparison. The second implementation uses CUDA to fully leverage the GPU's parallel processing capabilities and assess the efficiency of GPU-specific optimizations. The third approach, an OpenMP offload to the GPU, provides a simpler, portable method of GPU parallelization, enabling us to compare this with the CUDA approach. Each of these implementations is detailed in Section \ref{sec:implementation}.
+
+Our experiments, conducted on the Perlmutter supercomputer, measure runtime, achieved occupancy, and memory bandwidth utilization for each implementation. Results demonstrate CUDA’s superior performance, revealing that optimized GPU processing offers significantly faster execution times than both CPU and OpenMP offload. These findings underscore the highly parallelizable nature of the Sobel filter and highlight the impact of platform-specific optimizations on computational efficiency.

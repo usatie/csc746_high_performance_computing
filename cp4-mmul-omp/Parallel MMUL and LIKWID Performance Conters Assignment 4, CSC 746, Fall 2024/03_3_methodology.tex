@@ -1,0 +1,89 @@
+% % Describe the procedures you use to test your system.
+% We evaluated the performance of various matrix multiplication (MM) methods using matrix sizes of \(128 \times 128\), \(512 \times 512\) and \(2048 \times 2048\). For the Basic and Blocked OpenMP (Parallel) implementation, we tested with thread counts of 1, 4, 16, and 64. 
+
+% % Performance metrics: describe exactly what metrics you employ to measure performance. It might be elapsed time from instrumentation code you added around the main computational code. Later in the term, it may be something else.
+
+% Performance was measured using LIKWID marker placed around the core matrix multiplication code, as shown in Listing~\ref{listing:basic-omp}, Listing~\ref{listing:cblas}, and Listing~\ref{listing:BMMCO-omp}. We used three performance groups to collect performance counter data: \(FLOPS\_DP\), \(L2CACHE\), and \(L3CACHE\). \(FLOPS\_DP\) for runtime and instruction count, \(L2CACHE\) for the number of requests that are not satisfied by the L1 cache, \(L3CACHE\) for the number of requests that are not satisfied by the L2 cache. Based on the runtime, we derived speedup at varying levels of concurrency for the MM OpenMP (Parallel) implementation. We only collect instruction count, L2 Accesses and L3 Accesses for serial runs. 
+
+% \subsubsection{Runtime}
+% \label{subsubsec:runtime}
+% We use the \(FLOPS\_DP\) performance group to collect runtime data. We use the \texttt{Runtime (RDTSC) [s]} metric from the LIKWID output. For parallel runs, we use the value of \texttt{Runtime (RDTSC) [s]} that is the maximum from all threads. 
+
+% \subsubsection{Instruction Count}
+% \label{subsubsec:instruction-count}
+% We use the \(FLOPS\_DP\) performance group to collect instruction count data. We use the \texttt{RETIRED\_INSTRUCTIONS} event from the LIKWID output.
+
+% \subsubsection{L2 Accesses}
+% \label{subsubsec:l2-accesses}
+% We use the \(L2Cache\) performance group to collect L2 cache access data. We use the \texttt{L2 accesses} metric from the LIKWID output, which is the summation of the following counters:
+% \begin{itemize}
+%     \item REQUESTS\_TO\_L2\_GRP1\_ALL\_NO\_PF
+%     \item L2\_PF\_HIT\_IN\_L2
+%     \item L2\_PF\_HIT\_IN\_L3
+%     \item L2\_PF\_MISS\_IN\_L3
+% \end{itemize}
+
+% \subsubsection{L3 Accesses}
+% \label{subsubsec:l3-accesses}
+% We use the \(L3Cache\) performance group to collect L3 cache accesses data. We use the \texttt{L3\_CACHE\_REQ} event from the LIKWID output.
+
+% \subsubsection{Speedup}
+% \label{subsubsec:speedup}
+% We define speedup as the ratio of a parallel program's speed to a sequential program's speed. For a problem size \(n\) and \(p\) parallel ranks (where rank refers to the number of parallel processing units used):
+
+% \begin{displaymath}
+%     S(n, p) = \frac{T^*(n)}{T(n, p)}
+% \end{displaymath}
+
+% Here, \(T^*(n)\) is the time taken by the best serial algorithm on a problem of size \(n\), which in our case is the runtime we get for \(thread=1\). So, for Basic, \(T*(n)\) is the time we get when running Basic with \(OMP\_NUM\_THREADS=1\). \(T(n, p)\) is the time taken to run the program on a problem of size \(n\) using \(p\) parallel ranks.
+
+% % Experimental design: did you run tests over a set of prescribed problem sizes? If so, what were they?
+
+% ----
+
+% % how do you measure it, what are the problem sizes, etc). For this assignment, you will be collecting and analyzing:
+% % \begin{itemize}
+% %     \item Runtime: look at the Runtime (RDTSC) metric from the LIKWID output. For parallel runs, please use the value of Runtime (RDTSC) that is the maximum from all threads. (Why do we want to use maximum rather than minimum or sum?)
+% %     \item L2CACHE, L3CACHE memory performance counters. For more information on these counters please see https://github.com/RRZE-HPC/likwid/blob/master/groups/zen3/L3CACHE.txt and https://github.com/RRZE-HPC/likwid/blob/master/groups/zen3/L2CACHE.txt. For these counters, we want to use the values from serial, single-threaded runs since you will be comparing your serial basic and blocked MM implementations with the serial CBLAS implementation. 
+% %     \item Instruction count. When you run likwid-perfctr and ask for the FLOPS\_DP group, you want the SUM of RETIRED\_INSTRUCTIONS and RETIRED\_SSE\_AVX\_FLOPS\_ALL.
+% % \end{itemize}
+
+% % Note \#1: for charts showing speedup, refer to F24 Lecture 10 slides 10 and 11 for details. The horizontal axis is problem size, the vertical axis is speedup. You will have a separate dataset for each concurrency level. Since you are running at concurrency levels = {4, 16, 64} you will have three datasets in your speedup plot for basic MM+OpenMP plot.  
+
+% % Note \#2: for speedup plots,  the "time for the best serial algorithm on a problem size of N", T*(n), should be the runtime you get when running your code at t=1. So, for Basic OMP+omp, T*(n) would be the time you get when running Basic OMP+omp with OMP\_NUM\_THREADS=1. Then, the speedup numbers you compute are referenced to the serial time for that code.
+
+We evaluated the performance of various MM methods using matrix sizes of \(128 \times 128\), \(512 \times 512\), and \(2048 \times 2048\). For the Basic and Blocked OpenMP implementations, we tested with thread counts of 1, 4, 16, and 64 to observe the impact of varying concurrency levels on performance.
+
+Performance was measured using LIKWID markers placed around the core MM code, as shown in Listing~\ref{listing:basic-omp}, Listing~\ref{listing:cblas}, and Listing~\ref{listing:BMMCO-omp}. We used three performance groups to collect performance counter data: \(FLOPS\_DP\), \(L2CACHE\), and \(L3CACHE\). Specifically:
+\begin{itemize}
+    \item \(FLOPS\_DP\) was used for collecting runtime and instruction count data.
+    \item \(L2CACHE\) provided information about the number of requests that were not satisfied by the L1 cache.
+    \item \(L3CACHE\) indicated the number of requests that were not satisfied by the L2 cache.
+\end{itemize}
+Based on the runtime data, we derived the speedup at varying levels of concurrency for the MM OpenMP (Parallel) implementations. We collected instruction count, L2 accesses, and L3 accesses only for serial runs.
+
+\subsubsection{Runtime}
+\label{subsubsec:runtime}
+To collect runtime data, we used the \(FLOPS\_DP\) performance group, specifically focusing on the \texttt{Runtime (RDTSC) [s]} metric from the LIKWID output. For parallel runs, we took the maximum runtime across all threads. Using the maximum value ensures that the measurement reflects any imbalance in load distribution, as the runtime of a parallel program is ultimately bounded by the slowest thread.
+
+\subsubsection{Instruction Count}
+\label{subsubsec:instruction-count}
+Instruction count data was collected using the \(FLOPS\_DP\) performance group, specifically the \texttt{RETIRED\_INSTRUCTIONS} event from the LIKWID output. This metric represents the number of instructions retired during the execution of the core MM code.
+
+\subsubsection{L2 Accesses}
+\label{subsubsec:l2-accesses}
+We used the \(L2CACHE\) performance group to collect L2 cache access data. The \texttt{L2 accesses} metric from the LIKWID output represents the total number of L2 cache requests, calculated by summing the following counters: \texttt{REQUESTS\_TO\_L2\_GRP1\_ALL\_NO\_PF}, \texttt{L2\_PF\_HIT\_IN\_L2}, \texttt{L2\_PF\_HIT\_IN\_L3}, and \texttt{L2\_PF\_MISS\_IN\_L3}.
+
+\subsubsection{L3 Accesses}
+\label{subsubsec:l3-accesses}
+We used the \(L3CACHE\) performance group to collect L3 cache access data, specifically utilizing the \texttt{L3\_CACHE\_REQ} event from the LIKWID output. This metric indicates the number of memory requests that were not fulfilled by the L2 cache and thus required L3 access.
+
+\subsubsection{Speedup}
+\label{subsubsec:speedup}
+Speedup was defined as the ratio of a parallel program's execution time compared to a sequential program's execution time. For a problem size \(n\) and \(p\) parallel threads, the speedup \(S(n, p)\) was calculated as follows:
+
+\begin{displaymath}
+    S(n, p) = \frac{T^*(n)}{T(n, p)}
+\end{displaymath}
+
+Here, \(T^*(n)\) represents the runtime of the best serial algorithm for a problem of size \(n\). In our case, this was the runtime recorded for \(OMP\_NUM\_THREADS = 1\). Thus, for Basic OMP, \(T^*(n)\) is the time obtained when running Basic OMP with a single thread. \(T(n, p)\) represents the time taken to run the program on a problem of size \(n\) using \(p\) parallel threads.

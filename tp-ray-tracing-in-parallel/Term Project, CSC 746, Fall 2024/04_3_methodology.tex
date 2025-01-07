@@ -1,0 +1,37 @@
+\subsection{Methodology}
+\label{subsec:methodology}
+% % Describe the procedures you use to test your system.
+
+% % Performance metrics: describe exactly what metrics you employ to measure performance. It might be elapsed time from instrumentation code you added around the main computational code. Later in the term, it may be something else.
+
+
+We evaluated the performance of various MM methods using matrix sizes of \(128 \times 128\), \(512 \times 512\), and \(2048 \times 2048\). For the Basic and Blocked OpenMP implementations, we tested with thread counts of 1, 4, 16, and 64 to observe the impact of varying concurrency levels on performance.
+
+\subsubsection{Runtime}
+\label{subsubsec:runtime}
+Runtime was measured using the \textit{high\_resolution\_clock} of the C++ \textit{std::chrono} library. To demonstrate the process, we use simplified pseudo-code in Listing~\ref{listing:measuring-elapsed-time}, which highlights the key steps in measuring the runtime.
+
+\begin{lstlisting}[caption={Simplified pseudo-code for measuring the runtime of ray tracing.},label={listing:measuring-elapsed-time},name=measuring-elapsed-time,float=htbp,style=mystyle,language=C++]
+// Before starting the timer, we initialize image, camera and scene.
+
+start_time = now();
+#pragma omp parallel for
+for each pixel (x, y) in image:
+    for each sample in samples_per_pixel:
+        r = get_ray(x, y)
+        images[x, y] += ray_color(r, max_depth, world)
+end_time = now();
+runtime = end_time - start_time;
+
+// After stopping the timer, we write image to output file
+\end{lstlisting}
+
+\subsubsection{Speedup}
+\label{subsubsec:speedup}
+Speedup was defined as the ratio of a parallel program's execution time compared to a sequential program's execution time. For a problem size \(n\) and \(p\) parallel threads, the speedup \(S(n, p)\) was calculated as follows:
+
+\begin{displaymath}
+    S(n, p) = \frac{T^*(n)}{T(n, p)}
+\end{displaymath}
+
+Here, \(T^*(n)\) represents the runtime of the best serial algorithm for a problem of size \(n\). In our case, this was the runtime recorded for \(\texttt{OMP\_NUM\_THREADS=1}\).

@@ -1,0 +1,43 @@
+\section{Introduction}
+
+% For homework writeups, the Introduction section should state the general thrust of the assignment.
+
+% What is the problem being studied? Explain in 2-3 sentences.
+% What is the approach for studying the problem? Hint: the approach consists of the program(s) you are writing, so say in 2-3 sentences something about those programs. If you like, it is ok to use a forward reference, and say something like "we present the implementation in \S\ref{sec:implementation}. 
+The objective of this assignment is to examine different summation methods and evaluate their performance across various metrics on a supercomputing platform. We implemented three distinct summation approaches: direct sum, vector sum, and indirect sum, each designed to showcase different memory access patterns. Performance evaluation was conducted on the Perlmutter supercomputer at NERSC, utilizing C++ for implementations. Key performance metrics, such as MFLOP/s, memory bandwidth utilization, and memory latency, were derived from measuring the elapsed time of each method. In this report, we discuss the effect of memory access patterns on computational performance. Detailed implementations are provided in Section~\ref{sec:implementation}.
+
+% What are the main results? Say something about the results in 2-3 sentences: what is the nature of your experiment that tests your implementation, and say something about the insights gained. 
+The results indicate that the direct sum method is the most efficient in terms of MFLOP/s because it avoids memory accesses, which are typically the most costly operations. In contrast, the vector sum method performs significantly better than the indirect sum in both memory bandwidth utilization and memory latency. This performance gap suggests that the indirect sum's memory access pattern is highly inefficient, leading to sub-optimal performance in these metrics.
+
+\begin{comment}
+%% the material that follows is from the generic tech paper skeleton project
+
+The problem we have solved
+\begin{itemize}
+    \item Concentrate on making this assertion and only this assertion in a succinct set of 1 to 3 paragraphs
+    \item A common mistake is to explain too much of the problem context first. Instead, state the problem essentially as a claim, and leave explanations supporting your claim to the next part, “Why it is not already solved.”
+\end{itemize}
+
+Why the problem is not already solved or other solutions are ineffective in one or more important ways
+\begin{itemize}
+
+\item Your new idea need not solve every problem but it should solve at least one that is not already solved
+\item This is the place to provide a succinct description of the problem context giving enough information to support the claim that a problem exists, made in the preceding problem declaration.
+  
+\end{itemize}
+
+Why our solution is worth considering and why is it effective in some way that others are not
+
+\begin{itemize}
+\item A succinct statement of why the reader should care enough to read the rest of the paper.
+\item This should include a statement about the characteristics of your solution to the problem which 1) make it a solution, and 2) make it superior to other solutions to the same problem.
+\end{itemize}
+
+How the rest of the paper is structured
+\begin{itemize}
+    \item The short statement below is often all you need, but you should change it when your paper has a different structure, or when more information is required to describe what a given section contains. If it isn’t required then you don’t want to say it here.
+\end{itemize}
+
+The rest of this paper first discusses related work in Section 2, and then describes our implementation in Section 3. Section 4 describes how we evaluated our system and presents the results. Section 5 presents our conclusions and describes future work.
+
+\end{comment}

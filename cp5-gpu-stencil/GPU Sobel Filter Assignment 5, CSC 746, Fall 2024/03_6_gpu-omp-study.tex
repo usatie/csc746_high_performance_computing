@@ -1,0 +1,21 @@
+\subsection{Study for OpenMP offload to the GPU}
+\label{subsec:gpu-omp-study}
+% Subsection: OpenMP-offload study. Since you have only a single datapoint here, create a table containing two data rows, one for the OpenMP-offload code and one for the best performing configuration of the CUDA code. One column contains runtime, another column contains Achieve Occupancy %, and the third column contains % of peak sustained memory bandwidth. Considering the data in this table, describe the differences in these performance measures for these two codes. 
+
+The objective of this experiment is to evaluate the efficiency of OpenMP offloading compared to optimized CUDA configurations.
+
+According to the \texttt{ncu} output, the OpenMP offload setup generates 285,925 thread blocks with 128 threads per block. The thread blocks count corresponds to the total number of collapsed iterations \(7112 \times 5146\) divided by \(128\).
+
+Table~\ref{tab:omp-offload-comparison} presents a performance comparison between OpenMP offload on the GPU and the optimal CUDA configuration, which uses 512 threads per block and 4096 thread blocks. The optimized CUDA code outperforms the OpenMP offload by approximately 2x across all metrics. This performance difference is due to OpenMP’s approach, which assigns each iteration to a thread, resulting in an excessive number of total threads. As discussed in Section~\ref{subsec:gpu-cuda-study}, creating too many threads can introduce significant overhead, sometimes outweighing the benefits of parallelization. Nonetheless, the capability of OpenMP to deliver competitive performance with straightforward pragmas and plain C++ code demonstrates its potential for portable and accessible parallelization.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{l|c|c|c}
+        Configuration & Runtime & Occupancy & Mem Bandwidth\\
+        \hline
+        CUDA & 0.34 (ms) & 92.51 (\%) & 53.55 (\%) \\
+        OpenMP & 0.62 (ms) & 55.61 (\%) & 29.27 (\%) \\
+    \end{tabular}
+    \caption{\textbf{Performance comparison of OpenMP offload to the GPU with the optimal CUDA configuration (T=512, B=4096).}}
+    \label{tab:omp-offload-comparison}
+\end{table}

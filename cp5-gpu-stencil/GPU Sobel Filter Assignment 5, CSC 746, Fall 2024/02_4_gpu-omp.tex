@@ -1,0 +1,24 @@
+\subsection{OpenMP Offload to the GPU}
+\label{subsec:gpu-omp}
+
+The goal of the Sobel Filter with OpenMP GPU offload is to assess the efficiency of using OpenMP for GPU offloading compared to CUDA. OpenMP offloading is simpler than raw CUDA code, though it may be less efficient.
+
+In this implementation, data transfer between host and GPU is declared with \texttt{\#pragma omp target data}. The variables \texttt{in}, \texttt{width}, \texttt{height}, \texttt{gx}, and \texttt{gy} are mapped as read-only, while \texttt{out} is mapped as write-only. The nested loops over rows and columns are collapsed to optimize memory access.
+
+\begin{lstlisting}[caption={\textbf{OpenMP offload to the GPU implementation of Sobel filtering.} \texttt{do\_sobel\_filtering()} applies the Sobel filter, parallelizing the collapsed row/column loop with OpenMP.},label={listing:sobel-gpu-omp},float=htbp,style=mystyle,language=C++]
+void do_sobel_filtering(float *in, float *out, int width, int height) {
+  float gx[] = {...}, gy[] = {...};
+  int nvals = width * height;
+#pragma omp target data \
+    map(to : in[0 : nvals], width, height, gx[0 : 9], gy[0 : 9]) \
+    map(from : out[0 : nvals])
+  {
+#pragma omp target teams distribute parallel for collapse(2)
+    for (int y = 0; y < height; ++y) {
+      for (int x = 0; x < width; ++x) {
+        out[x, y] = sobel_filtered_pixel(in, x, y, gx, gy);
+      }
+    }
+  }
+}
+\end{lstlisting}

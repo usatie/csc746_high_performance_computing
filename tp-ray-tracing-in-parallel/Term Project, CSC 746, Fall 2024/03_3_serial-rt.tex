@@ -1,0 +1,16 @@
+\subsection{Serial RT}
+\label{subsec:serial-rt}
+While no standalone serial implementation was created, the OpenMP implementation with a single-thread parameter (\texttt{OMP\_NUM\_THREADS=1}) serves as the baseline for evaluating parallel performance. This approach processes each pixel sequentially, tracing rays from the camera through the scene, computing intersections, and determining the final color for each pixel. Although straightforward, this single-threaded execution lacks the scalability needed for real-time rendering of complex scenes.
+
+\begin{lstlisting}[caption={\textbf{Serial RT:} The baseline implementation computes the color of each pixel by casting multiple rays per pixel (antialiasing) and aggregating their contributions. Each pixel's color is computed independently.}, label={listing:serial-rt}, name=serial-rt, float=htbp, style=mystyle, language=C++]
+for (int y = 0; y < height; y++) {
+  for (int x = 0; x < width; x++) {
+    color pixel_color = color(0, 0, 0);
+    for (int s = 0; s < samples_per_pixel; s++) {
+      ray r = get_ray(x, y);
+      pixel_color += ray_color(r, max_depth, world);
+    }
+    image[y * image_width + x] += pixel_color;
+  }
+}
+\end{lstlisting}

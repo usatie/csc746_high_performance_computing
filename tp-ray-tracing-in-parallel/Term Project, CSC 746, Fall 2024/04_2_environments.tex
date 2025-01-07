@@ -1,0 +1,29 @@
+\subsection{Computational Platform and Software Environment}
+\label{subsec:computational-platform-and-software-environment}
+
+\subsubsection{System Overview}
+The experiments were conducted on four CPU nodes of the Perlmutter supercomputer at the National Energy Research Scientific Computing Center (NERSC). Each node was running \textit{SUSE Linux Enterprise Server 15 SP4} with kernel version \textit{5.14.21-150400.24.81\_12.0.87-cray\_shasta\_c}. Each node is equipped with two AMD EPYC 7763 (Milan) processors.
+
+\subsubsection{CPU Specifications}
+Each AMD EPYC 7763 processor has 64 cores running at a clock rate of 2.45\,GHz and supports Simultaneous Multi-Threading (SMT), allowing two threads per core. Each core is equipped with:
+\begin{itemize}
+    \item 32\,KiB L1 cache,
+    \item 512\,KiB L2 cache,
+    \item 32\,MiB L3 cache shared among 8 cores.
+\end{itemize}
+The processor supports 8 memory channels per socket, with 2 DIMMs per channel, and is configured with 4 NUMA domains per socket (NPS=4). The system is equipped with 256\,GiB of DDR4 DRAM, providing a memory bandwidth of 204.8\,GiB/s per CPU~\cite{nersc_perlmutter_architecture, amd_epyc_tuning_guide}.
+
+\subsubsection{Software Environment}
+The code was parallelized using OpenMP 4.5~\cite{openmp_spec}, which provides a portable and scalable model for shared memory parallel programming. The code was compiled using the following flags:
+\begin{itemize}
+    \item \texttt{-O3}: Enables high-level compiler optimizations.
+    \item \texttt{-fopenmp}: Enables OpenMP directives for multi-threading.
+\end{itemize}
+
+The experiments utilized the following OpenMP environmental variables:
+\begin{itemize}
+    \item \texttt{OMP\_SCHEDULE={schedule}}: Specifies the thread scheduling policy.
+    \item \texttt{OMP\_NUM\_THREADS={thread counts}}: Configures the number of threads used.
+    \item \texttt{OMP\_PLACES=threads}: Maps each OpenMP thread to a separate hardware thread, ensuring efficient resource usage.
+    \item \texttt{OMP\_PROC\_BIND=spread}: Distributes threads evenly across the available CPUs for optimal workload balancing.
+\end{itemize}

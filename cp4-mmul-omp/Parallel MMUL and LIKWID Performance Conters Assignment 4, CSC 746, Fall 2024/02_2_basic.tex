@@ -1,0 +1,25 @@
+% State the objective for the implementation (2-3 sentences).
+The objective of the Basic OMP implementation is to evaluate the effectiveness of parallelizing a MM operation using OpenMP. By implementing parallelization with OpenMP, this version aims to demonstrate performance improvements over the basic serial implementation, serving as a benchmark to understand scaling characteristics in shared-memory parallel environments.
+
+% Describe the implementation (2-3 sentences, or more if needed).
+The Basic OMP implementation employs a triply-nested loop to perform MM, where OpenMP is used to parallelize the outermost loop. This allows each iteration of the loop, representing a row computation, to be handled by a different thread. We placed LIKWID markers before and after the main MM operations, ensuring that the collected performance data accurately reflects the parallelized portion of the computation. The source code for this implementation is presented in Listing~\ref{listing:basic-omp}.
+
+
+\begin{lstlisting}[caption={\textbf{Basic OpenMP implementation of MM.} The implementation uses a triply-nested loop with OpenMP parallelism. LIKWID markers are added within the parallel block, specifically before and after the core matrix multiply code, to ensure performance data collection is focused only on the parallel MM operations.},label={listing:basic-omp},name=basic-serial,float=htbp,style=mystyle,language=C++]
+void square_dgemm(int n, double* A, double* B, double* C) 
+{
+    #pragma omp parallel for
+    for (int i = 0; i < n; ++i) {        
+        LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
+
+        for (int j = 0; j < n; ++j) {
+            double cij = C[i*n+j];
+            for (int k = 0; k < n; ++k) {
+                cij += A[i*n+k] * B[k*n+j];
+            }
+            C[i*n+j] = cij;
+        }
+        LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
+    }
+}
+\end{lstlisting}

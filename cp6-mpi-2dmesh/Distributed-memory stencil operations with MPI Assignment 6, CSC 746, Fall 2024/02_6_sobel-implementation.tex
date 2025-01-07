@@ -1,0 +1,65 @@
+\subsection{Sobel Implementation}
+\label{subsec:sobel-implementation}
+
+\subsubsection{Sobel Operator}
+\label{subsubsec:sobel-operator}
+
+The Sobel operator approximates the gradient of image intensity for edge detection~\cite{kanopoulos1988design}. It uses two \(3 \times 3\) kernels, convolved with the original image \( A \), to compute horizontal and vertical gradients \( G_x \) and \( G_y \):
+
+\[
+G_x = \begin{bmatrix}
++1 & 0 & -1 \\
++2 & 0 & -2 \\
++1 & 0 & -1 \\
+\end{bmatrix} * A,
+\quad
+G_y = \begin{bmatrix}
++1 & +2 & +1 \\
+0  &  0 &  0 \\
+-1 & -2 & -1 \\
+\end{bmatrix} * A
+\]
+
+The gradient magnitude at each pixel is computed as:
+
+\[
+G = \sqrt{G_x^2 + G_y^2}
+\]
+
+The function \texttt{sobel\_filtered\_pixel()} computes the Sobel filter at a pixel location, as shown in Listing~\ref{listing:sobel-filtered-pixel}. The arrays \( gx \) and \( gy \) represent the kernel weights for the horizontal and vertical filters, respectively.
+
+\begin{lstlisting}[caption={\textbf{Sobel filtered pixel computation.} Computes the Sobel filter at a specific pixel location.},label={listing:sobel-filtered-pixel},float=htbp,style=mystyle,language=C++]
+Function sobel_filtered_pixel(img[width, height], x, y, gx[3, 3], gy[3, 3]) {
+    if x or y is at the boundary of the img
+        return 0
+    Gx = 0.0, Gy = 0.0;
+    for j in {0, 1, 2}
+        for i in {0, 1, 2}
+            xx = x - 1 + i;
+            yy = y - 1 + j;
+            Gx += img[xx, yy] * gx[i, j];
+            Gy += img[xx, yy] * gy[i, j];
+    return sqrt(Gx * Gx + Gy * Gy);
+}
+\end{lstlisting}
+
+\FloatBarrier
+\subsubsection{Overall Sobel Filtering}
+The implementation of \texttt{do\_sobel\_filtering()} function is shown in Listing~\ref{listing:sobel-implementation}, which applies the Sobel filter to a specified region of an input buffer (\texttt{in}) and stores the processed output in a designated output buffer (\texttt{out}). This function processes each pixel in the region by invoking the \texttt{sobel\_filtered\_pixel()} function (detailed in Listing~\ref{listing:sobel-filtered-pixel}), which calculates the gradient magnitude for the pixel using the Sobel operator. The computed values are then placed into their corresponding positions in the output buffer. Each rank independently calls \texttt{do\_sobel\_filtering()} to compute the filtered output for its assigned tile, ensuring parallel processing across the distributed tiles.
+
+\begin{lstlisting}[caption={\textbf{Implementation of the Sobel operation for a given region.}},label={listing:sobel-implementation},float=htbp,style=mystyle,language=C++]
+void do_sobel_filtering(float *in, float *out, int width, int height) {
+  // Define Sobel operator kernels
+  float Gx[] = {1.0, 0.0, -1.0, 2.0, 0.0, -2.0, 1.0, 0.0, -1.0};
+  float Gy[] = {1.0, 2.0, 1.0, 0.0, 0.0, 0.0, -1.0, -2.0, -1.0};
+  
+  // Apply Sobel filtering to each pixel
+  for (int y = 0; y < height; ++y) {
+    for (int x = 0; x < width; ++x) {
+      // Compute the Sobel-filtered value for the current pixel
+      out[y * width + x] =
+          sobel_filtered_pixel(in, x, y, width, height, Gx, Gy);
+    }
+  }
+}
+\end{lstlisting}

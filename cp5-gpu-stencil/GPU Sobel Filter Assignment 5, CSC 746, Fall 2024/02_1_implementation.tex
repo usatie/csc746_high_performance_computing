@@ -1,0 +1,6 @@
+\section{Implementation}
+\label{sec:implementation}
+% Put an introductory paragraph here that gives the reader an overview of what's coming. If there are multiple subsections, say in a few words or a sentence something about each subsection.
+
+% include a separate subsection for each of the different implementations. Briefly describe your implementation, and include the use of compact pseudocode as necessary. The focus here should be on conciseness and clarity. Be sure to describe the strategy you used in parallelizing your code. Your example Listings should clearly indicate the OpenMP pragmas you used. 
+This section describes the implementation of the Sobel filter, a foundational edge-detection algorithm. To assess the effectiveness of parallelization and thread distribution strategies, we implemented three approaches to accelerate the Sobel filter. The subsections cover the core Sobel filter algorithm (Sobel Operator), followed by three parallelization techniques: a CPU-based implementation using OpenMP to establish a CPU baseline, a CUDA-based GPU implementation focused on optimizing performance through strided memory access, and an OpenMP offload to the GPU to serve as a GPU baseline.

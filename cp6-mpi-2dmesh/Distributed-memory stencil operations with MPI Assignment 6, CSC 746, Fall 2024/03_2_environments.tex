@@ -1,0 +1,26 @@
+\subsection{Computational platform and Software Environment}
+\label{subsec:computational-platform-and-software-environment}
+
+
+% What machine did you run your tests on? What was the processor, its clock rate (GHz), size of L1/L2/L3 cache, how much memory (DRAM), what OS?
+
+% What compiler did you use, what compilation flags?
+
+% Include a subsection describing your computational platform and software environment. Please add a citation to the location where you found this information (hint: use the LaTeX \cite{} command, and add a new entry to the template.bib file provided with the Overleaf template).
+
+% What machine did you run your tests on? What was the processor, its clock rate (GHz), size of L1/L2/L3 cache, how much memory (DRAM), what OS?
+
+% What compiler did you use, what compilation flags?
+
+\subsubsection{System Overview}
+
+The experiments were conducted on four CPU nodes, running \textit{SUSE Linux Enterprise Server 15 SP4}, with kernel version \textit{5.14.21-150400.24.81\_12.0.87-cray\_shasta\_c}, of the Perlmutter supercomputer at the National Energy Research Scientific Computing Center (NERSC). Each node is equipped with two AMD EPYC 7763 (Milan) CPUs.
+
+\subsubsection{CPU Specifications}
+
+The AMD EPYC 7763 processor features 64 cores running at a clock rate of 2.45\,GHz. It supports Simultaneous Multi-threading (SMT), enabling two threads per core. Each core has a 32\,KiB L1 cache and a 512\,KiB L2 cache, while every 8 cores share a 32\,MiB L3 cache. The processor also offers 8 memory channels per socket, with 2 DIMMs per channel, and 4 NUMA domains per socket (NPS=4). The system is supported by 256\,GiB of DDR4 DRAM, providing a CPU memory bandwidth of 204.8\,GiB/s~\cite{nersc_perlmutter_architecture, amd_epyc_tuning_guide}.
+
+\subsubsection{Software Environment}
+The computational environment is based on a Linux operating system optimized for high-performance computing. The \texttt{g++} compiler from the GNU Compiler Collection (gcc) version 12.3.0 (SUSE Linux) was used for compiling the code. The source code was compiled with the \texttt{-O3} optimization flag, which enables aggressive compiler optimizations such as loop unrolling, vectorization, and inlining, ensuring efficient utilization of hardware resources.
+
+We employed the Message Passing Interface (MPI) standard~\cite{mpi_spec} for parallel programming. Specifically, we used the HPE Cray MPI implementation~\cite{hpe_cray_mpi}, version 8.1.28.

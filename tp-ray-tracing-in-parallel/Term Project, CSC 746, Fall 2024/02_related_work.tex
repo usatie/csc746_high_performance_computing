@@ -1,0 +1,11 @@
+\section{Related Work}
+\label{sec:related-work}
+Ray tracing has been a cornerstone of photorealistic rendering since its inception, with significant advancements in both algorithms and hardware optimization.
+
+Phong Shading~\cite{Phong1975} introduced a realistic shading model in 1975 that enhanced 3D rendering by approximating light interactions on surfaces. Whitted's Ray Tracing~\cite{Whitted1980} expanded the paradigm in 1980 to incorporate global illumination effects such as reflections, refractions, and shadows, laying the groundwork for modern physically-based rendering techniques.
+
+Subsequent innovations, such as Distributed Ray Tracing~\cite{Cook1984}, addressed issues like aliasing and simulated effects such as motion blur and soft shadows through distributed sampling. The Rendering Equation~\cite{Kajiya1986} unified various rendering approaches under a single mathematical framework in 1986, enabling sophisticated solutions for complex illumination scenarios.
+
+With the advent of GPUs, significant effort has been devoted to optimizing ray tracing for parallel hardware. For example, GPU Ray Traversal Optimization~\cite{Aila2009} in 2009 identified bottlenecks in memory bandwidth and workload distribution, proposing techniques such as persistent threads to enhance performance.
+
+Despite these advancements, achieving real-time ray tracing remains a challenge, especially on general-purpose hardware. Existing methods often encounter limitations such as load imbalance and inefficient utilization of parallel resources, motivating further exploration of parallelization strategies tailored to CPUs.

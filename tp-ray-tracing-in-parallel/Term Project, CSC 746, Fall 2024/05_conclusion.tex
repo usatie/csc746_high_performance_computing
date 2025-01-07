@@ -1,0 +1,10 @@
+\section{Conclusions and Future Work}
+\label{sec:conclusion-and-future-work}
+
+As we saw in the memory usage, our current implementation has extra implementation overhead of memory usage, potentially affecting the overall performance. So we want to improve the code to replace complex classes to Plain Old Data (POD), such as arrays and structs. This has another benefit such as enabling the OpenMP GPU offloading.
+
+Our current implementation only supports spheres as the object type, but we aim to extend this to support planes and polygons at a minimum. Expanding the range of supported primitives would enable more realistic and complex scenes to be rendered, enhancing the utility of our ray tracing system.
+
+Additionally, we plan to evaluate the performance of our implementation by comparing it against OptiX\cite{nvidia_optix}, a state-of-the-art GPU ray tracing framework, which would provide a highly optimized baseline. Such a comparison would help identify specific bottlenecks in our implementation and validate the scalability and efficiency of our parallelization strategies.
+
+Finally, while our work demonstrates the potential of parallelism for ray tracing, achieving real-time performance remains a significant challenge. In the future, we aim to explore advanced optimization techniques such as hierarchical acceleration structures and adaptive sampling to push the boundaries of performance further. These improvements could bring us closer to real-time applications in gaming and visualization.

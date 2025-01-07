@@ -1,0 +1,41 @@
+\subsection{Sobel Operator}
+\label{subsec:sobel-operator}
+
+The Sobel operator approximates the gradient of image intensity for edge detection~\cite{kanopoulos1988design}. It uses two \(3 \times 3\) kernels, convolved with the original image \( A \), to compute horizontal and vertical gradients \( G_x \) and \( G_y \):
+
+\[
+G_x = \begin{bmatrix}
++1 & 0 & -1 \\
++2 & 0 & -2 \\
++1 & 0 & -1 \\
+\end{bmatrix} * A,
+\quad
+G_y = \begin{bmatrix}
++1 & +2 & +1 \\
+0  &  0 &  0 \\
+-1 & -2 & -1 \\
+\end{bmatrix} * A
+\]
+
+The gradient magnitude at each pixel is computed as:
+
+\[
+G = \sqrt{G_x^2 + G_y^2}
+\]
+
+The function \texttt{sobel\_filtered\_pixel()} computes the Sobel filter at a pixel location, as shown in Listing~\ref{listing:sobel-filtered-pixel}. The arrays \( gx \) and \( gy \) represent the kernel weights for the horizontal and vertical filters, respectively.
+
+\begin{lstlisting}[caption={\textbf{Sobel filtered pixel computation.} Computes the Sobel filter at a specific pixel location.},label={listing:sobel-filtered-pixel},float=htbp,style=mystyle,language=C++]
+Function sobel_filtered_pixel(img[width, height], x, y, gx[3, 3], gy[3, 3]) {
+    if x or y is at the boundary of the img
+        return 0
+    Gx = 0.0, Gy = 0.0;
+    for j in {0, 1, 2}
+        for i in {0, 1, 2}
+            xx = x - 1 + i;
+            yy = y - 1 + j;
+            Gx += img[xx, yy] * gx[i, j];
+            Gy += img[xx, yy] * gy[i, j];
+    return sqrt(Gx * Gx + Gy * Gy);
+}
+\end{lstlisting}

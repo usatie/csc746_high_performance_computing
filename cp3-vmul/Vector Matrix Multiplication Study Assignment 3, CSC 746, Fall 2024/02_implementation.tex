@@ -1,0 +1,85 @@
+
+\section{Implementation}
+\label{sec:implementation}
+% Put an introductory paragraph here that gives the reader an overview of what's coming. If there are multiple subsections, say in a few words or a sentence something about each subsection.
+
+% include a separate subsection for each of the different implementations. Briefly describe your implementation, and include the use of code or compact pseudocode as necessary in code listings. The focus here should be on conciseness and clarity.
+
+This section presents four matrix-vector multiplication (VMM) methods implemented to evaluate performance. The first two methods, VMM Basic (Serial) and VMM Vectorized (Serial), share the same source code; however, the VMM Vectorized version is compiled with flags to enable automatic vectorization. The third method, VMM OpenMP (Parallel), introduces parallelization using OpenMP to accelerate computation. Lastly, VMM CBLAS serves as a reference implementation using the highly optimized CBLAS library. Each subsection provides details on the objectives and specific implementations for these methods.
+
+
+
+\subsection{VMM Basic (Serial)}
+\label{subsec:vmm-basic-serial}
+
+% State the objective for the implementation (2-3 sentences).
+
+The objective of the VMM Basic (Serial) implementation is to establish a baseline performance metric for matrix-vector multiplication without any optimizations or parallelization. This implementation is used as a reference point to evaluate the performance gains from vectorization and parallelization in the subsequent methods.
+
+
+% Describe the implementation (2-3 sentences, or more if needed). Feel free to use coding examples as needed, such as that shown in Listing~\ref{listing:stencil-core}.
+
+The VMM Basic (Serial) and VMM Vectorized (Serial) implementations both use a naive double-nested loop to compute each element \(y[i]\) of the resulting vector \(y\), by adding the dot product of the \(i\)-th row of matrix \(A\) and the input vector \(x\). The inner loop is carefully structured to only use the loop index variable \(j\), ensuring proper vectorization when compiler flags are applied. The code for this implementation is shown in Listing~\ref{listing:basic-serial}.
+
+\begin{lstlisting}[caption={\textbf{Naive implementation of matrix-vector multiplication using a double-nested loop.} The VMM Basic (Serial) and VMM Vectorized (Serial) implementations use the same source code. The inner loop is carefully structured to only use the loop index variable \(j\), ensuring proper vectorization when compiler flags are applied.},label={listing:basic-serial},name=basic-serial,float=htbp,style=mystyle,language=C++]
+void my_dgemv(int n, double *A, double *x, double *y) {
+  for (int i = 0; i < n; i++) {
+    double *a = &A[i * n];
+    double dot = 0;
+    for (int j = 0; j < n; j++) {
+      dot += a[j] * x[j];
+    }
+    y[i] += dot;
+  }
+}
+\end{lstlisting}
+
+\subsection{VMM Vectorized (Serial)}
+\label{subsec:vmm-vectorized-serial}
+% State the objective for the implementation (2-3 sentences).
+% Describe the implementation (2-3 sentences, or more if needed). Feel free to use coding examples as needed, such as that shown in Listing~\ref{listing:stencil-core}.
+
+The objective of the VMM Vectorized (Serial) implementation is to evaluate the performance improvement achieved through automatic vectorization by the compiler. This implementation uses the same code as shown in Listing~\ref{listing:basic-serial}, but is compiled with specific optimization flags. These flags, \textit{-O3 -DNDEBUG -fomit-frame-pointer -ftree-vectorize -funroll-loops -ffast-math -fopt-info-vec-all=report.txt}, ensure that the code is vectorized and generate a report detailing how the vectorization is applied.
+
+\subsection{VMM OpenMP (Parallel)}
+\label{subsec:vmm-openmp-parallel}
+% State the objective for the implementation (2-3 sentences).
+
+The objective of the VMM OpenMP (Parallel) implementation is to evaluate the performance improvements achieved through parallelization by distributing the workload across multiple threads using OpenMP compiler directives.
+
+% Describe the implementation (2-3 sentences, or more if needed). Feel free to use coding examples as needed, such as that shown in Listing~\ref{listing:stencil-core}.
+
+This implementation retains the same loop structure as the VMM Basic (Serial) and VMM Vectorized (Serial) versions. The only modification is the inclusion of the compiler directive \textit{\#pragma omp parallel for}, which instructs the compiler to parallelize the subsequent for loop. This ensures that each operation \( y[i] = y[i] + A[i] * x \) is executed in parallel for all rows \(i\) of matrix \(A\). The source code is compiled with the flags \textit{-fopenmp -march=native -O1} to enable OpenMP parallelization and optimize for the native architecture. The code for this implementation is shown in Listing~\ref{listing:openmp-parallel}.
+
+
+\begin{lstlisting}[caption={\textbf{OpenMP-parallel implementation for matrix-vector multiplication.} This implementation retains the loop structure of the VMM Basic (Serial) and VMM Vectorized (Serial) versions, with the addition of the \texttt{\#pragma omp parallel for} directive to enable parallel execution across multiple threads.},label={listing:openmp-parallel},name=openmp-parallel,float=htbp,style=mystyle,language=C++]
+void my_dgemv(int n, double *A, double *x, double *y) {
+#pragma omp parallel for
+  for (int i = 0; i < n; i++) {
+    double *a = &A[i * n];
+    double dot = 0;
+    for (int j = 0; j < n; j++) {
+      dot += a[j] * x[j];
+    }
+    y[i] += dot;
+  }
+}
+\end{lstlisting}
+
+\subsection{VMM CBLAS}
+\label{subsec:vmm-cblas}
+
+The objective of the VMM CBLAS implementation is to establish a baseline performance for highly optimized matrix-vector multiplication without manual parallelization or vectorization. This implementation serves as a reference point to compare with the vectorization and parallelization techniques applied in the other methods.
+
+As shown in Listing~\ref{listing:cblas}, the CBLAS implementation wraps a call to the highly optimized CBLAS routine \textit{cblas\_dgemv}, which performs matrix vector multiplication.
+
+\begin{lstlisting}[caption={CBLAS implementation using the cblas\_dgemv routine for optimized matrix vector multiplication},label={listing:cblas},name=cblas,float=htbp,style=mystyle,language=C++]
+#include <cblas.h>
+
+void my_dgemv(int n, double *A, double *x, double *y) {
+  double alpha = 1.0, beta = 1.0;
+  int lda = n, incx = 1, incy = 1;
+  cblas_dgemv(CblasRowMajor, CblasNoTrans, n, n, alpha, A, lda, x, incx, beta,
+              y, incy);
+}
+\end{lstlisting}

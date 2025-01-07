@@ -1,0 +1,39 @@
+\subsection{Computational platform and Software Environment}
+\label{subsec:computational-platform-and-software-environment}
+
+
+% What machine did you run your tests on? What was the processor, its clock rate (GHz), size of L1/L2/L3 cache, how much memory (DRAM), what OS?
+
+% What compiler did you use, what compilation flags?
+
+% Include a subsection describing your computational platform and software environment. Please add a citation to the location where you found this information (hint: use the LaTeX \cite{} command, and add a new entry to the template.bib file provided with the Overleaf template).
+
+% What machine did you run your tests on? What was the processor, its clock rate (GHz), size of L1/L2/L3 cache, how much memory (DRAM), what OS?
+
+% What compiler did you use, what compilation flags?
+
+\subsubsection{System Overview}
+
+The experiments were conducted on a GPU node of the Perlmutter supercomputer at the National Energy Research Scientific Computing Center (NERSC). Each node is equipped with a single AMD EPYC 7763 (Milan) CPU and four NVIDIA A100 (Ampere) GPUs.
+
+\subsubsection{CPU Specifications}
+
+The AMD EPYC 7763 processor features 64 cores running at a clock rate of 2.45\,GHz. It supports Simultaneous Multi-threading (SMT), enabling two threads per core. Each core has a 32\,KiB L1 cache and a 512\,KiB L2 cache, while every 8 cores share a 32\,MiB L3 cache. The processor also offers 8 memory channels per socket, with 2 DIMMs per channel, and 4 NUMA domains per socket (NPS=4). The system is supported by 256\,GiB of DDR4 DRAM, providing a CPU memory bandwidth of 204.8\,GiB/s~\cite{nersc_perlmutter_architecture, amd_epyc_tuning_guide}.
+
+\subsubsection{GPU Specifications}
+
+The NVIDIA A100 GPU is composed of multiple GPU Processing Clusters (GPCs), Texture Processing Clusters (TPCs), Streaming Multiprocessors (SMs), and HBM2 memory controllers. Key features include 7 GPCs with 7 or 8 TPCs per GPC, 2 SMs per TPC, and up to 16 SMs per GPC, totaling 108 SMs. Each SM contains 64 FP32 CUDA cores, summing up to 6,912 FP32 CUDA cores per GPU, and 4 third-generation Tensor Cores, totaling 432 Tensor Cores per GPU. The GPU also has 5 HBM2 stacks with 10 512-bit memory controllers, 192\,KB of combined shared memory and L1 data cache per SM, a 40\,MB Level~2 (L2) cache, and 40\,GiB of HBM2 memory (as reported by the \texttt{nvidia-smi -q -d MEMORY} command).
+
+Each GPU offers a peak computational throughput of 19.5\,TFLOPS for FP32, 9.7\,TFLOPS for FP64, 155.9\,TFLOPS for TF32 (tensor), 311.9\,TFLOPS for FP16 (tensor), and 19.5\,TFLOPS for FP64 (tensor). The GPU memory bandwidth is 1,555\,GiB/s per 40\,GiB HBM2 GPU and 2,039\,GiB/s per 80\,GiB HBM2e GPU. Each pair of GPUs is connected by four third-generation NVLink connections, offering 25\,GiB/s per direction for each link~\cite{nersc_perlmutter_architecture,nvidia_ampere_architecture_whitepaper}.
+
+\subsubsection{Software Environment}
+
+The system runs on a Linux operating system optimized for high-performance computing. The compilers and tools used in this work are the NVHPC 23.9.0 C++ compiler (\texttt{nvc++}) and the NVIDIA 12.2.91 CUDA Compiler (\texttt{nvcc}).
+
+\subsubsection{Compilation Flags}
+
+For the CPU with OpenMP implementation, the code was compiled using the flags \texttt{-O3}, \texttt{-fast}, and \texttt{-fopenmp}. Here, \texttt{-O3} enables high-level optimization, \texttt{-fast} activates a set of compiler optimizations for performance, and \texttt{-fopenmp} enables OpenMP directives for multi-threading on CPUs.
+
+In the GPU with CUDA implementation, the compilation employed the flags \texttt{-O3}, \texttt{-std=c++14}, and \texttt{-forward-unknown-to-host-compiler}. The \texttt{-O3} flag enables high-level optimization, \texttt{-std=c++14} specifies the C++ standard version, and \texttt{-forward-unknown-to-host-compiler} passes unknown flags to the host compiler.
+
+For the GPU with OpenMP Offloading implementation, the key compilation flags included \texttt{-O3}, \texttt{-fast}, \texttt{-mp=gpu}, and \texttt{-Minfo=mp,accel}. In this case, \texttt{-O3} and \texttt{-fast} optimize performance, \texttt{-mp=gpu} enables OpenMP offloading to GPUs, and \texttt{-Minfo=mp,accel} provides compiler feedback on OpenMP and accelerator optimizations.

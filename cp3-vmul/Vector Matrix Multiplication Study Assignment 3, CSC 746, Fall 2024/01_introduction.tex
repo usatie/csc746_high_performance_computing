@@ -1,0 +1,48 @@
+\section{Introduction}
+% consists of 3 short paragraphs consisting of the problem statement, your approach, and a brief summary of the findings/results. Here, short paragraph means 3-4 sentences.
+
+The objective of this study is to evaluate the effectiveness of different parallelization techniques for enhancing computational efficiency and memory bandwidth utilization in matrix-vector multiplication (VMM). The techniques explored include instruction-level parallelism, SIMD instructions, vectorization, multi-threading with OpenMP, and considerations for NUMA architecture. By examining these methods, we aim to understand their respective benefits and limitations in the context of high-performance computing.
+
+We implemented four versions of VMM: a basic serial version as an unoptimized baseline, a highly optimized serial version using the CBLAS library, an automatically vectorized serial version leveraging SIMD instructions, and a parallel version utilizing OpenMP for multi-threading. These implementations provide a comprehensive basis for evaluating the impact of different optimizations on performance. All experiments were conducted on the Perlmutter supercomputer at NERSC, using C++ for implementation. Detailed descriptions of these methods are provided in Section~\ref{sec:methodology}.
+
+The results indicate that the Vectorized implementation achieved four times the performance of the Basic version due to SIMD instructions and performed similarly to CBLAS for larger matrix sizes. However, CBLAS significantly outperformed the Vectorized version for smaller matrices, likely due to techniques like instruction-level parallelism (ILP). The OpenMP implementation, while outperforming CBLAS for larger matrices, had excessive overhead for smaller sizes, making it worse than both CBLAS and even the Vectorized version. Despite outperforming CBLAS for larger sizes, the OpenMP performance was still far from ideal due to memory data layout inefficiencies and limited bandwidth, which acted as bottlenecks.
+% For homework writeups, the Introduction section should state the general thrust of the assignment.
+
+% What is the problem being studied? Explain in 2-3 sentences.
+
+% What is the approach for studying the problem? Hint: the approach consists of the program(s) you are writing, so say in 2-3 sentences something about those programs. If you like, it is ok to use a forward reference, and say something like "we present the implementation in \S\ref{sec:implementation}. 
+
+% What are the main results? Say something about the results in 2-3 sentences: what is the nature of your experiment that tests your implementation, and say something about the insights gained. 
+
+\begin{comment}
+%% the material that follows is from the generic tech paper skeleton project
+
+The problem we have solved
+\begin{itemize}
+    \item Concentrate on making this assertion and only this assertion in a succinct set of 1 to 3 paragraphs
+    \item A common mistake is to explain too much of the problem context first. Instead, state the problem essentially as a claim, and leave explanations supporting your claim to the next part, “Why it is not already solved.”
+\end{itemize}
+
+Why the problem is not already solved or other solutions are ineffective in one or more important ways
+\begin{itemize}
+
+\item Your new idea need not solve every problem but it should solve at least one that is not already solved
+\item This is the place to provide a succinct description of the problem context giving enough information to support the claim that a problem exists, made in the preceding problem declaration.
+  
+\end{itemize}
+
+Why our solution is worth considering and why is it effective in some way that others are not
+
+\begin{itemize}
+\item A succinct statement of why the reader should care enough to read the rest of the paper.
+\item This should include a statement about the characteristics of your solution to the problem which 1) make it a solution, and 2) make it superior to other solutions to the same problem.
+\end{itemize}
+
+How the rest of the paper is structured
+\begin{itemize}
+    \item The short statement below is often all you need, but you should change it when your paper has a different structure, or when more information is required to describe what a given section contains. If it isn’t required then you don’t want to say it here.
+\end{itemize}
+
+The rest of this paper first discusses related work in Section 2, and then describes our implementation in Section 3. Section 4 describes how we evaluated our system and presents the results. Section 5 presents our conclusions and describes future work.
+
+\end{comment}

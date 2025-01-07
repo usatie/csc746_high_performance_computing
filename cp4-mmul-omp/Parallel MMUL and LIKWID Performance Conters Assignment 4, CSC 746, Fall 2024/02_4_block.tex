@@ -1,0 +1,30 @@
+% State the objective for the implementation (2-3 sentences).
+The objective of the BMMCO with OpenMP implementation is to evaluate how effectively parallelization, combined with cache optimization techniques like blocking and copy optimization, can enhance MM performance. This approach aims to reduce cache misses and improve data locality, leveraging these optimizations alongside OpenMP to achieve superior efficiency.
+
+% Describe the implementation (2-3 sentences, or more if needed).
+The BMMCO OMP implementation divides matrices into smaller blocks, enabling operations on submatrices to improve data locality and make better use of cache memory. Copying these blocks into local storage allows faster cache access, reducing repeated memory costs. OpenMP parallelizes the outermost loop, allowing each block row of C to be processed concurrently by different threads, which enhances computational efficiency and reduces overall runtime. The implementation is shown in Listing~\ref{listing:BMMCO-omp}.
+
+\begin{lstlisting}[caption={\textbf{BMMCO with OpenMP implementation of MM using blocking and copy optimization techniques.} The implementation divides the matrices into smaller sub-blocks to improve data locality and minimize cache misses. OpenMP is used to parallelize the outermost loop, allowing each block row to be processed concurrently by different threads. Copying matrix blocks into local storage (faster cache) prior to performing computations helps reduce memory latency by taking advantage of the CPU cache, rather than accessing global memory repeatedly. LIKWID markers are included to measure the performance of the parallelized block operations, focusing specifically on the parallel region of the MM.},label={listing:BMMCO-omp}, name=BMMCO-omp, float=htbp, style=mystyle, language=C++]
+void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C)
+{
+#define MAX_BLOCK (64 * 64)
+    static double aBlock[MAX_BLOCK], bBlock[MAX_BLOCK], cBlock[MAX_BLOCK];
+    int Nb = n / block_size;
+    #pragma omp parallel for private(aBlock, bBlock, cBlock)
+    for (int i = 0; i < Nb; i++) {
+        LIKWID_MARKER_START(MY_MARKER_REGION_NAME);
+
+        for (int j = 0; j < Nb; j++) {
+            blockread(cBlock, C, i, j, n, block_size);
+            for (int k = 0; k < Nb; k++) {
+                blockread(aBlock, A, i, k, n, block_size);
+                blockread(bBlock, B, k, j, n, block_size);
+                // Perform matrix multiplication on the copied blocks
+                square_dgemm(block_size, aBlock, bBlock, cBlock);
+            }
+            blockwrite(cBlock, C, i, j, n, block_size);
+        }
+        LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
+    }
+}
+\end{lstlisting}

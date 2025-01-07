@@ -1,0 +1,21 @@
+\subsection{Overall Code Harnesss}
+\label{subsec:overall-code-harness}
+% Using Listings where appropriate to present your code ideas, as well as describe these ideas in text form. Each of these subsections should consist of 2-3 short paragraphs of 4-5 sentences each (hint: explain the problem you’re trying to solve, and how you solve it in your code, and the relationship of the code in this subsection to the rest of the larger problem).
+
+% Describe the implementation (2-3 sentences, or more if needed).
+Listing~\ref{listing:overall-code-harness} presents the structure of the distributed-memory stencil operation. Each process computes the mesh decomposition independently to determine how the computational domain is divided among the available ranks. The host process (rank 0) reads the input file and distributes the corresponding data segments (tiles) to all ranks using a scatter operation. Each rank then applies the Sobel filter to its assigned tiles, ensuring an even distribution of computational workload. After processing, the results are sent back to the host process via a gather operation. Finally, the host aggregates the data and writes the output file.
+
+\begin{lstlisting}[caption={\textbf{Overall code harness of the distributed-memory stencil operations with MPI.}},label={listing:overall-code-harness},float=htbp,style=mystyle,language=C++]
+int main(int argc, char *argv[]) {
+    MPI_Init(&argc, &argv);
+    parseArgs();
+    computeMeshDecomposition();
+    loadInputFile();   // Only Rank 0 loads 
+    scatterAllTiles(); // Rank 0 sends, the others receive
+    sobelAllTiles();
+    gatherAllTiles();  // Rank 0 receives, the others send
+    writeOutputFile(); // Only Rank 0 writes
+    MPI_Finalize();
+    return 0;
+}
+\end{lstlisting}

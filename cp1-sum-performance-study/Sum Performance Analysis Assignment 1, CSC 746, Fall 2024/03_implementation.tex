@@ -1,0 +1,105 @@
+
+\section{Implementation}
+\label{sec:implementation}
+% Put an introductory paragraph here that gives the reader an overview of what's coming. If there are multiple subsections, say in a few words or a sentence something about each subsection.
+We implemented three sum computation methods to measure performance: direct sum with no memory access, vector sum with contiguous memory access,
+and indirect sum with random memory access.
+
+\subsection{Direct sum}
+\label{subsec:implementation-direct-sum}
+% State the objective for the implementation (2-3 sentences).
+The objective of implementing the direct sum is to measure performance when the program involves no memory access. This approach isolates the computational cost without the overhead of memory operations.
+
+% Describe the implementation (2-3 sentences, or more if needed). Feel free to use coding examples as needed, such as that shown in Listing~\ref{listing:direct-sum}.
+No extra setup is needed for the direct sum, and we used only a loop index and an accumulator variable, avoiding memory access for each iteration. The actual implementation is shown in Listings~\ref{listing:direct-sum-setup} and~\ref{listing:direct-sum}.
+
+
+\begin{lstlisting}[caption={Direct Sum Setup: No setup required.},label={listing:direct-sum-setup}, name=direct-sum-setup, float=htbp, style=mystyle,language=C++]
+void setup(int64_t N, uint64_t A [])
+{
+    // do nothing
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Direct Sum: Computes the sum by directly adding the loop index values.},label={listing:direct-sum}, name=direct-sum, float=htbp, style=mystyle,language=C++]
+int64_t sum(int64_t N, uint64_t A [])
+{
+    int64_t sum = 0;
+    for (int64_t i = 0; i < N; i++)
+    {
+        sum += i;
+    }
+    return sum;
+}
+\end{lstlisting}
+
+\FloatBarrier
+\subsection{Vector sum}
+\label{subsec:implementation-vector-sum}
+The objective of implementing the vector sum is to measure performance when the program accesses memory sequentially, maximizing spatial locality.
+
+The setup method initializes an array of length \(N\) to contain the values \(0\) to \(N-1\). The sum method calculates the sum of the values in the array by accessing each subsequent element in each iteration. The actual implementation is shown in Listings~\ref{listing:vector-sum-setup} and~\ref{listing:vector-sum}.
+
+
+\begin{lstlisting}[caption={Vector Sum Setup: Initializes an array with sequential values from \(0\) to \(N-1\).},label={listing:vector-sum-setup}, name=vector-sum-setup, float=htbp, style=mystyle,language=C++]
+void setup(int64_t N, uint64_t A [])
+{
+   for (int64_t i = 0; i < N; i++)
+   {
+      A[i] = i;
+   }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Vector Sum: Calculates the sum by sequentially accessing and adding the elements of the array.},label={listing:vector-sum}, name=vector-sum, float=htbp, style=mystyle,language=C++]
+int64_t sum(int64_t N, uint64_t A[])
+{
+    int64_t sum = 0;
+    for (int64_t i = 0; i < N; i++)
+    {
+        sum += A[i];
+    }
+    return sum;
+}
+\end{lstlisting}
+
+\FloatBarrier
+\subsection{Indirect sum}
+\label{subsec:implementation-indirect-sum}
+
+The objective of implementing the indirect sum is to measure performance when the program accesses memory randomly, which results in low spatial locality.
+
+The setup method initializes an array of length \(N\) to contain the values \(0\) to \(N-1\) and then creates a random permutation of these values. This permutation is used to form a single cycle in which each element points to the next element in the cycle, ensuring that every value from \(0\) to \(N-1\) is visited exactly once. The sum method calculates the sum of the array's values by following the indices determined by this cycle, starting from the first index and moving to the next as dictated by the current value. The actual implementation is shown in Listings~\ref{listing:indirect-sum-setup} and~\ref{listing:indirect-sum}.
+
+\begin{lstlisting}[caption={Indirect Sum Setup: Initializes an array with values \(0\) to \(N-1\) and shuffles them to create a single cycle for indirect access.},label={listing:indirect-sum-setup}, name=indirect-sum-setup, float=htbp, style=mystyle,language=C++]
+void setup(int64_t N, uint64_t A [])
+{
+   std::vector<int> walk_order(N);
+   for (int64_t i = 0; i < N; i++)
+   {
+      walk_order[i] = i;
+   }
+   std::shuffle(walk_order.begin(), walk_order.end(), std::default_random_engine());
+   // random walk
+   int64_t index = walk_order[0];
+   for (int64_t i = 0; i < N; i++)
+   {
+      int64_t next_index = walk_order[(i+1) % N];
+      A[index] = next_index;
+      index = next_index;
+   }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Indirect Sum: Computes the sum by following a random walk through the array indices, accessing elements indirectly.},label={listing:indirect-sum}, name=indirect-sum, float=htbp, style=mystyle,language=C++]
+int64_t sum(int64_t N, uint64_t A[])
+{
+    int64_t sum = 0;
+    for (int64_t i = 0; i < N; i++)
+    {
+        int64_t indirect_index = A[i];
+        sum += A[indirect_index];
+    }
+    return sum;
+}
+\end{lstlisting}

@@ -1,0 +1,77 @@
+
+\section{Implementation}
+\label{sec:implementation}
+\begin{comment}
+    include a separate subsection for each of the different implementations. Briefly describe your implementation, and include the use of compact pseudocode as necessary. The focus here should be on conciseness and clarity.
+\end{comment}
+
+% Put an introductory paragraph here that gives the reader an overview of what's coming. If there are multiple subsections, say in a few words or a sentence something about each subsection.
+This section describes the two matrix multiplication methods implemented to measure performance: Basic Matrix Multiplication (Basic MM) without optimizations and Blocked Matrix Multiplication with Copy Optimization (BMMCO). Each subsection details the objectives and specific implementations of these methods.
+
+\subsection{Basic Matrix Multiplication (Basic MM)}
+
+% State  the objective for the implementation (2-3 sentences).
+
+The objective of the Basic MM implementation is to establish a baseline performance metric for matrix multiplication without any optimizations. This implementation serves as a reference point to compare the effects of the optimization techniques applied in subsequent methods.
+
+
+% Describe the implementation (2-3 sentences, or more if needed). Feel free to use coding examples as needed, such as that shown in Listing~\ref{listing:stencil-core}.
+The Basic MM implementation uses a naive triple-nested loop to compute each element \(C[i, j]\) of the resulting matrix \(C\), by adding the dot product of the \(i\)-th row of matrix \(A\) and the \(j\)-th column of matrix \(B\). Here, \(A\), \(B\), and \(C\) are \(n \times n\) matrices stored in row-major format, which is intentionally chosen to result in poor cache line usage. This approach ensures that the implementation is both naive and achieves the worst possible efficiency, providing a very low-performance baseline for comparison with optimized methods. The actual implementation is shown in Listing~\ref{listing:basic}.
+
+\begin{lstlisting}[caption={Basic Multiplication},label={listing:basic}, name=basic, float=htbp, style=mystyle,language=C++]
+void square_dgemm(int n, double *A, double *B, double *C) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      for (int k = 0; k < n; k++) {
+        C[i + j * n] += A[i + k * n] * B[k + j * n];
+      }
+    }
+  }
+}
+\end{lstlisting}
+
+
+\subsection{Blocked MM with Copy Optimization (BMMCO)}
+% State  the objective for the implementation (2-3 sentences).
+The objective of the BMMCO implementation is to measure performance when the program accesses memory sequentially and revisit the same memory address . This implementation serves as a reference point to compare the effects of the optimization techniques applied in subsequent methods.
+
+
+% Describe the implementation (2-3 sentences, or more if needed). Feel free to use coding examples as needed, such as that shown in Listing~\ref{listing:stencil-core}.
+
+\begin{lstlisting}[caption={BMMCO Multiplication},label={listing:BMMCO}, name=BMMCO, float=htbp, style=mystyle,language=C++]
+void square_dgemm_blocked(int n, int block_size, double *A, double *B,
+                          double *C) {
+  static double aBlock[MAX_BLOCK], bBlock[MAX_BLOCK], cBlock[MAX_BLOCK];
+  int Nb = n / block_size;
+  for (int i = 0; i < Nb; i++) {
+    for (int j = 0; j < Nb; j++) {
+      blockread(cBlock, C, i, j, n, block_size);
+      for (int k = 0; k < Nb; k++) {
+        blockread(aBlock, A, i, k, n, block_size);
+        blockread(bBlock, B, k, j, n, block_size);
+        // C[i, j] += A[i, k] * B[k, j];
+        square_dgemm(block_size, aBlock, bBlock, cBlock);
+      }
+      blockwrite(cBlock, C, i, j, n, block_size);
+    }
+  }
+}
+\end{lstlisting}
+
+\begin{comment}
+%% the material that follows is from the generic tech paper skeleton project
+
+\begin{itemize}
+    \item Another way to look at this section is as a paper, within a paper, describing your implementation. That viewpoint makes this the introduction to the subordinate paper, which should describe the overall structure of your implementation and how it is designed to address the problem effectively.
+\item Then, describe the structure of the rest of this section, and what each subsection describes.
+\end{itemize}
+
+How our solution (will | does) work
+\begin{itemize}
+    \item This is the body of the subordinate paper describing your solution. It may be divided into several subsections as required by the nature of your implementation.
+    \item The level of detail about how the solution works is determined by what is appropriate to the type of paper (conference, journal, technical report).
+    \item This section can be fairly short for conference papers, fairly long for journal papers, or quite long in technical reports. It all depends on the purpose of the paper and the target audience.
+    \item Proposals are necessarily a good deal more vague in this section since you have to convince someone you know enough to have a good chance of building a solution, but that you have not already done so.
+\end{itemize}
+
+\end{comment}

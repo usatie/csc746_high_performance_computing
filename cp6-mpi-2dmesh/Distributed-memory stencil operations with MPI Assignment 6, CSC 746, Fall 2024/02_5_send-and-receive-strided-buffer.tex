@@ -1,0 +1,63 @@
+\subsection{Send and Receive Strided Buffer}
+\label{subsec:send-and-receive-strided-buffer}
+
+% State the objective for the implementation (2-3 sentences).
+The \textit{sendStridedBuffer} and \textit{recvStridedBuffer} functions are designed to efficiently facilitate data exchange between MPI ranks, particularly for handling non-contiguous memory regions. These functions are crucial for two key operations: scattering input image data from rank zero to non-zero ranks and gathering computed results from non-zero ranks back to rank zero.
+
+\subsubsection{Send Strided Buffer}
+\label{subsubsec:send-strided-buffer}
+
+% Describe the implementation (2-3 sentences, or more if needed).
+The \textit{sendStridedBuffer} function facilitates the transmission of a subregion from a source buffer (\textit{srcBuf}) on one MPI rank (\textit{fromRank}) to another (\textit{toRank}). As illustrated in Listing~\ref{listing:send-strided-buffer}, this function uses \textit{MPI\_Type\_create\_subarray()} to define a subarray datatype. This datatype specifies the full buffer dimensions, the size of the subregion (\textit{sendWidth} by \textit{sendHeight}), and the offset of the subregion within the buffer (\textit{srcOffsetColumn}, \textit{srcOffsetRow}). By encapsulating the data representation into a single MPI datatype, the function eliminates the need for intermediate buffers, manual data packing, or multiple \textit{MPI\_Send()} calls.
+
+\begin{lstlisting}[caption={\textbf{Implementation of the send strided buffer function.}},label={listing:send-strided-buffer},float=htbp,style=mystyle,language=C++]
+
+void sendStridedBuffer(float *srcBuf, int srcWidth, int srcHeight, int srcOffsetColumn, int srcOffsetRow, int sendWidth, int sendHeight, int fromRank, int toRank) {
+  int msgTag = 0;
+
+  // Create the subarray datatype
+  MPI_Datatype subarray_type;
+  int dimensions_full_array[2] = {srcHeight, srcWidth};
+  int dimensions_subarray[2] = {sendHeight, sendWidth};
+  int start_coordinates[2] = {srcOffsetRow, srcOffsetColumn};
+  MPI_Type_create_subarray(2, dimensions_full_array, dimensions_subarray, start_coordinates, MPI_ORDER_C, MPI_FLOAT, &subarray_type);
+  MPI_Type_commit(&subarray_type);
+
+  // Send the message
+  int count = 1;
+  MPI_Send(srcBuf, count, subarray_type, toRank, msgTag, MPI_COMM_WORLD);
+
+  // Free the datatype
+  MPI_Type_free(&subarray_type);
+}
+
+\end{lstlisting}
+\FloatBarrier
+
+\subsubsection{Receive Strided Buffer}
+\label{subsubsec:receive-strided-buffer}
+
+% Describe the implementation (2-3 sentences, or more if needed).
+The \textit{recvStridedBuffer} function receives a subregion of data into a destination buffer (\textit{dstBuf}) from one MPI rank (\textit{fromRank}) to another (\textit{toRank}). As shown in Listing~\ref{listing:receive-strided-buffer} and similar to the \textit{sendStridedBuffer} function described in Section~\ref{subsubsec:send-strided-buffer}, it uses a custom subarray MPI datatype to define the dimensions and offset of the subregion within the larger buffer. This ensures efficient placement of the received data directly into the appropriate non-contiguous memory region.
+
+\begin{lstlisting}[caption={\textbf{Implementation of the receive strided buffer function.}},label={listing:receive-strided-buffer},float=htbp,style=mystyle,language=C++]
+void recvStridedBuffer(float *dstBuf, int dstWidth, int dstHeight, int dstOffsetColumn, int dstOffsetRow, int expectedWidth, int expectedHeight, int fromRank, int toRank) {
+  int msgTag = 0;
+  MPI_Status stat;
+
+  // Create the subarray datatype
+  MPI_Datatype subarray_type;
+  int dimensions_full_array[2] = {dstHeight, dstWidth};
+  int dimensions_subarray[2] = {expectedHeight, expectedWidth};
+  int start_coordinates[2] = {dstOffsetRow, dstOffsetColumn};
+  MPI_Type_create_subarray(2, dimensions_full_array, dimensions_subarray, start_coordinates, MPI_ORDER_C, MPI_FLOAT, &subarray_type);
+  MPI_Type_commit(&subarray_type);
+
+  // Receive the message
+  int count = 1;
+  MPI_Recv(dstBuf, count, subarray_type, fromRank, msgTag, MPI_COMM_WORLD, &stat);
+
+  // Free the datatype
+  MPI_Type_free(&subarray_type);
+}
+\end{lstlisting}

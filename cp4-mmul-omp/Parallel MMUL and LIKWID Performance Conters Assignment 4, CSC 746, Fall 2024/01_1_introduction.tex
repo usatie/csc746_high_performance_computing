@@ -1,0 +1,15 @@
+% For homework writeups, the Introduction section should state the general thrust of the assignment.
+
+% What is the problem being studied? Explain in 2-3 sentences.
+
+% What is the approach for studying the problem? Hint: the approach consists of the program(s) you are writing, so say in 2-3 sentences something about those programs. If you like, it is ok to use a forward reference, and say something like "we present the implementation in \S\ref{sec:implementation}. 
+
+% What are the main results? Say something about the results in 2-3 sentences: what is the nature of your experiment that tests your implementation, and say something about the insights gained. 
+
+% for each of the problem statement, approach statement, and findings/result statement from the abstract, amplify these into a short paragraph for each. Here, "short paragraph" means 3-4 sentences.
+
+This assignment explores the problem of optimizing matrix multiplication (MM) on modern multi-core CPU architectures through two key techniques: parallelism and cache utilization. Efficient MM is critical in high-performance computing, as improvements in execution time can significantly impact scientific and engineering applications. The challenge lies in designing implementations that both maximize multi-threaded parallel execution and optimize memory access patterns to fully utilize the hardware's cache and processing capabilities.
+
+To address this, we implemented and evaluated three MM methods: Basic Matrix Multiplication with OpenMP (Basic OMP), Blocked Matrix Multiply with Copy Optimization (BMMCO OMP), and the highly optimized CBLAS implementation. Basic OMP serves as a baseline for comparison, while BMMCO OMP introduces blocking and copy optimization techniques to improve data locality and cache efficiency. Both Basic OMP and BMMCO OMP were parallelized using OpenMP, and hardware counters were used to measure cache usage and runtime performance. The detailed implementation of these methods is presented in \S\ref{sec:implementation}.
+
+Our results demonstrate that Basic OMP scales effectively with increasing thread counts, but its cache utilization is suboptimal compared to BMMCO OMP and CBLAS. BMMCO OMP shows significant improvements in cache efficiency, particularly with larger block sizes, but its scalability is limited for smaller matrices due to thread underutilization. While in our implementation there was a tradeoff between maximizing cache utilization and parallelism, this isn't inherently the case. With careful design, it is possible to fully utilize both cache and parallelism simultaneously. The insights gained from these experiments emphasize the importance of balancing these optimizations to achieve the best performance.

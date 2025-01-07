@@ -1,0 +1,15 @@
+% For homework writeups, the Introduction section should state the general thrust of the assignment.
+
+% What is the problem being studied? Explain in 2-3 sentences.
+
+% What is the approach for studying the problem? Hint: the approach consists of the program(s) you are writing, so say in 2-3 sentences something about those programs. If you like, it is ok to use a forward reference, and say something like "we present the implementation in \S\ref{sec:implementation}. 
+
+% What are the main results? Say something about the results in 2-3 sentences: what is the nature of your experiment that tests your implementation, and say something about the insights gained. 
+
+% for each of the problem statement, approach statement, and findings/result statement from the abstract, amplify these into a short paragraph for each. Here, "short paragraph" means 3-4 sentences.
+
+Ray tracing is a powerful technique for rendering photorealistic images, but its computational demands make achieving real-time performance a significant challenge. This project focuses on investigating and implementing parallelization strategies to improve ray tracing performance on CPUs, aiming to identify whether ray tracing is "embarrassingly parallel" and how this parallelism can be effectively leveraged for real-time applications.
+
+In this study, we explore the performance gains achieved through the parallel implementation of ray tracing using OpenMP \cite{openmp_spec}. Our results demonstrate that, although ray tracing appears to be "embarrassingly parallel," several factors—such as load imbalance, overhead from workload distribution, and hardware underutilization—can prevent parallelization from achieving optimal speedup.
+
+The rest of this paper first discusses related work in Section \ref{sec:related-work}, providing the context for our study. Section \ref{sec:implementation} describes our implementation, detailing the parallelization strategies used. Section \ref{sec:evaluation} explains the evaluation methodology, presents performance results, and discusses key findings. Section \ref{sec:conclusion-and-future-work} concludes the paper with a summary of our contributions and directions for future work.

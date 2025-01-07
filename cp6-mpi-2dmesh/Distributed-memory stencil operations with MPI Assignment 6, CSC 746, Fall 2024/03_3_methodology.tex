@@ -1,0 +1,26 @@
+\subsection{Methodology}
+\label{subsec:methodology}
+
+\subsubsection{Problem Sizes and Concurrency Levels}
+\label{subsubsec:problem-size}
+To evaluate the Sobel filter implementations, we tested a fixed grayscale image with dimensions \(7112 \times 5146\). Experiments were conducted using three decomposition methods: Row-slab, Column-slab, and Tiled. For each method, we analyzed performance across varying total ranks: 4, 9, 16, 25, 36, 49, 64, and 81, capturing the impact of concurrency on runtime.
+
+\subsubsection{Runtime Measurement}
+\label{subsubsec:runtime}
+Performance data was collected by measuring the runtime of three key phases: Scatter, Sobel computation, and Gather. Timing was performed on the CPU using the C++ \texttt{chrono\_timer()}, which encapsulated the \texttt{scatterAllTiles}, \texttt{sobelAllTiles}, and \texttt{gatherAllTiles} functions, respectively. 
+
+To ensure accurate synchronization across all ranks, \texttt{MPI\_Barrier} was employed before starting and stopping timers for each phase. This approach guarantees that all ranks finish the preceding phase before advancing to the next, thereby isolating the runtime measurements for each phase and avoiding overlap between operations.
+
+\subsubsection{Data Movement}
+\label{subsubsec:data-movement}
+The number of messages and total data size were measured by implementing counters before calling \texttt{MPI\_Send} and calculating the data size using \texttt{MPI\_Type\_size}. These values were aggregated using \texttt{MPI\_Reduce} to provide a global summary.
+
+\subsubsection{Speedup Calculation}
+\label{subsubsec:speedup}
+Speedup was derived from the runtime data to evaluate the parallel performance of the Sobel filter implementations. The speedup \(S(n, p)\) is defined as:
+
+\begin{displaymath}
+    S(n, p) = \frac{T^*(n)}{T(n, p)}
+\end{displaymath}
+
+Here, \(T^*(n)\) is the runtime of the best sequential algorithm for a problem of size \(n\), measured as the runtime with a single process per CPU node (total ranks of 4). \(T(n, p)\) represents the runtime for the same problem size \(n\) using \(p\) parallel threads. Since the problem size was fixed (\(7112 \times 5146\) image), the variability in \(p\) allowed us to assess the scalability of each decomposition method.

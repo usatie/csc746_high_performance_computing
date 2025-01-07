@@ -1,0 +1,18 @@
+\subsection{CPU with OpenMP Parallelism}
+\label{subsec:cpu-omp}
+% State the objective for the implementation (2-3 sentences).
+This implementation examines CPU parallelization of the Sobel filter using OpenMP, providing a baseline for GPU parallelization. OpenMP directives help distribute computations across multiple threads to improve performance.
+
+% Describe the implementation (2-3 sentences, or more if needed).
+The function \texttt{do\_sobel\_filtering()} applies the Sobel filter across the image, as shown in Listing~\ref{listing:sobel-omp}. It iterates over all pixels, calling \texttt{sobel\_filtered\_pixel()} for each one. Adding \texttt{\#pragma omp parallel for} before the outer loop parallelizes row processing, allowing threads to work concurrently on different image rows.
+
+\begin{lstlisting}[caption={\textbf{OpenMP implementation of Sobel filtering.} \texttt{do\_sobel\_filtering()} applies the Sobel filter, parallelizing the row loop with OpenMP.},label={listing:sobel-omp},float=htbp,style=mystyle,language=C++]
+void do_sobel_filtering(float *in, float *out, int width, int height) {
+  float gx[] = {...}, gy = {...};
+#pragma omp parallel for
+  for (int y = 0; y < height; ++y) {
+    for (int x = 0; x < width; ++x) {
+      out[x, y] = sobel_filtered_pixel(in, x, y, gx, gy);
+    }
+  }}
+\end{lstlisting}

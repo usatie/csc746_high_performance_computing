@@ -1,0 +1,30 @@
+\subsection{OpenMP RT}
+\label{subsec:openmp-rt}
+The parallel implementation leverages OpenMP to distribute the computational workload across multiple threads. By parallelizing the per-pixel ray tracing task, we aim to achieve significant performance improvements over the serial version.
+
+\begin{lstlisting}[caption={\textbf{OpenMP RT:} This parallelized implementation uses OpenMP to distribute pixel computations across multiple threads. The \texttt{\#pragma omp parallel for} directive enables efficient workload distribution, with optional loop collapsing (\texttt{collapse(2)}) for combining nested loops. The scheduling policy is configurable at runtime, allowing flexible tuning to balance performance and overhead.}, label={listing:openmp-rt}, name=openmp-rt, float=htbp, style=mystyle, language=C++]
+#if OMP_COLLAPSE
+#pragma omp parallel for collapse(2) schedule(runtime)
+#else
+#pragma omp parallel for schedule(runtime)
+#endif
+for (int y = 0; y < height; y++) {
+  for (int x = 0; x < width; x++) {
+    color pixel_color = color(0, 0, 0);
+    for (int s = 0; s < samples_per_pixel; s++) {
+      ray r = get_ray(x, y);
+      pixel_color += ray_color(r, max_depth, world);
+    }
+    image[y * image_width + x] += pixel_color;
+  }
+}
+\end{lstlisting}
+
+\subsubsection{Parallelization Strategy}
+The OpenMP implementation focuses on parallelizing the loop that iterates over image pixels. Each thread processes a subset of the pixels independently, taking advantage of the embarrassingly parallel nature of the problem. Two scheduling strategies were implemented and evaluated:
+
+\begin{itemize}
+    \item \textbf{Static Scheduling:} Pixels are evenly divided among threads at compile time. This approach is efficient for simple scenes but can lead to load imbalance in complex ones.
+    \item \textbf{Dynamic Scheduling:} Pixels are assigned to threads in smaller chunks at runtime, improving load balancing but introducing overhead due to runtime scheduling decisions.
+\end{itemize}
+
