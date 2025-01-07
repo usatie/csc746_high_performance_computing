@@ -1,0 +1,189 @@
+srun -n 4 ./mpi_2dmesh -g 1 -v -o ../data/processed-raw-int8-4x-cpu-row.dat
+Total Ranks: 4
+Domain Decomposition method: Row-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	65.1505 (ms) 
+	Sobel time:	36.2414 (ms) 
+	Gather time:	31.9667 (ms) 
+	Sent count:	6
+	Sent bytes:	219618560
+srun -n 4 ./mpi_2dmesh -g 2 -v -o ../data/processed-raw-int8-4x-cpu-col.dat
+Total Ranks: 4
+Domain Decomposition method: Column-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	40.5648 (ms) 
+	Sobel time:	35.9920 (ms) 
+	Gather time:	35.2839 (ms) 
+	Sent count:	6
+	Sent bytes:	219590112
+srun -n 4 ./mpi_2dmesh -g 3 -v -o ../data/processed-raw-int8-4x-cpu-tile.dat
+Total Ranks: 4
+Domain Decomposition method: Tiled
+
+
+Timing results from rank 0: 
+	Scatter time:	38.7108 (ms) 
+	Sobel time:	37.0048 (ms) 
+	Gather time:	34.5169 (ms) 
+	Sent count:	6
+	Sent bytes:	219590112
+srun -n 9 ./mpi_2dmesh -g 1 -v -o ../data/processed-raw-int8-4x-cpu-row.dat
+Total Ranks: 9
+Domain Decomposition method: Row-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	49.4260 (ms) 
+	Sobel time:	16.7995 (ms) 
+	Gather time:	39.9332 (ms) 
+	Sent count:	16
+	Sent bytes:	260299200
+srun -n 9 ./mpi_2dmesh -g 2 -v -o ../data/processed-raw-int8-4x-cpu-col.dat
+Total Ranks: 9
+Domain Decomposition method: Column-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	63.8411 (ms) 
+	Sobel time:	16.0139 (ms) 
+	Gather time:	49.6169 (ms) 
+	Sent count:	16
+	Sent bytes:	260264096
+srun -n 9 ./mpi_2dmesh -g 3 -v -o ../data/processed-raw-int8-4x-cpu-tile.dat
+Total Ranks: 9
+Domain Decomposition method: Tiled
+
+
+Timing results from rank 0: 
+	Scatter time:	55.0262 (ms) 
+	Sobel time:	17.1673 (ms) 
+	Gather time:	42.0035 (ms) 
+	Sent count:	16
+	Sent bytes:	260270416
+srun -n 16 ./mpi_2dmesh -g 1 -v -o ../data/processed-raw-int8-4x-cpu-row.dat
+Total Ranks: 16
+Domain Decomposition method: Row-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	49.5424 (ms) 
+	Sobel time:	9.1852 (ms) 
+	Gather time:	38.6190 (ms) 
+	Sent count:	30
+	Sent bytes:	274523200
+srun -n 16 ./mpi_2dmesh -g 2 -v -o ../data/processed-raw-int8-4x-cpu-col.dat
+Total Ranks: 16
+Domain Decomposition method: Column-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	59.2786 (ms) 
+	Sobel time:	10.4838 (ms) 
+	Gather time:	47.8969 (ms) 
+	Sent count:	30
+	Sent bytes:	274508224
+srun -n 16 ./mpi_2dmesh -g 3 -v -o ../data/processed-raw-int8-4x-cpu-tile.dat
+Total Ranks: 16
+Domain Decomposition method: Tiled
+
+
+Timing results from rank 0: 
+	Scatter time:	48.1203 (ms) 
+	Sobel time:	9.0491 (ms) 
+	Gather time:	40.1778 (ms) 
+	Sent count:	30
+	Sent bytes:	274494752
+srun -n 25 ./mpi_2dmesh -g 1 -v -o ../data/processed-raw-int8-4x-cpu-row.dat
+Total Ranks: 25
+Domain Decomposition method: Row-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	52.0217 (ms) 
+	Sobel time:	8.1352 (ms) 
+	Gather time:	42.6033 (ms) 
+	Sent count:	48
+	Sent bytes:	281123136
+srun -n 25 ./mpi_2dmesh -g 2 -v -o ../data/processed-raw-int8-4x-cpu-col.dat
+Total Ranks: 25
+Domain Decomposition method: Column-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	65.3361 (ms) 
+	Sobel time:	14.3387 (ms) 
+	Gather time:	52.6170 (ms) 
+	Sent count:	48
+	Sent bytes:	281095104
+srun -n 25 ./mpi_2dmesh -g 3 -v -o ../data/processed-raw-int8-4x-cpu-tile.dat
+Total Ranks: 25
+Domain Decomposition method: Tiled
+
+
+Timing results from rank 0: 
+	Scatter time:	51.4619 (ms) 
+	Sobel time:	5.8203 (ms) 
+	Gather time:	43.4190 (ms) 
+	Sent count:	48
+	Sent bytes:	281080912
+srun -n 36 ./mpi_2dmesh -g 1 -v -o ../data/processed-raw-int8-4x-cpu-row.dat
+Total Ranks: 36
+Domain Decomposition method: Row-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	52.6630 (ms) 
+	Sobel time:	4.9166 (ms) 
+	Gather time:	44.0518 (ms) 
+	Sent count:	70
+	Sent bytes:	284707584
+srun -n 36 ./mpi_2dmesh -g 2 -v -o ../data/processed-raw-int8-4x-cpu-col.dat
+Total Ranks: 36
+Domain Decomposition method: Column-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	57.9228 (ms) 
+	Sobel time:	4.4143 (ms) 
+	Gather time:	48.2228 (ms) 
+	Sent count:	70
+	Sent bytes:	284676720
+srun -n 36 ./mpi_2dmesh -g 3 -v -o ../data/processed-raw-int8-4x-cpu-tile.dat
+Total Ranks: 36
+Domain Decomposition method: Tiled
+
+
+Timing results from rank 0: 
+	Scatter time:	50.9841 (ms) 
+	Sobel time:	15.8131 (ms) 
+	Gather time:	54.6283 (ms) 
+	Sent count:	70
+	Sent bytes:	284662456
+srun -n 49 ./mpi_2dmesh -g 1 -v -o ../data/processed-raw-int8-4x-cpu-row.dat
+Total Ranks: 49
+Domain Decomposition method: Row-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	58.9221 (ms) 
+	Sobel time:	3.3418 (ms) 
+	Gather time:	47.2554 (ms) 
+	Sent count:	96
+	Sent bytes:	286812736
+srun -n 49 ./mpi_2dmesh -g 2 -v -o ../data/processed-raw-int8-4x-cpu-col.dat
+Total Ranks: 49
+Domain Decomposition method: Column-slab
+
+
+Timing results from rank 0: 
+	Scatter time:	60.6236 (ms) 
+	Sobel time:	3.4527 (ms) 
+	Gather time:	48.5478 (ms) 
+	Sent count:	96
+	Sent bytes:	286817456
+srun -n 49 ./mpi_2dmesh -g 3 -v -o ../data/processed-raw-int8-4x-cpu-tile.dat
+srun -n 64 ./mpi_2dmesh -g 1 -v -o ../data/processed-raw-int8-4x-cpu-row.dat
