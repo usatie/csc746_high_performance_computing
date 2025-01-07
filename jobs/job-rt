@@ -1,0 +1,41 @@
+#!/bin/bash -l
+#SBATCH --constraint=cpu
+#SBATCH --cpus-per-task=1
+#SBATCH --qos=debug
+#SBATCH --nodes=1
+#SBATCH --time=00:30:00
+#SBATCH --job-name=job-rt
+#SBATCH --account=m3930
+#SBATCH --perf=generic
+#SBATCH --output=log/%j-job-rt.out
+#SBATCH --error=log/%j-job-rt.out
+
+export OMP_PLACES=threads
+export OMP_PROC_BIND=spread
+unset OMP_NUM_THREADS
+concurrency_levels=(16 256)
+
+for sphere_grid_size in 64; do
+	for loop_order in XY; do
+		for t in ${concurrency_levels[@]}; do
+			echo "------------------------------------------------------------------------------------------------------------------------"
+			echo OMP_SCHEDULE=static OMP_NUM_THREADS=$t ../build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-$t.ppm -l $loop_order -g $sphere_grid_size
+			OMP_SCHEDULE=static OMP_NUM_THREADS=$t ../build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/static-image-$t.ppm -l $loop_order -g $sphere_grid_size
+		done
+		for schedule in 'dynamic,1' 'dynamic, 16'; do
+			echo "Experiments with $schedule without collapse"
+			for t in ${concurrency_levels[@]}; do
+				echo "------------------------------------------------------------------------------------------------------------------------"
+				echo OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t .l./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/$schedule-image-$t.ppm -l $loop_order -g $sphere_grid_size
+				OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ../build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/$schedule-image-$t.ppm -l $loop_order -g $sphere_grid_size
+			done
+
+			echo "Experiments with $schedule with collapse"
+			for t in ${concurrency_levels[@]}; do
+				echo "------------------------------------------------------------------------------------------------------------------------"
+				echo OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ../build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/$schedule-collapse-image-$t.ppm -l $loop_order -g $sphere_grid_size
+				OMP_SCHEDULE=$schedule OMP_NUM_THREADS=$t ../build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/$schedule-collapse-image-$t.ppm -l $loop_order -g $sphere_grid_size
+			done
+		done
+	done
+done

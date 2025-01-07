@@ -1,0 +1,36 @@
+OMP_NUM_THREADS=256
+Number of threads: 256
+Done.s remaining: 0 00
+Elapsed time: 4.69721
+OMP_NUM_THREADS=128
+Number of threads: 128
+Done.s remaining: 0 00
+Elapsed time: 5.31249
+OMP_NUM_THREADS=64
+Number of threads: 64
+Done.s remaining: 0 00
+Elapsed time: 9.76488
+OMP_NUM_THREADS=32
+Number of threads: 32
+Done.s remaining: 0 00
+Elapsed time: 13.6779
+OMP_NUM_THREADS=16
+Number of threads: 16
+Done.s remaining: 0 00
+Elapsed time: 20.6032
+OMP_NUM_THREADS=8
+Number of threads: 8
+Done.s remaining: 0 00
+Elapsed time: 37.5813
+OMP_NUM_THREADS=4
+Number of threads: 4
+Done.s remaining: 0 00
+Elapsed time: 72.7082
+OMP_NUM_THREADS=2
+Number of threads: 2
+Done.s remaining: 0 00
+Elapsed time: 143.58
+OMP_NUM_THREADS=1
+Number of threads: 1
+Done.s remaining: 0 00
+Elapsed time: 277.854

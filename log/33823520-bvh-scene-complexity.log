@@ -1,0 +1,315 @@
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-1-threads-1.ppm -l XY -g 1
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 1, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.229 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-1-threads-2.ppm -l XY -g 1
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 1, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.60115 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-1-threads-4.ppm -l XY -g 1
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 1, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.58845 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-1-threads-8.ppm -l XY -g 1
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 1, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.57759 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-1-threads-16.ppm -l XY -g 1
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 1, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.55074 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-1-threads-32.ppm -l XY -g 1
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 1, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.11419 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-1-threads-64.ppm -l XY -g 1
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 1, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.769071 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-1-threads-128.ppm -l XY -g 1
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 1, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.64075 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-1-threads-256.ppm -l XY -g 1
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 1, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.515807 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-2-threads-1.ppm -l XY -g 2
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 2, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.46808 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-2-threads-2.ppm -l XY -g 2
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 2, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.74175 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-2-threads-4.ppm -l XY -g 2
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 2, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.80433 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-2-threads-8.ppm -l XY -g 2
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 2, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.68888 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-2-threads-16.ppm -l XY -g 2
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 2, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.65319 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-2-threads-32.ppm -l XY -g 2
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 2, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.16271 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-2-threads-64.ppm -l XY -g 2
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 2, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.752964 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-2-threads-128.ppm -l XY -g 2
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 2, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.616277 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-2-threads-256.ppm -l XY -g 2
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 2, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.547653 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-4-threads-1.ppm -l XY -g 4
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 4, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.10032 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-4-threads-2.ppm -l XY -g 4
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 4, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.1433 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-4-threads-4.ppm -l XY -g 4
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 4, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.20082 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-4-threads-8.ppm -l XY -g 4
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 4, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.14059 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-4-threads-16.ppm -l XY -g 4
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 4, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.09152 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-4-threads-32.ppm -l XY -g 4
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 4, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.324 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-4-threads-64.ppm -l XY -g 4
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 4, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.859408 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-4-threads-128.ppm -l XY -g 4
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 4, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.66781 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-4-threads-256.ppm -l XY -g 4
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 4, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.569283 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-8-threads-1.ppm -l XY -g 8
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 8, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 4.29212 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-8-threads-2.ppm -l XY -g 8
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 8, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.50163 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-8-threads-4.ppm -l XY -g 8
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 8, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.01747 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-8-threads-8.ppm -l XY -g 8
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 8, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.72431 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-8-threads-16.ppm -l XY -g 8
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 8, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.70846 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-8-threads-32.ppm -l XY -g 8
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 8, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.64711 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-8-threads-64.ppm -l XY -g 8
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 8, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.03013 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-8-threads-128.ppm -l XY -g 8
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 8, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.767917 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-8-threads-256.ppm -l XY -g 8
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 8, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.60512 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-16-threads-1.ppm -l XY -g 16
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 16, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 4.81409 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-16-threads-2.ppm -l XY -g 16
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 16, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.95186 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-16-threads-4.ppm -l XY -g 16
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 16, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.093 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-16-threads-8.ppm -l XY -g 16
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 16, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.93966 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-16-threads-16.ppm -l XY -g 16
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 16, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.73494 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-16-threads-32.ppm -l XY -g 16
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 16, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.65474 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-16-threads-64.ppm -l XY -g 16
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 16, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.00289 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-16-threads-128.ppm -l XY -g 16
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 16, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.735821 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-16-threads-256.ppm -l XY -g 16
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 16, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.598461 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-32-threads-1.ppm -l XY -g 32
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 32, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 6.48408 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-32-threads-2.ppm -l XY -g 32
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 32, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 4.80681 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-32-threads-4.ppm -l XY -g 32
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 32, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.59788 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-32-threads-8.ppm -l XY -g 32
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 32, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.0597 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-32-threads-16.ppm -l XY -g 32
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 32, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.87765 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-32-threads-32.ppm -l XY -g 32
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 32, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.65178 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-32-threads-64.ppm -l XY -g 32
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 32, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.0126 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-32-threads-128.ppm -l XY -g 32
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 32, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.783367 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-32-threads-256.ppm -l XY -g 32
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 32, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.628775 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=1 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-64-threads-1.ppm -l XY -g 64
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 64, Collapse: enabled, Loop Order: XY, Threads: 1, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 7.92643 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=2 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-64-threads-2.ppm -l XY -g 64
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 64, Collapse: enabled, Loop Order: XY, Threads: 2, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 5.98513 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=4 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-64-threads-4.ppm -l XY -g 64
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 64, Collapse: enabled, Loop Order: XY, Threads: 4, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.57 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=8 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-64-threads-8.ppm -l XY -g 64
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 64, Collapse: enabled, Loop Order: XY, Threads: 8, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.18372 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=16 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-64-threads-16.ppm -l XY -g 64
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 64, Collapse: enabled, Loop Order: XY, Threads: 16, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.87952 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-64-threads-32.ppm -l XY -g 64
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 64, Collapse: enabled, Loop Order: XY, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.75645 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-64-threads-64.ppm -l XY -g 64
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 64, Collapse: enabled, Loop Order: XY, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.01812 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-64-threads-128.ppm -l XY -g 64
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 64, Collapse: enabled, Loop Order: XY, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.775238 
+------------------------------------------------------------------------------------------------------------------------
+OMP_SCHEDULE=dynamic,1 OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/dynamic,1-sphere-64-threads-256.ppm -l XY -g 64
+Sample: 32, Width: 512, Height: 288, Depth: 32Sphere Grid Size: 64, Collapse: enabled, Loop Order: XY, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 0.63624 

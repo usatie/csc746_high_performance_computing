@@ -1,0 +1,116 @@
+Experiments with static without collapse
+OMP_SCHEDULE=static OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-256.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Threads: 256, Schedule: Static, chunk size: 0
+
+Elapsed time: 2.0949 
+Total rays simulated: 12238928
+Rays Simulated per second: 5842242
+OMP_SCHEDULE=static OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-128.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Threads: 128, Schedule: Static, chunk size: 0
+
+Elapsed time: 3.21473 
+Total rays simulated: 12240936
+Rays Simulated per second: 3807764
+OMP_SCHEDULE=static OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-64.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Threads: 64, Schedule: Static, chunk size: 0
+
+Elapsed time: 4.35197 
+Total rays simulated: 12245128
+Rays Simulated per second: 2813695
+OMP_SCHEDULE=static OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-32.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Threads: 32, Schedule: Static, chunk size: 0
+
+Elapsed time: 5.57546 
+Total rays simulated: 12236765
+Rays Simulated per second: 2194754
+Experiments with static with collapse
+OMP_SCHEDULE=static OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-256.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Threads: 256, Schedule: Static, chunk size: 0
+
+Elapsed time: 1.9972 
+Total rays simulated: 12245223
+Rays Simulated per second: 6131197
+OMP_SCHEDULE=static OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-128.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Threads: 128, Schedule: Static, chunk size: 0
+
+Elapsed time: 3.28531 
+Total rays simulated: 12242413
+Rays Simulated per second: 3726415
+OMP_SCHEDULE=static OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-64.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Threads: 64, Schedule: Static, chunk size: 0
+
+Elapsed time: 4.1289 
+Total rays simulated: 12245936
+Rays Simulated per second: 2965904
+OMP_SCHEDULE=static OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-32.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Threads: 32, Schedule: Static, chunk size: 0
+
+Elapsed time: 5.44383 
+Total rays simulated: 12244093
+Rays Simulated per second: 2249169
+Experiments with dynamic without collapse
+OMP_SCHEDULE=dynamic OMP_NUM_THREADS=256 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-256.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 2.26056 
+Total rays simulated: 12239290
+Rays Simulated per second: 5414272
+OMP_SCHEDULE=dynamic OMP_NUM_THREADS=128 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-128.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.21028 
+Total rays simulated: 12241953
+Rays Simulated per second: 3813357
+OMP_SCHEDULE=dynamic OMP_NUM_THREADS=64 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-64.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 4.32233 
+Total rays simulated: 12246140
+Rays Simulated per second: 2833227
+OMP_SCHEDULE=dynamic OMP_NUM_THREADS=32 ./build/ray-tracing-omp -S 32 -W 512 -H 288 -D 32 -o images/image-32.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: disabled, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 5.46447 
+Total rays simulated: 12239765
+Rays Simulated per second: 2239880
+Experiments with dynamic with collapse
+OMP_SCHEDULE=dynamic OMP_NUM_THREADS=256 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-256.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Threads: 256, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 1.98642 
+Total rays simulated: 12248501
+Rays Simulated per second: 6166126
+OMP_SCHEDULE=dynamic OMP_NUM_THREADS=128 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-128.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Threads: 128, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 3.31167 
+Total rays simulated: 12247164
+Rays Simulated per second: 3698183
+OMP_SCHEDULE=dynamic OMP_NUM_THREADS=64 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-64.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Threads: 64, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 4.07354 
+Total rays simulated: 12243656
+Rays Simulated per second: 3005656
+OMP_SCHEDULE=dynamic OMP_NUM_THREADS=32 ./build/ray-tracing-omp_collapse -S 32 -W 512 -H 288 -D 32 -o images/image-collapse-32.ppm
+==========================================================================
+Sample: 32, Width: 512, Height: 288, Depth: 32, Collapse: enabled, Threads: 32, Schedule: Dynamic, chunk size: 1
+
+Elapsed time: 5.42056 
+Total rays simulated: 12241544
+Rays Simulated per second: 2258352
